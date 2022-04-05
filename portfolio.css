@@ -47,28 +47,78 @@ table {
 	border-spacing: 0;
 }
 
+@font-face {
+    font-family: junction_regular;
+    src: url(junction.ttf/junction_regular.ttf);
+}
 
+@font-face {
+	font-family: junction_bold;
+	src: url(junction.ttf/junction_bold.ttf);
+}
+
+@font-face {
+	font-family: junction_light;
+	src: url(junction.ttf/junction_light.ttf);
+}
 
 body {
+	font-family: junction_regular;
     height: 100vh;
+	background-color: #E5DADA;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .square {
-
     width: 90%;
-    height: 85%;
-    border: solid #151922;
+    height: 90%;
+    border: solid #02040F;
     border-width: 3px;
-    border-radius: 2px;
-	transition: all 0.3s ease-in;
+    border-radius: 3px;
+	transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.square:hover
-{
+.square:hover {
 	transform: translate(-10px, -10px);
-	box-shadow: 10px 10px #15192257;
+	box-shadow: 10px 10px #02040f4d;
 }
 
+.parent {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: repeat(5, 1fr);
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+	align-items: center;
+	font-family: junction_regular;
+}
+	
+.nameplate { 
+	grid-area: 1 / 1 / 2 / 3;
+	font-family: junction_bold;
+	margin-left: 0.5em;
+	letter-spacing: 2px;
+	font-size: 3.3em;
+}
+
+.contact { 
+	grid-area: 2 / 1 / 4 / 3; 
+}
+
+.skills { 
+	grid-area: 5 / 1 / 6 / 6; 
+}
+
+.projects { 
+	grid-area: 1 / 4 / 4 / 6; 
+}
+
+.nomansland { 
+	grid-area: 1 / 3 / 5 / 4; 
+}
+
+.secondnomansland { 
+	grid-area: 4 / 1 / 5 / 6; 
+}

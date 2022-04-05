@@ -1,0 +1,108 @@
+
+  FONTLOG: Junction
+
+  --------------------------------------------
+  Junction Regular
+  --------------------------------------------
+
+  This file provides detailed information on the Junction 
+  font Software.
+  This information should be distributed along with the 
+  Junction font and any derivative works.
+  
+  Junction Font Information
+  
+  Junction is a a humanist sans-serif, and the first 
+  open-source type project started by The League of Moveable 
+  Type.
+  
+  Changelog
+  
+  11 Sept 2014 (Christoph Haag)
+- created fontforge sources as base to work on GNU/Linux
+- changed vertical metrics, causing strange behaviour as 
+  webfont.
+- adjusted metadata
+- Mastered Font from Fontforge SFDIR to 
+  UFO,OTF,TTF,EOT,WOFF,SVG
+  
+  29 Mar 2014 (Caroline Hadilaksono,Tyler Finck)
+- expanded international support.
+  
+  4 Feb 2009 (Caroline Hadilaksono)
+- Initial release
+  
+  
+  If you make modifications be sure to add your name (N), 
+  email (E), web-address (if you have one) (W) and 
+  description (D). This list is in alphabetical order.
+  
+  N: Caroline Hadilaksono
+  E: caroline@hadilaksono.com
+  W: www.hadilaksono.com 
+  D: Supporter, Contributor, & Administrator
+  
+  N: Christoph Haag
+  E: christoph@lafkon.net
+  W: www.lafkon.net
+  D: Transformer
+  
+  N: Tyler Finck
+  E: tylerfinck@gmail.com
+  W: www.tylerfinck.com  
+  D: Supporter & Contributor
+
+
+  --------------------------------------------
+  Junction Bold
+  --------------------------------------------
+
+  This file provides detailed information on the Junction 
+  font Software.
+  This information should be distributed along with the 
+  Junction font and any derivative works.
+  
+  Junction Font Information
+  
+  Junction is a a humanist sans-serif, and the first 
+  open-source type project started by The League of Moveable 
+  Type.
+  
+  Changelog
+  
+  11 Sept 2014 (Christoph Haag)
+- created fontforge sources as base to work on GNU/Linux
+- changed vertical metrics, causing strange behaviour as 
+  webfont.
+- adjusted metadata
+- Mastered Font from Fontforge SFDIR to 
+  UFO,OTF,TTF,EOT,WOFF,SVG
+  
+  29 Mar 2014 (Caroline Hadilaksono,Tyler Finck)
+- Initial release
+  
+  
+  If you make modifications be sure to add your name (N), 
+  email (E), web-address (if you have one) (W) and 
+  description (D). This list is in alphabetical order.
+  
+  N: Caroline Hadilaksono
+  E: caroline@hadilaksono.com
+  W: www.hadilaksono.com 
+  D: Supporter, Contributor, & Administrator
+  
+  N: Christoph Haag
+  E: christoph@lafkon.net
+  W: www.lafkon.net
+  D: Transformer
+  
+  N: Tyler Finck
+  E: tylerfinck@gmail.com
+  W: www.tylerfinck.com  
+  D: Supporter & Contributor
+
+
+  --------------------------------------------
+  Junction Light
+  --------------------------------------------
+  see above
