@@ -82,7 +82,7 @@ body {
 
 .square:hover {
 	transform: translate(-10px, -10px);
-	box-shadow: 10px 10px #02040f4d;
+	box-shadow: 10px 10px #e7822465;
 }
 
 .parent {
@@ -98,19 +98,64 @@ body {
 .nameplate { 
 	grid-area: 1 / 1 / 2 / 3;
 	font-family: junction_bold;
-	margin-left: 0.5em;
+	margin-left: 1em;
 	letter-spacing: 2px;
 	font-size: 3.3em;
 }
 
+.icon {
+	width: 20px;
+	position: relative;
+	top: 0.25em;
+	padding-right: 10px;
+
+}
+
 .contact { 
-	grid-area: 2 / 1 / 4 / 3; 
+	grid-area: 2 / 1 / 4 / 3;
+	line-height: 210%;
+	margin-left: 1em;
+	text-align: left;
+	letter-spacing: 2px;
 }
 
-.skills { 
-	grid-area: 5 / 1 / 6 / 6; 
+.link {
+	text-decoration: none;
+	color: inherit;
 }
 
+.defil {
+	overflow: hidden;
+	position: relative;
+	display: block;
+}
+
+.marquee-container {
+	grid-area: 5 / 1 / 6 / 6;
+	height: 30px;
+	line-height: 30px;
+	justify-content: space-around;
+}
+
+.marquee {
+	display: inline-flex;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+    animation: marquee 3s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: -100%
+  }
+}
 .projects { 
 	grid-area: 1 / 4 / 4 / 6; 
 }
