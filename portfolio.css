@@ -99,6 +99,7 @@ body {
 	grid-area: 1 / 1 / 2 / 3;
 	font-family: junction_bold;
 	margin-left: 1em;
+	padding-top: 20%;
 	letter-spacing: 2px;
 	font-size: 3.3em;
 }
@@ -108,13 +109,13 @@ body {
 	position: relative;
 	top: 0.25em;
 	padding-right: 10px;
-
 }
 
 .contact { 
 	grid-area: 2 / 1 / 4 / 3;
 	line-height: 210%;
 	margin-left: 1em;
+	width: max-content;
 	text-align: left;
 	letter-spacing: 2px;
 }
@@ -124,38 +125,14 @@ body {
 	color: inherit;
 }
 
-.defil {
-	overflow: hidden;
-	position: relative;
-	display: block;
-}
-
-.marquee-container {
+.skills {
 	grid-area: 5 / 1 / 6 / 6;
-	height: 30px;
-	line-height: 30px;
+	display: flex;
+	letter-spacing: 1px;
+	font-size: 0.9em;
 	justify-content: space-around;
 }
 
-.marquee {
-	display: inline-flex;
-    top: 0;
-    left: 100%;
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    white-space: nowrap;
-    animation: marquee 3s linear infinite;
-}
-
-@keyframes marquee {
-  0% {
-    left: 100%;
-  }
-  100% {
-    left: -100%
-  }
-}
 .projects { 
 	grid-area: 1 / 4 / 4 / 6; 
 }
