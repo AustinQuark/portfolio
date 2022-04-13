@@ -163,5 +163,11 @@ body {
 } 
 
 .lamp-svg {
-	fill: #80745f;
+	fill: #02040fce;
+}
+
+.status {
+	font-family:cursive;
+	color: antiquewhite;
+	transform: translateX(83px) translateY(-184px);
 }
