@@ -136,8 +136,8 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: right;
-	transform:  translateX(16%) translateY(95%) rotate(45deg) ;
-	width: 150px;
+	/*transform:  translateX(16%) translateY(95%) rotate(45deg) ;
+	*/width: 150px;
 	background-color: #386b85;
 }
 
