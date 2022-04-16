@@ -129,14 +129,16 @@ body {
 	display: flex;
 	align-self: flex-start;
 	justify-content: right;
+	background-color: #9c2a2a;
 }
 
 .diag-contact { 
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: right;
 	transform:  translateX(16%) translateY(95%) rotate(45deg) ;
 	width: 150px;
+	background-color: #386b85;
 }
 
 .diag-icons {
