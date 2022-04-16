@@ -164,10 +164,13 @@ body {
 
 .lamp-svg {
 	fill: #02040fce;
+	width: 6em;
 }
 
 .status {
 	font-family:cursive;
-	color: antiquewhite;
-	transform: translateX(83px) translateY(-184px);
+	color: #E5DADA;
+	position: relative;
+	top: -165px;
+	left: 77px;
 }
