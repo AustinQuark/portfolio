@@ -84,7 +84,7 @@ body {
 
 .square:hover {
 	transform: translate(-10px, -10px);
-	box-shadow: 10px 10px #e7822465;
+	box-shadow: 10px 10px #02282a71;
 }
 
 .parent {
@@ -106,10 +106,23 @@ body {
 
 .nameplate { 
 	letter-spacing: 3px;
+	display: flex;
+	flex-direction: row;
+}
+
+.nameplate-letter {
+	transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nameplate-letter:hover {
+	z-index: 1em;
+	padding-top: 0.7em;
+	transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .description {
 	font-size: 0.3em;
+	padding-top: 0.2em;
 	padding-right: 4px;;
 	letter-spacing: 1px;
 	white-space: nowrap;
@@ -127,18 +140,18 @@ body {
 	padding-top: 30px;
 }
 
-.square:hover > .skills > span {
-	transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  	text-shadow: 1px 1px 0px rgb(203, 147, 104),
-	  				2px 2px 0px rgb(203, 147, 104),
-					  3px 3px 0px rgb(203, 147, 104),
-					  4px 4px 0px rgb(203, 147, 104),
-					  5px 5px 0px rgb(203, 147, 104),
-					  6px 6px 0px rgb(203, 147, 104),
-					  7px 7px 0px rgb(203, 147, 104),
-					  8px 8px 0px rgb(203, 147, 104),
-					  9px 9px 0px rgb(203, 147, 104),
-					  10px 10px 0px rgb(203, 147, 104);
+.skills > span {
+	padding: 1em;
+}
+
+.skills > span:hover {
+	transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+	background-color: #424242;
+	-webkit-background-clip: text;
+	-moz-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	text-shadow: #ffffff71 0px 3px 3px;
 }
 
 .presentation { 
