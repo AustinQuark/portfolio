@@ -1,4 +1,7 @@
-var cube = document.getElementsByClassName("cube")[0];
+var cube = document.getElementById("cube");
+
+
+
 
 (function () {
   document.onmousemove = handleMouseMove
@@ -26,12 +29,13 @@ var cube = document.getElementsByClassName("cube")[0];
     }
 
     // Use event.pageX / event.pageY here
-    var x = event.pageX
-    var y = event.pageY;
+    var rect = cube.getBoundingClientRect();
+    var x = event.pageX - rect.x;
+    var y = event.pageY - rect.y;
     var angle = Math.atan(y / x);
-    var len = Math.sqrt(pow(x, 2) + pow(y, 2));
+    var len = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
 
     var coords = [x / len, y / len];
-    cube.style.animation = 
+    cube.style.transform = `rotate3d( ${coords[0]}, ${coords[1]}, 0, 45deg)`;
   }
 })()
