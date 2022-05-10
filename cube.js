@@ -14,6 +14,7 @@ document.documentElement.addEventListener("click", function (e) {
         case 'left': swap = swapAngles[1]; break;
         case 'right': swap = swapAngles[2]; break;
         case 'bot': swap = swapAngles[3]; break;
+        default: return;
     }
     cube.style.transform += `rotate3d(${swap[0]}, ${swap[1]}, ${swap[2]}, 90deg)`;
 
