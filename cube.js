@@ -36,6 +36,6 @@ var cube = document.getElementById("cube");
     var len = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
 
     var coords = [x / len, y / len];
-    cube.style.transform = `rotate3d( ${coords[0]}, ${coords[1]}, 0, 45deg)`;
+    cube.style.transform += `rotate3d( ${coords[0]}, 0, ${coords[1]}, 2deg)`
   }
 })()
