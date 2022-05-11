@@ -196,6 +196,8 @@ body {
 
 
 .face {
+	backface-visibility: hidden;
+	
 	position: absolute;
 	background-color: rgba(207, 73, 73, 0.263);
 	border: 2px solid black;
@@ -231,6 +233,30 @@ body {
 
 .right {
 	transform: translateX(100px) rotateY(90deg);
+}
+
+.showFront {
+	transform: none;
+}
+
+.showBack {
+	transform: rotateX(180deg) rotateZ(180deg);
+}
+
+.showTop {
+	transform: rotateX(-90deg);
+}
+
+.showBot {
+	transform: rotateX(90deg);
+}
+
+.showLeft {
+	transform: rotateY(90deg);
+}
+
+.showRight {
+	transform: rotateY(-90deg);
 }
 
 .contact { 
