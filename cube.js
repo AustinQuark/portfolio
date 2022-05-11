@@ -69,13 +69,5 @@ document.documentElement.addEventListener("click", function (e) {
     console.log("show" + strSwap)   
     cube.removeAttribute("class")
     cube.classList.add("cube")
-    for (var i = 0; i < faces.length; i++)
-        faces[i].classList.add("showing");
     cube.classList.toggle("show" + strSwap);
-    setTimeout(function () {
-        for (var i = 0; i < faces.length; i++)
-        {
-            console.log(faces[i].classList);
-            faces[i].classList.remove("showing");
-        }}, 1000)
 })

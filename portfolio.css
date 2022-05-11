@@ -234,10 +234,6 @@ body {
 	transform: translateX(100px) rotateY(90deg);
 }
 
-.showing {
-	backface-visibility: visible;
-}
-
 .showFront {
 	transform: none;
 }
