@@ -71,12 +71,11 @@ document.documentElement.addEventListener("click", function (e) {
     cube.classList.add("cube")
     for (var i = 0; i < faces.length; i++)
         faces[i].classList.add("showing");
-    var delay;
-    delay = parseFloat(cube.style.transition.split(' ')[1]) * 1000;
-    console.log(delay);
     cube.classList.toggle("show" + strSwap);
-    setTimeout(delay, function () {
-    for (var i = 0; i < faces.length; i++)
-        faces[i].classList.remove("showing");
-        })
+    setTimeout(function () {
+        for (var i = 0; i < faces.length; i++)
+        {
+            console.log(faces[i].classList);
+            faces[i].classList.remove("showing");
+        }}, 1000)
 })
