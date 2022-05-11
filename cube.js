@@ -1,4 +1,5 @@
 var cube = document.getElementById("cube");
+var faces = document.getElementsByClassName("face");
 
 var currentFace = [0, 0, 1]; //Front
 
@@ -7,23 +8,35 @@ var strFrontAngle = ["Front", "Back", "Top", "Bot", "Left", "Right"];
 var frontAngle = [[0, 0, 1], [0, 0, -1], [0, -1, 0], [0, 1, 0], [-1, 0, 0], [1, 0, 0]];
 
 function swapTop(currentFace) {
-    var newCurrentFace = [currentFace[0], -currentFace[2], currentFace[1]];
+    if (currentFace[1] == 0 && currentFace[2] == 0)
+        var newCurrentFace = [currentFace[1], -currentFace[0], currentFace[2]];
+    else
+        var newCurrentFace = [currentFace[0], -currentFace[2], currentFace[1]];
     return newCurrentFace;
 }
 
 function swapLeft(currentFace) {
-    var newCurrentFace = [-currentFace[2], currentFace[1], currentFace[0]];
+    if (currentFace[0] == 0 && currentFace[2] == 0)
+        var newCurrentFace = [-currentFace[1], currentFace[0], currentFace[2]]
+    else
+        var newCurrentFace = [-currentFace[2], currentFace[1], currentFace[0]]
     return newCurrentFace
 }
 
 function swapBot(currentFace) {
-    var newCurrentFace = [currentFace[0], currentFace[2], -currentFace[1]];
+    if (currentFace[1] == 0 && currentFace[2] == 0)
+        var newCurrentFace = [-currentFace[1], currentFace[0], currentFace[2]];
+    else
+        var newCurrentFace = [currentFace[0], currentFace[2], -currentFace[1]];
     return newCurrentFace
 }
 
 function swapRight(currentFace) {
-  var newCurrentFace = [currentFace[2], currentFace[1], -currentFace[0]];
-  return newCurrentFace
+    if (currentFace[0] == 0 && currentFace[2] == 0)
+        var newCurrentFace = [currentFace[1], -currentFace[0], currentFace[2]];
+    else
+        var newCurrentFace = [currentFace[2], currentFace[1], -currentFace[0]];
+    return newCurrentFace;
 }
 
 function arrayEquals(a, b) {
@@ -44,6 +57,7 @@ document.documentElement.addEventListener("click", function (e) {
     }
 
     currentFace = swap(currentFace);
+    console.log("currentFace: " + currentFace);
     for (var i = 0; i < frontAngle.length; i++)
     {
         if (arrayEquals(currentFace, frontAngle[i]))
@@ -52,13 +66,11 @@ document.documentElement.addEventListener("click", function (e) {
             break;
         }
     }
-
-    console.log(strFrontAngle[i], strSwap);
-    console.log("show" + strSwap)
-        
+    console.log("show" + strSwap)   
     cube.removeAttribute("class")
     cube.classList.add("cube")
+    for (var i = 0; i < faces.length; i++)
+        faces[i].classList.add("showing");
+    
     cube.classList.toggle("show" + strSwap);
-    console.log(cube.classList);
-
 })

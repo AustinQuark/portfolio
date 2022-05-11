@@ -191,13 +191,12 @@ body {
 	width: var(--cubeSize);
 	height: var(--cubeSize);
 	position: relative;
-	transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+	transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 
 .face {
 	backface-visibility: hidden;
-	
 	position: absolute;
 	background-color: rgba(207, 73, 73, 0.263);
 	border: 2px solid black;
@@ -233,6 +232,10 @@ body {
 
 .right {
 	transform: translateX(100px) rotateY(90deg);
+}
+
+.showing {
+	backface-visibility: visible;
 }
 
 .showFront {
