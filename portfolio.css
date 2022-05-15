@@ -1,3 +1,4 @@
+/*CSS RESET*/
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -62,12 +63,18 @@ table {
 	src: url(junction.ttf/junction_light.ttf);
 }
 
+:root {
+	--cubeSize: 200px;
+	--backgroundColor: #E5DADA;
+	--borderColor: #02040F;
+	--boxShadow: #02282a71;
+}
 
 
 body {
 	font-family: junction_regular;
     height: 100vh;
-	background-color: #E5DADA;
+	background-color: var(--backgroundColor);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,15 +83,14 @@ body {
 .square {
     width: 90%;
     height: 90%;
-    border: solid #02040F;
-    border-width: 3px;
+    border: 3px solid var(--borderColor);
     border-radius: 3px;
 	transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .square:hover {
 	transform: translate(-10px, -10px);
-	box-shadow: 10px 10px #02282a71;
+	box-shadow: 10px 10px var(--boxShadow);
 }
 
 .parent {
@@ -93,21 +99,24 @@ body {
 	grid-template-rows: repeat(5, 1fr);
 	grid-column-gap: 0px;
 	grid-row-gap: 0px;
-	}
+}
 	
 .name { 
 	grid-area: 1 / 1 / 3 / 3; 
 	font-family: junction_bold;
-	padding: 1em;
 	font-size: 3em;
-	display: inline-flex;
+	display: flex;
 	flex-direction: column;
+	text-align: right;
+	background-color:aquamarine;
 }
 
 .nameplate { 
-	letter-spacing: 3px;
+	letter-spacing: 0.05em;
+	min-width: 2.9em;
 	display: flex;
 	flex-direction: row;
+	justify-content: end;
 }
 
 .nameplate-letter {
@@ -115,19 +124,16 @@ body {
 }
 
 .nameplate-letter:hover {
-	z-index: 1em;
-	padding-top: 0.7em;
+	padding-top: 0.5em;
 	transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .description {
 	font-size: 0.3em;
 	padding-top: 0.2em;
-	padding-right: 4px;;
-	letter-spacing: 1px;
+	padding-right: 0.3em;
 	white-space: nowrap;
-	text-align: baseline;
-	padding-left: 33px;
+
 }
 
 .skills { 
@@ -179,10 +185,6 @@ body {
 	flex-direction: row;
 	text-align: center;
 	justify-content: center;
-}
-
-:root {
-	--cubeSize: 200px;
 }
 
 .cube {
