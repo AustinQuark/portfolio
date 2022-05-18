@@ -168,7 +168,6 @@ body {
 
 .project { 
 	grid-area: 2 / 3 / 1 / 5; 
-	background-color: blanchedalmond;
 	position: inherit;
 	width: calc(var(--cubeSize) * 2);
 	height: calc(var(--cubeSize) * 2);
@@ -179,22 +178,27 @@ body {
 	justify-content: center;
 }
 
-.middle {
-	display: flex;
-	flex-direction: row;
-	text-align: center;
-	justify-content:center;
+.project { 
+	display: grid; 
+	grid-template-columns: repeat(3, 1fr); 
+	grid-template-rows: repeat(3, 1fr); 
+	grid-column-gap: 0px;
+	grid-row-gap: 0px; 
 }
+
+.cube { grid-area: 2 / 2 / 3 / 3; } 
+.show-top { grid-area: 1 / 2 / 2 / 3; } 
+.show-left { grid-area: 2 / 1 / 3 / 2; } 
+.show-bot { grid-area: 3 / 2 / 4 / 3; } 
+.show-right { grid-area: 2 / 3 / 3 / 4; } 
 
 .cube {
 	cursor: pointer;
 	transform-style: preserve-3d;
 	width: var(--cubeSize);
 	height: var(--cubeSize);
-	position: absolute;
 	transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
 
 .face {
 	backface-visibility: hidden;
@@ -251,26 +255,6 @@ body {
 
 .show-right img {
 	transform: rotate(90deg);
-}
-
-.show-top {
-	padding-bottom: 0em;
-}
-
-.show-bot {
-	padding-top: 0;
-}
-
-.show-left {
-	padding-left: 0;
-}
-
-.show-right {
-	padding-right: 0;
-}
-
-.showFront {
-	transform: none;
 }
 
 .showBack {
@@ -368,11 +352,4 @@ grid-row-gap: 0px;
 .name {
 	justify-content: left;
 }
-
-}
-
-
-
-.contact { 
-	background-color: white;
 }
