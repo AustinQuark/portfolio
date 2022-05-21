@@ -183,6 +183,7 @@ body {
 
 .show-bot, .show-top, .show-left, .show-right { 
 	z-index: 1;
+	cursor: pointer;
 	background-image: url(dot.svg);
 	background-repeat: no-repeat;
 	background-size: 2.1em;
@@ -191,7 +192,6 @@ body {
 
 
 .cube {
-	cursor: pointer;
 	transform-style: preserve-3d;
 	width: var(--cubeSize);
 	height: var(--cubeSize);
