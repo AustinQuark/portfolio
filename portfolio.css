@@ -46,7 +46,7 @@ table {
 }
 
 :root {
-  --cubeSize: 200px;
+  --cubeSize: 220px;
   --backgroundColor: #ffe1a8;
   --borderColor: #02040f;
   --boxShadow: #02282a71;
@@ -64,7 +64,6 @@ body {
 .square {
 	z-index: 1;
   	width: 90%;
-  	min-width: 390px;
   	height: 90%;
   	border: 3px solid var(--borderColor);
   	border-radius: 3px;
@@ -80,12 +79,18 @@ body {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	grid-template-rows: repeat(5, 1fr);
-	grid-column-gap: auto;
+	grid-column-gap: 0px;
 	grid-row-gap: 0px;
-	}
+}
+
+.name { grid-area: 1 / 1 / 2 / 3; }
+.skills { grid-area: 5 / 1 / 6 / 5; }
+.board { grid-area: 4 / 5 / 6 / 6; }
+.contact { grid-area: 1 / 5 / 2 / 6; }
+.presentation { grid-area: 2 / 3 / 5 / 6; }
+.project { grid-area: 2 / 1 / 5 / 3; }
 
 .name {
-	grid-area: 1 / 1 / 2 / 2;
 	font-family: junction_bold;
 	font-size: 3em;
 	padding-top: 1em;
@@ -120,40 +125,41 @@ body {
 }
 
 .skills {
-	grid-area: 5 / 1 / 6 / 5;
-	background-color: blue;
 	z-index: 1;
 	font-family: junction_bold;
 	letter-spacing: 0.1em;
 	display: flex;
 	text-align: center;
-	justify-content: space-evenly;
+	justify-content:space-around;
 	flex-wrap: wrap;
-	font-size: 1.3em;
+	font-size: 1em;
+	margin-top: auto;
+	padding-bottom: 1.5em;
 }
 
 .skills > span {
-	padding: 1em 2em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .skills > span:hover {
 }
 
 .presentation {
-	grid-area: 1 / 3 / 4 / 5;
-	background-color: bisque;
 	font-family: junction_regular;
 	letter-spacing: 1px;
-	padding: 4em;
+	padding: 1em;
+	font-size: 2em;
 }
 
 .project {
-  	grid-area: 2 / 1 / 3 / 3;
-	background-color: aliceblue;
-	height: 100%;
+	width: 100%;
+	padding-top: 2em;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
-	text-align: center;
+	padding-left: 0.2em;
 }
 
 .cube_container {
@@ -226,8 +232,6 @@ body {
 .showRight {transform: rotateY(-90deg);}
 
 .contact {
-	grid-area: 1 / 5 / 2 / 6;
-	background-color: rgb(45, 222, 222);
 	display: flex;
 	align-self: flex-start;
 	justify-content: end;
@@ -257,105 +261,57 @@ body {
 }
 
 .board {
-	grid-area: 4 / 5 / 6 / 6;
-	background-color: azure;
-	z-index: 1;
 	display: flex;
-	justify-content: right;
-	align-items: flex-end;
-	padding-right: 4em;
+	flex-direction: column;
+	justify-content: flex-end;
+	margin-left: auto;
+	margin-top: auto;
+
 }
 
 .board-svg {
-	fill: #02040fce;
-	width: 10em;
+	width: 15em;
 }
 
 .status {
 }
 
-
-@media screen and (max-width: 1025px), (max-height: 620px) {
-	:root {
-		--cubeSize: 200px;
-	}
+@media screen and (max-width: 1150px) {
+	:root {--cubeSize: 200px;}
+	.board-svg {width: 13em;}
 }
 
-@media screen and (max-width: 950px), (max-height: 500px){
-	body {
-		height: 1200px;
-	}
+@media screen and (max-width: 1050px) {
+	:root {--cubeSize: 180px;}
+	.board-svg {width: 11em;}
+}
 
-	:root {
-		--cubeSize: 250px;
-	}
+@media screen and (max-width: 950px) {
+	:root {--cubeSize: 150px;}
+	.board-svg{width: 8em;}
+}
 
-	.lamp-svg {
-		width: 7em;
-	}
-
-
-	.project 
-	{
-		display: flex;
- 		justify-content: center;
-  		flex-wrap: none;
-	}
-
-	.skills {
-		padding-top: 2.5em;
+@media screen and (max-width: 850px), (max-height: 650px) {
+	:root {--cubeSize: 240px;}
+	.board-svg{width: 15em;}
+	body {height: 1200px;}
+	.project {
+		flex-direction: row;
+		padding-top: 0em;	
 	}
 
 	.parent {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		grid-template-rows: repeat(5, 1fr);
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: repeat(7, 1fr);
 		grid-column-gap: 0px;
 		grid-row-gap: 0px;
 	}
 
-	.lamp {
-		padding: 0em; 
-		justify-content: center;
-	}
-
-	.name { grid-area: 1 / 1 / 2 / 2; }
-	.contact { grid-area: 1 / 2 / 2 / 3; }
-	.presentation { grid-area: 2 / 1 / 3 / 3; }
-	.project { grid-area: 3 / 1 / 4 / 3; }
-	.skills { grid-area: 4 / 1 / 6 / 2; }
-	.lamp { grid-area: 4 / 2 / 6 / 3; }
-
-}
-
-@media screen and (max-width: 1220px)
-{
-	:root {
-		--cubeSize: 250px;
-	}
-}
-
-@media screen and (max-width: 1100px)
-{
-	:root {
-		--cubeSize: 200px;
-	}
-}
-
-@media screen and (max-width: 480px)
-{
-	:root {
-		--cubeSize: 150px;
-	}
-
-	.name {
-		padding-left: 1em;
-	}
-}
-
-@media screen and (max-width: 480px)
-{
-	.name {
-		padding-left: 0em;
-	}
+	.name { grid-area: 1 / 1 / 2 / 3; }
+	.contact { grid-area: 1 / 3 / 2 / 4; }
+	.presentation { grid-area: 2 / 1 / 4 / 4; }
+	.project { grid-area: 4 / 1 / 7 / 4; }
+	.skills { grid-area: 7 / 1 / 8 / 3; }
+	.board { grid-area: 4 / 3 / 8 / 4; }
 }
