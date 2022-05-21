@@ -93,7 +93,6 @@ body {
 .project { grid-area: 2 / 1 / 5 / 3; }
 
 .name {
-	z-index: 1;
 	font-family: junction_bold;
 	font-size: 3em;
 	padding-top: 1em;
@@ -182,6 +181,15 @@ body {
 .show-bot {grid-area: 3 / 2 / 4 / 3;}
 .show-right {grid-area: 2 / 3 / 3 / 4;}
 
+.show-bot, .show-top, .show-left, .show-right { 
+	z-index: 1;
+	background-image: url(dot.svg);
+	background-repeat: no-repeat;
+	background-size: 2.1em;
+	background-position: center;
+}
+
+
 .cube {
 	cursor: pointer;
 	transform-style: preserve-3d;
@@ -230,7 +238,7 @@ body {
 .right {transform: translateX(calc(var(--cubeSize) / 2)) rotateY(90deg);}
 
 .cube_container > button {
-	background-color: var(--backgroundColor);
+	background-color: transparent;
 }
 
 /*	Arrow Rotate		*/
@@ -283,32 +291,62 @@ body {
 
 }
 
-.board-svg {
+.board {
 	width: 15em;
 }
 
 .status {
+	position: relative;
+	letter-spacing: 2px;
+	top: 3.9em;
+	left: 2.8em;
+	font-size: 1.6em;
+	font-family: 'Caveat', cursive;
+	width: 10px;
 }
 
 @media screen and (max-width: 1150px) {
 	:root {--cubeSize: 200px;}
-	.board-svg {width: 13em;}
+	.board {width: 13em;}
+	.status {
+		top: 3.5em;
+		left: 2.3em;
+	}
 }
 
 @media screen and (max-width: 1050px) {
 	:root {--cubeSize: 180px;}
-	.board-svg {width: 11em;}
+	.board {width: 11em;}
+	.status {
+		font-size: 1.3em;
+		top: 3.5em;
+		left: 2.5em;
+	}
 }
 
 @media screen and (max-width: 950px) {
 	:root {--cubeSize: 150px;}
-	.board-svg{width: 8em;}
+	.board {width: 8em;}
+	.status {
+		font-size: 1em;
+		top: 3.5em;
+		left: 2.2em;
+	}
 }
 
 @media screen and (max-width: 850px), (max-height: 650px) {
 	:root {--cubeSize: 240px;}
-	.board-svg{width: 15em;}
+	.board {width: 15em;}
 	body {height: 1550px;}
+
+	.status {
+		position: relative;
+		top: 3.9em;
+		left: 2.8em;
+		font-size: 1.6em;
+		font-family: 'Caveat', cursive;
+		width: 10px;
+	}
 
 	.project {
 		flex-direction: row;
@@ -363,6 +401,11 @@ body {
 
 	.name { padding-left: 0.5em;}
 	.project { padding: 1em 0em;}
-	.board-svg { width: 10em;}
+	.board { width: 10em;}
+	.status {
+		top: 3em;
+		left: 1.9em;
+		font-size: 1.4em;
+	}
 	body { min-width: 350px;}
 }
