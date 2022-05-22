@@ -15,5 +15,5 @@ var git = document.getElementsByClassName("git")[0]
 
 document.documentElement.addEventListener("click", function (e) {
     if (git !== e.target && !git.contains(e.target)) {return;}
-  window.open("https://github.com/AustinFlap", "_blank")
+  window.open("https://github.com/AustinQuark", "_blank")
 })
