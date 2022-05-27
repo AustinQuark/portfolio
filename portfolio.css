@@ -237,6 +237,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: right;
+	-webkit-transform: translateX(24%) rotate(45deg);
 	transform: translateX(24%) rotate(45deg);
 	width: 150px;
 }
@@ -254,6 +255,7 @@ body {
 	width: 32px;
 	padding: 5px;
 	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
 }
 
 .board {
