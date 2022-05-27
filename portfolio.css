@@ -48,35 +48,29 @@ table {
 :root {
   --cubeSize: 220px;
   --backgroundColor: #ffe3ab;
-  --squareColor: #fadfb0;
+  --squareColor: #fff2dd;
   --borderColor: #02040f;
   --boxShadow: #02282a71;
 }
 
-body {
-	font-family: junction_regular;
-	height: 100vh;
-	background-color: var(--backgroundColor);
-	display: flex;
-	align-items: center;
-	justify-content: center;
+html {
+	height:100%;
 }
 
-.container-fluid {
+body {
+	font-family: junction_regular;
 	height: 100%;
+	background-color: var(--backgroundColor);
+	display: flex;
 }
 
 .square {
+	margin: auto;
 	z-index: 1;
   	width: 90%;
-  	height: 90%;
   	border: 3px solid var(--borderColor);
   	border-radius: 3px;
   	transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.container-fluid {
-	height: 100%;
 }
 
 .square:hover {
@@ -283,6 +277,7 @@ body {
 
 .col:nth-child(2n) {
 	background-color: aqua;
+
 }
 .col:nth-child(2n + 1) {
 	background-color: rgb(208, 255, 0);
