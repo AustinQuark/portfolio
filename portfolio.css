@@ -337,7 +337,10 @@ body {
 @media screen and (max-width: 850px), (max-height: 730px) {
 	:root {--cubeSize: 240px;}
 	.board {width: 15em;}
-	body {height: 1550px;}
+	body {
+		height: 1550px;
+		display: grid;
+	}
 
 	.status {
 		position: relative;
