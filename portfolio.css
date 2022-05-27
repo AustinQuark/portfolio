@@ -77,34 +77,16 @@ body {
 	background-color: var(--squareColor);
 }
 
-.parent {
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	grid-template-rows: repeat(5, 1fr);
-	grid-column-gap: 0px;
-	grid-row-gap: 0px;
-}
-
-.name { grid-area: 1 / 1 / 3 / 3; }
-.skills { grid-area: 5 / 1 / 6 / 5; }
-.board { grid-area: 4 / 5 / 6 / 6; }
-.contact { grid-area: 1 / 5 / 2 / 6; }
-.presentation { grid-area: 2 / 3 / 5 / 6; }
-.project { grid-area: 2 / 1 / 5 / 3; }
-
 .name {
 	font-family: junction_bold;
 	font-size: 3em;
-	padding-top: 1em;
-	padding-left: 2em;
-	max-width: 4em;
 	display: flex;
 	flex-direction: column;
 	text-align: end;
+	letter-spacing: 0.05em;
 }
 
 .nameplate {
-	letter-spacing: 0.05em;
 	display: flex;
 	flex-direction: row;
 	justify-content: end;
@@ -116,13 +98,11 @@ body {
 
 .nameplate-letter:hover {
 	padding-top: 0.5em;
-	transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .description {
+	letter-spacing: 0.05em;
 	font-size: 0.3em;
-	padding-top: 0.2em;
-	padding-right: 0.3em;
 	white-space: nowrap;
 }
 
@@ -135,14 +115,9 @@ body {
 	justify-content:space-around;
 	flex-wrap: wrap;
 	font-size: 1em;
-	margin-top: auto;
-	padding-bottom: 1.5em;
 }
 
 .skills > span {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
 }
 
 .skills > span:hover {
@@ -151,17 +126,14 @@ body {
 .presentation {
 	font-family: junction_regular;
 	letter-spacing: 1px;
-	padding: 1em;
-	font-size: 2em;
+	font-size: 1em;
 }
 
 .project {
 	width: 100%;
-	padding-top: 2em;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding-left: 0.2em;
 }
 
 .cube_container {
@@ -189,7 +161,6 @@ body {
 	background-size: 2.1em;
 	background-position: center;
 }
-
 
 .cube {
 	transform-style: preserve-3d;
@@ -254,6 +225,7 @@ body {
 .showRight {transform: rotateY(-90deg);}
 
 .contact {
+	padding-top: 2.2em;
 	display: flex;
 	align-self: flex-start;
 	justify-content: end;
@@ -263,7 +235,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: right;
-	transform: translateX(16%) translateY(95%) rotate(45deg);
+	transform: translateX(24%) rotate(45deg);
 	width: 150px;
 }
 
@@ -277,26 +249,22 @@ body {
 }
 
 .icon {
-	width: 25px;
+	width: 32px;
 	padding: 5px;
 	transform: rotate(-45deg);
 }
 
 .board {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: flex-end;
-	margin-left: auto;
-	margin-top: auto;
-
 }
 
-.board {
-	width: 15em;
+.board-svg {
+	width: 1em;
 }
 
 .status {
-	position: relative;
 	letter-spacing: 2px;
 	top: 3.9em;
 	left: 2.8em;
@@ -305,6 +273,14 @@ body {
 	width: 10px;
 }
 
+.col:nth-child(2n) {
+	background-color: aqua;
+}
+.col:nth-child(2n + 1) {
+	background-color: rgb(208, 255, 0);
+}
+
+/*
 @media screen and (max-width: 1150px) {
 	:root {--cubeSize: 200px;}
 	.board {width: 13em;}
@@ -411,4 +387,4 @@ body {
 		font-size: 1.4em;
 	}
 	/*body { min-width: 350px;}*/
-}
+}*/
