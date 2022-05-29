@@ -84,14 +84,16 @@ body {
 	font-size: 3em;
 	display: flex;
 	flex-direction: column;
-	text-align: end;
+	text-align: start;
 	letter-spacing: 0.05em;
+	padding-top: 0.4em;
+	padding-left: 0.5em;;
 }
 
 .nameplate {
 	display: flex;
 	flex-direction: row;
-	justify-content: end;
+	justify-content: start;
 }
 
 .nameplate-letter {
@@ -106,6 +108,7 @@ body {
 	letter-spacing: 0.05em;
 	font-size: 0.3em;
 	white-space: nowrap;
+	padding-left: 2.4em;
 }
 
 .skills {
@@ -247,7 +250,7 @@ body {
 }
 
 .trait {
-	width: 100%;
+	width: 3rem;
 	border-top: 3px solid #1b2124;
 }
 
@@ -277,11 +280,11 @@ body {
 	width: 10px;
 }
 
-.col:nth-child(2n) {
+div:nth-child(2n) {
 	background-color: aqua;
 
 }
-.col:nth-child(2n + 1) {
+div:nth-child(2n + 1) {
 	background-color: rgb(208, 255, 0);
 }
 
