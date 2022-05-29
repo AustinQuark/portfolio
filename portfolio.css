@@ -87,7 +87,8 @@ body {
 	text-align: start;
 	letter-spacing: 0.05em;
 	padding-top: 0.4em;
-	padding-left: 0.5em;;
+	padding-left: 0.5em;
+	padding-bottom: 15px;
 }
 
 .nameplate {
@@ -101,7 +102,7 @@ body {
 }
 
 .nameplate-letter:hover {
-	padding-top: 0.5em;
+	transform: translateY(15px);
 }
 
 .description {
@@ -109,6 +110,8 @@ body {
 	font-size: 0.3em;
 	white-space: nowrap;
 	padding-left: 2.4em;
+	transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+
 }
 
 .skills {
