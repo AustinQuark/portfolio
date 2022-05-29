@@ -237,6 +237,7 @@ body {
 	display: flex;
 	align-self: flex-start;
 	justify-content: end;
+	height: 0px;
 }
 
 .diag-contact {
