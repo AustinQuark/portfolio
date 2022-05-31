@@ -245,7 +245,7 @@ body {
 .diag-contact {
 	display: flex;
 	align-items: center;
-	-webkit-transform: translateX(36px) translateY(55px) rotate(45deg);
+	-webkit-transform: translateX(25px) translateY(55px) rotate(45deg);
 	transform: translateX(25px) translateY(55px) rotate(45deg);
 }
 
