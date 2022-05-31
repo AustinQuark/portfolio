@@ -235,7 +235,8 @@ body {
 
 .contact {
 	position: relative;
-	left: 100%;
+	background-color: blue;
+	float: right;
 	display: flex;
 	justify-content: end;
 	height: 0px;
