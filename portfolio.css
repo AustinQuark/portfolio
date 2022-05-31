@@ -234,18 +234,19 @@ body {
 .showRight {transform: rotateY(-90deg);}
 
 .contact {
+	position: relative;
+	left: 100%;
 	display: flex;
-	align-self: flex-start;
 	justify-content: end;
 	height: 0px;
+	width: 0px;
 }
 
 .diag-contact {
 	display: flex;
 	align-items: center;
-	justify-content: right;
 	-webkit-transform: translateX(36px) translateY(55px) rotate(45deg);
-	transform: translateX(37px) translateY(55px) rotate(45deg);
+	transform: translateX(25px) translateY(55px) rotate(45deg);
 }
 
 .diag-icons {
@@ -281,14 +282,6 @@ body {
 	font-size: 1.6em;
 	font-family: 'Caveat', cursive;
 	width: 10px;
-}
-
-div:nth-child(2n) {
-	background-color: aqua;
-
-}
-div:nth-child(2n + 1) {
-	background-color: rgb(208, 255, 0);
 }
 
 @media (min-width: 576px) { ... }
