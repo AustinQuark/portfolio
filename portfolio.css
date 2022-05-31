@@ -61,7 +61,10 @@ body {
 	font-family: junction_regular;
 	height: 100%;
 	background-color: var(--backgroundColor);
-	display: flex;
+	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+display: -ms-flexbox;  /* TWEENER - IE 10 */
+display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
 }
 
 .square {
@@ -82,7 +85,10 @@ body {
 .name {
 	font-family: junction_bold;
 	font-size: 3em;
-	display: flex;
+	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+display: -ms-flexbox;  /* TWEENER - IE 10 */
+display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
 	flex-direction: column;
 	text-align: start;
 	letter-spacing: 0.05em;
@@ -92,7 +98,10 @@ body {
 }
 
 .nameplate {
-	display: flex;
+	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+display: -ms-flexbox;  /* TWEENER - IE 10 */
+display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
 	flex-direction: row;
 	justify-content: start;
 }
@@ -119,7 +128,10 @@ body {
 	z-index: 1;
 	font-family: junction_bold;
 	letter-spacing: 0.1em;
-	display: flex;
+	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+display: -ms-flexbox;  /* TWEENER - IE 10 */
+display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
 	text-align: center;
 	justify-content:space-around;
 	flex-wrap: wrap;
@@ -140,7 +152,10 @@ body {
 
 .project {
 	width: 100%;
-	display: flex;
+	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+display: -ms-flexbox;  /* TWEENER - IE 10 */
+display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
 	justify-content: center;
 	text-align: center;
 }
@@ -197,7 +212,10 @@ body {
   border-radius: 3px;
   width: var(--cubeSize);
   height: var(--cubeSize);
-  display: flex;
+  display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+display: -ms-flexbox;  /* TWEENER - IE 10 */
+display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
   flex-direction: column;
   text-align: center;
   justify-content: center;
@@ -237,21 +255,30 @@ body {
 	position: relative;
 	background-color: blue;
 	float: right;
-	display: flex;
+	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+	display: -ms-flexbox;  /* TWEENER - IE 10 */
+	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
 	justify-content: end;
 	height: 0px;
 	width: 0px;
 }
 
 .diag-contact {
-	display: flex;
+	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+display: -ms-flexbox;  /* TWEENER - IE 10 */
+display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
 	align-items: center;
 	-webkit-transform: translateX(25px) translateY(55px) rotate(45deg);
 	transform: translateX(25px) translateY(55px) rotate(45deg);
 }
 
 .diag-icons {
-	display: flex;
+	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+display: -ms-flexbox;  /* TWEENER - IE 10 */
+display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
 }
 
 .trait {
@@ -267,7 +294,10 @@ body {
 }
 
 .board {
-	display: flex;
+	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+display: -ms-flexbox;  /* TWEENER - IE 10 */
+display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
 	flex-direction: row;
 	justify-content: flex-end;
 }
