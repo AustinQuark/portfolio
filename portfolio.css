@@ -261,7 +261,7 @@ body {
 	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
 	justify-content: end;
 	height: 0px;
-	width: 0px;
+	width: auto;
 }
 
 .diag-contact {
