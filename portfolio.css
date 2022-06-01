@@ -177,8 +177,7 @@ body {
 .show-bot {grid-area: 3 / 2 / 4 / 3;}
 .show-right {grid-area: 2 / 3 / 3 / 4;}
 
-.show-bot, .show-top, .show-left, .show-right { 
-	z-index: 1;
+.show-bot, .show-top, .show-left, .show-right {
 	cursor: pointer;
 	background-image: url(dot.svg);
 	background-repeat: no-repeat;
@@ -316,13 +315,31 @@ body {
 	width: 10px;
 }
 
-@media (min-width: 576px) { ... }
+@media (min-width: 576px) {
+	body { width: 100vw;}
+
+	:root {
+		--cubeSize: 200px;
+	}
+}
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) { ... }
+@media (min-width: 768px) {
+	:root {
+		--cubeSize: 150px;
+	}
+}
 
 /* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) { ... }
+@media (min-width: 992px) {
+	:root {
+		--cubeSize: 180px;
+	}
+}
 
 /* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) { ... }
+@media (min-width: 1200px) {
+	:root {
+		--cubeSize: 230px;
+	}
+}
