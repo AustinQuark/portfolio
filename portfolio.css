@@ -46,6 +46,7 @@ table {
 }
 
 :root {
+	font-size: 0.8em;
   --cubeSize: 150px;
   --backgroundColor: #ffe3ab;
   --squareColor: #fff2dd;
@@ -58,6 +59,7 @@ html {
 }
 
 body {
+	min-width: 300px;
 	font-family: junction_regular;
 	height: 100%;
 	background-color: var(--backgroundColor);
@@ -76,10 +78,21 @@ body {
   	transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.square:hover {
- 	transform: translate(-10px, -10px);
-  	box-shadow: 10px 10px var(--boxShadow);
-	background-color: var(--squareColor);
+
+@media (pointer:fine) {
+	.square:hover {
+		transform: translate(-10px, -10px);
+		box-shadow: 10px 10px var(--boxShadow);
+	  	background-color: var(--squareColor);
+	}
+}
+
+@media (pointer:coarse) {
+	.square {
+		transform: translate(-10px, -10px);
+		box-shadow: 10px 10px var(--boxShadow);
+	  	background-color: var(--squareColor);
+	}
 }
 
 .name {
@@ -136,9 +149,11 @@ body {
 	justify-content:space-around;
 	flex-wrap: wrap;
 	font-size: 1em;
+	padding-bottom: 0.8em;
 }
 
 .skills > span {
+	padding: 1em 3em;
 }
 
 .skills > span:hover {
@@ -147,7 +162,10 @@ body {
 .presentation {
 	font-family: junction_regular;
 	letter-spacing: 1px;
-	font-size: 1em;
+	font-size: 1.7em;
+	padding: 3em 2em;
+	text-align: justify;
+	vertical-align:text-bottom;
 }
 
 .project {
@@ -269,8 +287,8 @@ body {
 	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
 	align-items: center;
-	-webkit-transform: translateX(25px) translateY(55px) rotate(45deg);
-	transform: translateX(25px) translateY(55px) rotate(45deg);
+	-webkit-transform: translateX(23px) translateY(48px) rotate(45deg);
+	transform: translateX(23px) translateY(48px) rotate(45deg);
 }
 
 .diag-icons {
@@ -278,6 +296,7 @@ body {
 	display: -ms-flexbox;  /* TWEENER - IE 10 */
 	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
+	cursor: pointer;
 }
 
 .trait {
@@ -294,52 +313,64 @@ body {
 }
 
 .board {
-	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-	display: -ms-flexbox;  /* TWEENER - IE 10 */
-	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
-	flex-direction: row;
-	justify-content: flex-end;
+	background-color: rgb(190, 119, 26);
+	position: relative;
+	float: right;
+	display: flex;
+	width: fit-content;
+	
 }
 
 .board-svg {
-	width: 1em;
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	width: 10em;
 }
 
 .status {
+	position: absolute;
 	letter-spacing: 2px;
-	top: 3.9em;
-	left: 2.8em;
-	font-size: 1.6em;
+	font-size: 1.4em;
 	font-family: 'Caveat', cursive;
-	width: 10px;
+	right: 52px;
+	bottom: 72px;
 }
 
 @media (min-width: 576px) {
-	body { width: 100vw;}
-
 	:root {
-		--cubeSize: 200px;
+		font-size: 1em;
+		--cubeSize: 260px;
+	}
+
+	.status {
+		right: 66px;
+		bottom: 90px;
+	}
+
+	.diag-contact {
+		-webkit-transform: translateX(25px) translateY(55px) rotate(45deg);
+		transform: translateX(25px) translateY(55px) rotate(45deg);
 	}
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 	:root {
-		--cubeSize: 150px;
+		--cubeSize: 180px;
 	}
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
 	:root {
-		--cubeSize: 180px;
+		--cubeSize: 230px;
 	}
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
 	:root {
-		--cubeSize: 230px;
+		--cubeSize: 260px;
 	}
 }
