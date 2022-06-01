@@ -48,25 +48,22 @@ table {
 :root {
 	font-size: 0.8em;
   --cubeSize: 150px;
-  --backgroundColor: #ffe3ab;
-  --squareColor: #fff2dd;
-  --borderColor: #02040f;
-  --boxShadow: #02282a71;
-}
 
-html {
-	height:100%;
+  --squareColor: #71ddcd;
+  --borderColor: #02040f;
+  --boxShadow: #ffffff;
 }
 
 body {
 	min-width: 300px;
 	font-family: junction_regular;
-	height: 100%;
-	background-color: var(--backgroundColor);
+	height: 100vh;
 	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
 	display: -ms-flexbox;  /* TWEENER - IE 10 */
 	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
+	background: rgb(24,78,119);
+	background: linear-gradient(to top, rgba(24,78,119,1) 0%, rgba(118,200,147,1) 100%);
 }
 
 .square {
@@ -75,7 +72,7 @@ body {
   	width: 90%;
   	border: 3px solid var(--borderColor);
   	border-radius: 3px;
-  	transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  	transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 
@@ -83,7 +80,7 @@ body {
 	.square:hover {
 		transform: translate(-10px, -10px);
 		box-shadow: 10px 10px var(--boxShadow);
-	  	background-color: var(--squareColor);
+	  	background: #76c893;
 	}
 }
 
@@ -91,7 +88,7 @@ body {
 	.square {
 		transform: translate(-10px, -10px);
 		box-shadow: 10px 10px var(--boxShadow);
-	  	background-color: var(--squareColor);
+	  	background: #b5e48c;
 	}
 }
 
@@ -224,7 +221,7 @@ body {
 .face {
   backface-visibility: hidden;
   position: absolute;
-  background-color: rgb(228, 169, 106);
+  background-color: #acc2b4;
   border: 2px solid black;
   border-radius: 3px;
   width: var(--cubeSize);
