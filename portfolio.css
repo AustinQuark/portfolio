@@ -71,7 +71,6 @@ body {
 	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
 	background: #184e77;
 	background: linear-gradient(to top, #184e77 0%, #76c893 100%);
-	    margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
 
@@ -83,28 +82,57 @@ body {
   	width: 90%;
   	border: 3px solid var(--borderColor);
   	border-radius: 3px;
+	-webkit-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+  	-moz-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+  	-ms-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+  	-o-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
   	transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
-
-	box-shadow: inset 2px -23px 50px 15px #34A0A4, 
-				inset 0px -50px 49px 50px #99D98C,
-				inset -1px 50px 50px 50px #BDD9BB,
-				inset -1px 50px 50px 50px #BDD9BB;
+	
+	background:#BDD9BB;
+	box-shadow: 0px 0px #ade7a2, 
+				inset 0px -50px 60px 30px #34A0A4, 
+				inset 0px 50px 200px 100px #99D98C,
+				inset 0px 100px 50px 290px #BDD9BB;
+	-webkit-box-shadow: 0px 0px #ade7a2, 
+				inset 0px -50px 60px 30px #34A0A4, 
+				inset 0px 50px 200px 100px #99D98C,
+				inset 0px 100px 50px 290px #BDD9BB;
+	-moz-box-shadow:0px 0px #ade7a2, 
+				inset 0px -50px 60px 30px #34A0A4, 
+				inset 0px 50px 200px 100px #99D98C,
+				inset 0px 100px 50px 290px #BDD9BB; 
 }
 
 
 @media (pointer:fine) {
 	.square:hover {
+		background:#BDD9BB;
 		transform: translate(-10px, -10px);
-		box-shadow: 10px 10px var(--boxShadow);
-	  	background: #76c893;
+		-webkit-box-shadow: 15px 20px 70px #ade7a2, 
+					inset 0px -30px 90px 30px #BDD9BB, 
+					inset 0px 70px 100px 180px #ade7a2;
+		-moz-box-shadow: 15px 20px 70px #ade7a2, 
+					inset 0px -30px 90px 30px #BDD9BB, 
+					inset 0px 70px 100px 180px #ade7a2;
+		box-shadow: 15px 20px 70px #ade7a2, 
+					inset 0px -30px 90px 30px #BDD9BB, 
+					inset 0px 70px 100px 180px #ade7a2;
+		
 	}
 }
 
 @media (pointer:coarse) {
 	.square {
-		transform: translate(-10px, -10px);
-		box-shadow: 10px 10px var(--boxShadow);
-	  	background: #b5e48c;
+		background:#BDD9BB;
+		-webkit-box-shadow: 15px 20px 70px #ade7a2, 
+					inset 0px -30px 90px 30px #BDD9BB, 
+					inset 0px 70px 100px 180px #ade7a2;
+		-moz-box-shadow: 15px 20px 60px #ade7a2, 
+					inset 0px -30px 90px 30px #BDD9BB, 
+					inset 0px 70px 100px 180px #ade7a2;
+		box-shadow: 15px 20px 70px #ade7a2, 
+					inset 0px -30px 90px 30px #BDD9BB, 
+					inset 0px 70px 100px 180px #ade7a2;
 	}
 }
 
@@ -220,18 +248,7 @@ body {
 	transform-style: preserve-3d;
 	width: var(--cubeSize);
 	height: var(--cubeSize);
-	transition: all 0.7s cubic-bezier(0.72, 0.02, 0.32, 0.99);*/
-}
-
-@keyframes scale-easeOutElastic { 
-	0% { transform: scale(1); } 
-	16% { transform: scale(-0.32); } 
-	28% { transform: scale(0.13); } 
-	44% { transform: scale(-0.05); } 
-	59% { transform: scale(0.02); } 
-	73% { transform: scale(-0.01); } 
-	88% { transform: scale(0); } 
-	100% { transform: scale(0); } 
+	transition: all 0.7s cubic-bezier(0.72, 0.02, 0.32, 0.99);
 }
 
 .face {
@@ -300,8 +317,8 @@ body {
 	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
 	align-items: center;
-	-webkit-transform: translateX(23px) translateY(48px) rotate(45deg);
-	transform: translateX(23px) translateY(48px) rotate(45deg);
+	-webkit-transform: translateX(16px) translateY(35px) rotate(45deg);
+	transform: translateX(16px) translateY(35px) rotate(45deg);
 }
 
 .diag-icons {
@@ -344,33 +361,33 @@ body {
 .status {
 	position: absolute;
 	letter-spacing: 2px;
-	font-size: 1.4em;
+	font-size: 1.1em;
 	font-family: 'Caveat', cursive;
-	right: 52px;
-	bottom: 72px;
+	right: 25px;
+	bottom: 38px;
 }
 
 @media (min-width: 576px) {
 	:root {
-		font-size: 1em;
-		--cubeSize: 260px;
+		font-size: 1.1em;
+		--cubeSize: 190px;
 	}
 
 	.status {
-		right: 66px;
-		bottom: 90px;
+		right: 36px;
+		bottom: 53px;
 	}
 
 	.diag-contact {
-		-webkit-transform: translateX(25px) translateY(55px) rotate(45deg);
-		transform: translateX(25px) translateY(55px) rotate(45deg);
+		-webkit-transform: translateX(19px) translateY(40px) rotate(45deg);
+		transform: translateX(19px) translateY(40px) rotate(45deg);
 	}
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 	:root {
-		--cubeSize: 180px;
+		--cubeSize: 140px;
 	}
 }
 
@@ -384,6 +401,6 @@ body {
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
 	:root {
-		--cubeSize: 260px;
+		--cubeSize: 250px;
 	}
 }
