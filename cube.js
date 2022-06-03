@@ -83,4 +83,4 @@ document.documentElement.addEventListener("click", function (e) {
   cube.removeAttribute("class")
   cube.classList.add("cube")
   cube.classList.toggle("show" + strSwap)
-})
+}

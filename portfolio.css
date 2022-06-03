@@ -88,21 +88,18 @@ body {
   	-o-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
   	transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
 	
-	background:#BDD9BB;
-	box-shadow: 0px 0px #ade7a2, 
-				inset 0px -50px 60px 30px #34A0A4, 
-				inset 0px 50px 200px 100px #99D98C,
-				inset 0px 100px 50px 290px #BDD9BB;
-	-webkit-box-shadow: 0px 0px #ade7a2, 
-				inset 0px -50px 60px 30px #34A0A4, 
-				inset 0px 50px 200px 100px #99D98C,
-				inset 0px 100px 50px 290px #BDD9BB;
-	-moz-box-shadow:0px 0px #ade7a2, 
-				inset 0px -50px 60px 30px #34A0A4, 
-				inset 0px 50px 200px 100px #99D98C,
-				inset 0px 100px 50px 290px #BDD9BB; 
-}
+	background-color: #52a786;
+	-webkit-box-shadow: 15px 20px 70px #67b99a, 
+						inset 0px -30px 90px 30px #78df9d, 
+						inset 0px 70px 100px 180px #52a786;
+	-moz-box-shadow: 	15px 20px 70px #67b99a, 
+	  					inset 0px -30px 90px 30px #78df9d, 
+	  					inset 0px 70px 100px 180px #52a786;
 
+	box-shadow: 		15px 20px 70px #67b99a, 
+	  					inset 0px -30px 90px 30px #78df9d, 
+	  					inset 0px 70px 100px 180px #52a786;
+}
 
 @media (pointer:fine) {
 	.square:hover {
