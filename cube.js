@@ -1,11 +1,6 @@
 var cube = document.getElementById("cube");
 var radar = document.getElementById("radar");
 
-var radarStatus = false;
-
-radar.addEventListener("mouseenter", function () {radarStatus = true;})
-radar.addEventListener("mouseout", function () {radarStatus = false;})
-
 let distance = 0;
 let rect = radar.getBoundingClientRect();
 
@@ -19,28 +14,25 @@ let angle;
 let dirX = 0;
 let dirY = 0;
 let dirZ = 1;
+var r = document.querySelector(":root");
+function temp () {};
 
-function temp () {}
 
-var rotation = document.createElement("rotation")
-rotation.type = "text/css"
-rotation.innerHTML = ".cssClass { color: #F00; }"
+
 
 document.addEventListener("mousemove", function(event, radarStatus) {
-    if (radar.matches(':hover')) {
       vectorX = event.clientX - x0
       vectorY = event.clientY - y0
-      distance = Math.sqrt(Math.pow(vectorX, 2) + Math.pow(vectorY, 2))
-      if (distance < 300)
+      setTimeout(() => distance = Math.sqrt(Math.pow(vectorX, 2) + Math.pow(vectorY, 2)), 500);
+      if (distance < 150)
       {
         angle = Math.atan2(vectorX, vectorY)
         /*angle = 180 * angle/Math.PI;
           angle = 180 +  Math.round(angle) % 360;*/
-        console.log("Angle" + angle)
+        console.log("allo");
 
-        cube.style.transform +=
-          "rotate3d(" + vectorY + ", " + vectorX + ", 0, " + angle + "deg)"
+        r.style.setProperty('--vectorX', `${vectorX}`, "important");
+        r.style.setProperty('--vectorX', `${vectorX}`, "important");
+        r.style.setProperty('--angle', `${angle * 10}rad`, "important");
       }
-      setTimeout(temp, 500);
-    }
 });

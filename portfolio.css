@@ -225,20 +225,23 @@ body {
 	align-items: center;
 }
 
-@keyframes rotation {
-	from { transform: rotate3d(0, 1, 0, 0deg);}
-	to {transform: rotate3d(0, 1, 0,360deg);}
-}
-        cube.style.transform +=
-          "rotate3d(" + vectorY + ", " + vectorX + ", 0, " + angle + "deg)"
-
 .cube {
 	transform-style: preserve-3d;
 	width: var(--cubeSize);
 	height: var(--cubeSize);
-	animation: 4s linear infinite rotation;
+	animation: 20s linear infinite rotation;
+}
 
-	/*transition: all 0.7s cubic-bezier(0.72, 0.02, 0.32, 0.99);*/
+:root {
+	--vectorX: 0;
+	--vectorY: 0;
+	--vectorZ: 1;
+	--angle: 0deg;
+}
+
+@keyframes rotation {
+	0% { transform: rotate3d(var(--vectorX), var(--vectorY), var(--vectorZ), 0)}
+	100% {transform: rotate3d(var(--vectorX), var(--vectorY), var(--vectorZ), var(--angle))}
 }
 
 .face {
