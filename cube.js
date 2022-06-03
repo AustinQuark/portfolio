@@ -1,86 +1,25 @@
-var cube = document.getElementById("cube")
-var faces = document.getElementsByClassName("face")
+var cube = document.getElementById("cube");
+var radar = document.getElementById("radar");
 
-var currentFace = [0, 0, 1] //Front
+let distance = 0;
+let rect = radar.getBoundingClientRect();
 
-//Front, Back, Top, Bot, Left, Right
-var strFrontAngle = ["Front", "Back", "Top", "Bot", "Left", "Right"]
-var frontAngle = [
-  [0, 0, 1],
-  [0, 0, -1],
-  [0, -1, 0],
-  [0, 1, 0],
-  [-1, 0, 0],
-  [1, 0, 0],
-]
+let x0 = rect.left + rect.width / 2;
+let y0 = rect.top + rect.height / 2; 
 
-function swapTop(currentFace) {
-  if (currentFace[1] == 0 && currentFace[2] == 0)
-    var newCurrentFace = [currentFace[1], -currentFace[0], currentFace[2]]
-  else var newCurrentFace = [currentFace[0], -currentFace[2], currentFace[1]]
-  return newCurrentFace
-}
+let vectorX;
+let vectorY;
+let angle;
 
-function swapLeft(currentFace) {
-  if (currentFace[0] == 0 && currentFace[2] == 0)
-    var newCurrentFace = [-currentFace[1], currentFace[0], currentFace[2]]
-  else var newCurrentFace = [-currentFace[2], currentFace[1], currentFace[0]]
-  return newCurrentFace
-}
-
-function swapBot(currentFace) {
-  if (currentFace[1] == 0 && currentFace[2] == 0)
-    var newCurrentFace = [-currentFace[1], currentFace[0], currentFace[2]]
-  else var newCurrentFace = [currentFace[0], currentFace[2], -currentFace[1]]
-  return newCurrentFace
-}
-
-function swapRight(currentFace) {
-  if (currentFace[0] == 0 && currentFace[2] == 0)
-    var newCurrentFace = [currentFace[1], -currentFace[0], currentFace[2]]
-  else var newCurrentFace = [currentFace[2], currentFace[1], -currentFace[0]]
-  return newCurrentFace
-}
-
-function arrayEquals(a, b) {
-  return (
-    Array.isArray(a) &&
-    Array.isArray(b) &&
-    a.length === b.length &&
-    a.every((val, index) => val === b[index])
-  )
-}
-
-document.documentElement.addEventListener("click", function (e) {
-  var swap
-  var strSwap
-  switch (e.target.id) {
-    case "top":
-      swap = swapTop
-      break
-    case "left":
-      swap = swapLeft
-      break
-    case "right":
-      swap = swapRight
-      break
-    case "bot":
-      swap = swapBot
-      break
-    default:
-      return
-  }
-
-  currentFace = swap(currentFace)
-  console.log("currentFace: " + currentFace)
-  for (var i = 0; i < frontAngle.length; i++) {
-    if (arrayEquals(currentFace, frontAngle[i])) {
-      strSwap = strFrontAngle[i]
-      break
-    }
-  }
-  console.log("show" + strSwap)
-  cube.removeAttribute("class")
-  cube.classList.add("cube")
-  cube.classList.toggle("show" + strSwap)
-}
+radar.addEventListener("mousemove", function(e) {
+    vectorX = event.clientX - x0;
+    vectorY = event.clientY - y0;
+    distance = Math.sqrt(Math.pow(vectorX, 2) + Math.pow(vectorY, 2));
+    
+    angle = Math.atan2(vectorX, vectorY);
+    angle = 180 * angle/Math.PI;
+    angle = 180 +  Math.round(angle) % 360;
+    console.log(angle);
+    console.log(Math.sin(angle) * 10.0);
+    cube.style.transform += "rotate3d(" + vectorX + ", " + vectorY + ", 0, " + angle + "deg)";
+});
