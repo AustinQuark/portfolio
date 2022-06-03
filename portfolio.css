@@ -248,6 +248,16 @@ body {
   backface-visibility: hidden;
   position: absolute;
   background-color: #acc2b4;
+  	-webkit-box-shadow: 15px 20px 70px #67b99a, 
+						inset 0px -30px 90px 30px #78df9d, 
+						inset 0px 70px 100px 180px #97e6c8;
+	-moz-box-shadow: 	15px 20px 70px #67b99a, 
+	  					inset 0px -30px 90px 30px #78df9d, 
+	  					inset 0px 70px 100px 180px #52a786;
+
+	box-shadow: 		15px 20px 70px #67b99a, 
+	  					inset 0px -30px 90px 30px #78df9d, 
+	  					inset 0px 70px 100px 180px #b7c6c0;
   border: 2px solid black;
   border-radius: 3px;
   width: var(--cubeSize);
@@ -265,8 +275,17 @@ body {
 
 .radar {
 	position: absolute;
-	z-index: 2;
-	background-color: #799fbc41;
+	background-color: #79bca735;
+	-webkit-box-shadow: 15px 20px 70px #67b99a, 
+						inset 0px -30px 90px 30px #78df9d, 
+						inset 0px 70px 100px 180px #52a786;
+	-moz-box-shadow: 	15px 20px 70px #67b99a, 
+	  					inset 0px -30px 90px 30px #78df9d, 
+	  					inset 0px 70px 100px 180px #52a786;
+
+	box-shadow: 		15px 20px 70px #67b99a, 
+	  					inset 0px -30px 90px 30px #78df9d, 
+	  					inset 0px 70px 100px 180px #52a786;
 	width: calc(2  * var(--cubeSize));
 	height: calc(2  * var(--cubeSize));
 	border-radius: 50%;
@@ -275,10 +294,6 @@ body {
 	-ms-border-radius: 50%;
 	-o-border-radius: 50%;
 	transition: all 1s ease-in-out;
-}
-
-.radar:hover{
-	background-color: #cb5d7c35;
 }
 
 
