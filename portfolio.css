@@ -200,32 +200,35 @@ body {
 .presentation {
 	font-family: junction_regular;
 	letter-spacing: 1px;
-	font-size: 1.7em;
-	padding: 3em 2em;
-	text-align: justify;
-	vertical-align:text-bottom;
+	font-size: 2.7em;
+	padding: 0.2em 2em 0.2em 0em;
 }
 
 .project {
 	width: 100%;
-	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-	display: -ms-flexbox;  /* TWEENER - IE 10 */
-	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
+	/*display: -webkit-box;  
+	display: -ms-flexbox;  
+	display: -webkit-flex; 
+	display: flex;         
 	justify-content: center;
-	text-align: center;
+	text-align: center;*/
 }
 
 .cube_container {
 	perspective: 600px;
+	border-radius: 50%;
 	width: calc(var(--cubeSize) * 2);
 	height: calc(var(--cubeSize) * 2);
-	display: flex;
+	display: inline-flex;
 	justify-content: center;
 	align-items: center;
+	float: left;
+	shape-outside: circle();
+	padding-right: 2em;
 }
 
 .cube {
+	position:absolute;
 	transform-style: preserve-3d;
 	width: var(--cubeSize);
 	height: var(--cubeSize);
@@ -274,7 +277,6 @@ body {
 }
 
 .radar {
-	position: absolute;
 	background-color: #79bca735;
 	-webkit-box-shadow: 15px 20px 70px #67b99a, 
 						inset 0px -30px 90px 30px #78df9d, 

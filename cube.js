@@ -1,6 +1,9 @@
 var cube = document.getElementById("cube");
 var radar = document.getElementById("radar");
 
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+
+
 let distance = 0;
 let rect = radar.getBoundingClientRect();
 
@@ -11,14 +14,10 @@ let vectorX;
 let vectorY;
 let angle;
 
-let dirX = 0;
-let dirY = 0;
+let dirX = 1;
+let dirY = 1;
 let dirZ = 1;
-var r = document.querySelector(":root");
-function temp () {};
-
-
-const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+var root = document.querySelector(":root");
 
 document.addEventListener("mousemove", async function(event, radarStatus) {
       vectorX = event.clientX - x0
@@ -30,8 +29,8 @@ document.addEventListener("mousemove", async function(event, radarStatus) {
         /*angle = 180 * angle/Math.PI;
           angle = 180 +  Math.round(angle) % 360;*/
 
-        r.style.setProperty('--vectorX', `${vectorX}`, "important");
-        r.style.setProperty('--vectorX', `${vectorX}`, "important");
-        r.style.setProperty('--angle', `${angle * 10}rad`, "important");
+        root.style.setProperty('--vectorX', `${vectorX}`, "important");
+        root.style.setProperty('--vectorX', `${vectorX}`, "important");
+        root.style.setProperty('--angle', `${angle * 10}rad`, "important");
       };
 });
