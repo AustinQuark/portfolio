@@ -224,8 +224,25 @@ body {
 	align-items: center;
 	float: left;
 	shape-outside: circle();
-	padding-right: 2em;
+	border: solid;
+	margin-right: 5em;
 }
+
+.radar {
+	background-color: #79bca735;
+	-webkit-box-shadow: 15px 20px 70px #67b99a, 						inset 0px -30px 90px 30px #78df9d, 						inset 0px 70px 100px 180px #52a786;
+	-moz-box-shadow: 	15px 20px 70px #67b99a, 	  					inset 0px -30px 90px 30px #78df9d, 	  					inset 0px 70px 100px 180px #52a786;
+	box-shadow: 		15px 20px 70px #67b99a, 	  					inset 0px -30px 90px 30px #78df9d, 	  					inset 0px 70px 100px 180px #52a786;
+	width: calc(var(--cubeSize) * 2);
+	height: calc(var(--cubeSize) * 2);
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-ms-border-radius: 50%;
+	-o-border-radius: 50%;
+	transition: all 1s ease-in-out;
+}
+
 
 .cube {
 	position:absolute;
@@ -276,27 +293,6 @@ body {
   letter-spacing: 5px;
 }
 
-.radar {
-	background-color: #79bca735;
-	-webkit-box-shadow: 15px 20px 70px #67b99a, 
-						inset 0px -30px 90px 30px #78df9d, 
-						inset 0px 70px 100px 180px #52a786;
-	-moz-box-shadow: 	15px 20px 70px #67b99a, 
-	  					inset 0px -30px 90px 30px #78df9d, 
-	  					inset 0px 70px 100px 180px #52a786;
-
-	box-shadow: 		15px 20px 70px #67b99a, 
-	  					inset 0px -30px 90px 30px #78df9d, 
-	  					inset 0px 70px 100px 180px #52a786;
-	width: calc(2  * var(--cubeSize));
-	height: calc(2  * var(--cubeSize));
-	border-radius: 50%;
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	-ms-border-radius: 50%;
-	-o-border-radius: 50%;
-	transition: all 1s ease-in-out;
-}
 
 
 /*	Faces Placement		*/
