@@ -56,6 +56,8 @@ table {
 
 html {
 	height: 100%;
+	outline: none;
+	-webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -224,7 +226,6 @@ body {
 	align-items: center;
 	float: left;
 	shape-outside: circle();
-	border: solid;
 	margin-right: 5em;
 }
 
@@ -244,25 +245,20 @@ body {
 }
 
 
+
+:root {
+	--angleX: 0;
+	--angleY: 0;
+}
+
 .cube {
 	position:absolute;
 	transform-style: preserve-3d;
 	width: var(--cubeSize);
 	height: var(--cubeSize);
-	animation: 20s linear infinite rotation;
+	transform: rotateX(var(--angleX)) rotateY(var(--angleY));
 }
 
-:root {
-	--vectorX: 0;
-	--vectorY: 0;
-	--vectorZ: 1;
-	--angle: 0deg;
-}
-
-@keyframes rotation {
-	0% { transform: rotate3d(var(--vectorX), var(--vectorY), var(--vectorZ), 0)}
-	100% {transform: rotate3d(var(--vectorX), var(--vectorY), var(--vectorZ), var(--angle))}
-}
 
 .face {
   backface-visibility: hidden;
