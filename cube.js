@@ -22,32 +22,37 @@ var angle = {
     y: 0
 } 
 
-var speedInvert = 50;
+var speed = 1.3;
 var root = document.querySelector(":root");
-var clock = false;
 
-var a = 0;
+var cubeAngle = {
+    x: 0,
+    y: 0
+}
+
+var rotateInt = false;
+var decrementInt = false;
+
 
 function rotateCube() {
-    a += angle.x * 10;
-    a %= 360;
-
+    cubeAngle.x = (cubeAngle.x + angle.x * speed) % 360;
+    cubeAngle.y = (cubeAngle.y - angle.y * speed) % 360;
 	/*angle = 180 * angle/Math.PI;
 						angle = 180 +  Math.round(angle) % 360;*/
-	root.style.setProperty("--angleX", `${a}deg`, "important");
-	root.style.setProperty("--angleY", `${angle.x}deg`, "important");
+	root.style.setProperty("--angleX", `${cubeAngle.y}deg`, "important");
+	root.style.setProperty("--angleY", `${cubeAngle.x}deg`, "important");
 }
 
 function decrementSpeed() {
     if (Math.abs(angle.x) > 0 || Math.abs(angle.y) > 0)
     {
-        angle.x -= Math.sign(angle.x) * 0.05; 
-        angle.y -= Math.sign(angle.y) * 0.05;
+        angle.x -= Math.sign(angle.x) * 0.01; 
+        angle.y -= Math.sign(angle.y) * 0.01;
         rotateCube();
         return ;
     }
-    clearInterval(clock);
-    clock = false;
+    clearInterval(decrementInt);
+    decrementInt = false;
 }
 
 document.addEventListener("mousemove", function(e) { 
@@ -55,23 +60,26 @@ document.addEventListener("mousemove", function(e) {
     mouse.y = e.clientY - radar.y;
 
     distance = Math.sqrt(Math.pow(mouse.x, 2) + Math.pow(mouse.y, 2));
-	angle.x = mouse.x / distance;
-    angle.y = mouse.y / distance;
-    console.log(angle.x, angle.y);
 
     if (distance <= radar.shape.width / 2)
     {
-        if (!clock)
-            clock = setInterval(rotateCube, 15);
+        angle.x = mouse.x / distance;
+        angle.y = mouse.y / distance;
+        if (decrementInt)
+        {
+            clearInterval(decrementInt);
+            decrementInt = false;
+        }
+        if (!rotateInt)
+            rotateInt = setInterval(rotateCube, 15);
         radar.on = true;
     }
     else
     {
         radar.on = false;
-        clearInterval(clock);
-        clock = false;
-        //clock = setInterval(decrementSpeed, 15);
-        
+        clearInterval(rotateInt);
+        rotateInt = false;
+        if (!decrementInt)
+            decrementInt = setInterval(decrementSpeed, 15); 
     }
-
 });
