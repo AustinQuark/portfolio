@@ -10,6 +10,9 @@ radar.shape = radar.elem.getBoundingClientRect();
 radar.x = radar.shape.left + radar.shape.width / 2;
 radar.y = radar.shape.top + radar.shape.height / 2;
 
+var cube = document.getElementById("cube");
+
+
 var mouse = {
   x: 0,
   y: 0
@@ -33,14 +36,24 @@ var cubeAngle = {
 var rotateInt = false;
 var decrementInt = false;
 
+var squeeze = 1;
+
+function squeezeFunc () {
+    if (radar.on)
+        squeeze = Math.max(squeeze - 0.04, 0.6);
+    else
+        squeeze = Math.min(squeeze + 0.04, 1);
+}
 
 function rotateCube() {
     cubeAngle.x = (cubeAngle.x + angle.x * speed) % 360;
     cubeAngle.y = (cubeAngle.y - angle.y * speed) % 360;
+    squeezeFunc();
 	/*angle = 180 * angle/Math.PI;
 						angle = 180 +  Math.round(angle) % 360;*/
 	root.style.setProperty("--angleX", `${cubeAngle.y}deg`, "important");
 	root.style.setProperty("--angleY", `${cubeAngle.x}deg`, "important");
+	root.style.setProperty("--squeeze", `${squeeze}`, "important");
 }
 
 function decrementSpeed() {
@@ -55,6 +68,14 @@ function decrementSpeed() {
     decrementInt = false;
 }
 
+function focusFace() {
+    root.style.setProperty("--angleX", `0deg`, "important");
+    root.style.setProperty("--angleY", `0deg`, "important");
+
+    cube.style.animation="showRight 1s linear";
+
+}
+
 document.addEventListener("mousemove", function(e) { 
     mouse.x = e.clientX - radar.x;
     mouse.y = e.clientY - radar.y;
@@ -63,16 +84,25 @@ document.addEventListener("mousemove", function(e) {
 
     if (distance <= radar.shape.width / 2)
     {
-        angle.x = mouse.x / distance;
-        angle.y = mouse.y / distance;
-        if (decrementInt)
+        if (distance <= radar.shape.width / 5)
         {
-            clearInterval(decrementInt);
-            decrementInt = false;
+            clearInterval(rotateInt);
+            rotateInt = false;
+            focusFace();
         }
-        if (!rotateInt)
-            rotateInt = setInterval(rotateCube, 15);
-        radar.on = true;
+        else
+        {
+            angle.x = mouse.x / distance;
+            angle.y = mouse.y / distance;
+            if (decrementInt)
+            {
+                clearInterval(decrementInt);
+                decrementInt = false;
+            }
+            if (!rotateInt)
+                rotateInt = setInterval(rotateCube, 15);
+            radar.on = true;
+        }
     }
     else
     {
