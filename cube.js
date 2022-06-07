@@ -45,9 +45,9 @@ function rotateCube() {
 
 function decrementSpeed() {
     if (Math.abs(angle.x) > 0 || Math.abs(angle.y) > 0)
-    {
-        angle.x -= Math.sign(angle.x) * 0.01; 
-        angle.y -= Math.sign(angle.y) * 0.01;
+    {  
+        angle.x -= Math.sign(angle.x) * 0.005; 
+        angle.y -= Math.sign(angle.y) * 0.005;
         rotateCube();
         return ;
     }
