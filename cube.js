@@ -108,7 +108,7 @@ document.addEventListener("mousemove", function(e) {
 
     if (distance <= radar.shape.width / 2)
     {
-        if (distance <= radar.shape.width / 5)
+        if (distance <= radar.shape.width / 10)
         {
             clearInterval(rotateInt);
             rotateInt = false;

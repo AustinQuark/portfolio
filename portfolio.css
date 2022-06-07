@@ -203,11 +203,13 @@ body {
 	font-family: junction_regular;
 	letter-spacing: 1px;
 	font-size: 2.7em;
-	padding: 0.2em 2em 0.2em 0em;
+	padding: 2em 1em;
+    text-justify: distribute;
 }
 
 .project {
 	width: 100%;
+    
 	/*display: -webkit-box;  
 	display: -ms-flexbox;  
 	display: -webkit-flex; 
@@ -224,9 +226,12 @@ body {
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
-	float: left;
-	shape-outside: circle();
-	margin-right: 5em;
+}
+
+.project {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .radar {
@@ -257,7 +262,8 @@ body {
 	transform-style: preserve-3d;
 	width: var(--cubeSize);
 	height: var(--cubeSize);
-	transform: rotateX(var(--angleY)) rotateY(var(--angleX)) scale3d(var(--squeeze), var(--squeeze), var(--squeeze));
+	transform: rotateX(var(--angleY)) rotateY(var(--angleX
+)) scale3d(var(--squeeze), var(--squeeze), var(--squeeze));
 }
 
 
@@ -410,6 +416,16 @@ body {
 	:root {
 		--cubeSize: 140px;
 	}
+
+    .cube_container {
+        shape-outside: circle();
+        margin-right: 5em;
+        float: left;
+    }
+
+    .project {
+        display: inline;
+    }
 }
 
 /* Large devices (desktops, 992px and up) */
