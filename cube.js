@@ -35,6 +35,7 @@ var cubeAngle = {
 
 var rotateInt = false;
 var decrementInt = false;
+var focusInt = false;
 
 var squeeze = 1;
 
@@ -48,7 +49,7 @@ function squeezeFunc () {
 function rotateCube() {
     cubeAngle.x = (cubeAngle.x + angle.x * speed) % 360;
     cubeAngle.y = (cubeAngle.y - angle.y * speed) % 360;
-    squeezeFunc();
+    //squeezeFunc();
 	/*angle = 180 * angle/Math.PI;
 						angle = 180 +  Math.round(angle) % 360;*/
 	root.style.setProperty("--angleX", `${cubeAngle.y}deg`, "important");
@@ -68,12 +69,20 @@ function decrementSpeed() {
     decrementInt = false;
 }
 
+var roundFaces = [0, 90, 180, 270, 360, -90, -180, -270, -360];
+
 function focusFace() {
-    root.style.setProperty("--angleX", `0deg`, "important");
-    root.style.setProperty("--angleY", `0deg`, "important");
 
-    cube.style.animation="showRight 1s linear";
+    var closestFaceX = roundFaces.reduce(function(prev, curr) {
+        return (Math.abs(curr - cubeAngle.x) < Math.abs(prev - cubeAngle.x)
+        ? curr : prev);});
 
+    var closestFaceY = roundFaces.reduce(function(prev, curr) {
+        return (Math.abs(curr - cubeAngle.y) < Math.abs(prev - cubeAngle.y)
+        ? curr : prev);});
+
+    root.style.setProperty("--angleX", `${closestFaceY}deg`, "important");
+    root.style.setProperty("--angleY", `${closestFaceX}deg`, "important");
 }
 
 document.addEventListener("mousemove", function(e) { 
@@ -88,10 +97,16 @@ document.addEventListener("mousemove", function(e) {
         {
             clearInterval(rotateInt);
             rotateInt = false;
-            focusFace();
+            if (!focusInt)
+                focusInt = setInterval(focusFace, 15);
         }
         else
         {
+            if (focusInt)
+            {
+                clearInterval(focusInt);
+                focusInt = false;
+            }   
             angle.x = mouse.x / distance;
             angle.y = mouse.y / distance;
             if (decrementInt)
