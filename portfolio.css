@@ -257,7 +257,7 @@ body {
 	transform-style: preserve-3d;
 	width: var(--cubeSize);
 	height: var(--cubeSize);
-	transform: rotateX(var(--angleX)) rotateY(var(--angleY)) scale3d(var(--squeeze), var(--squeeze), var(--squeeze));
+	transform: rotateX(var(--angleY)) rotateY(var(--angleX)) scale3d(var(--squeeze), var(--squeeze), var(--squeeze));
 }
 
 
