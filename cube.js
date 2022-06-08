@@ -12,7 +12,6 @@ radar.y = radar.shape.top + radar.shape.height / 2;
 
 var cube = document.getElementById("cube");
 
-
 var mouse = {
   x: 0,
   y: 0
@@ -44,7 +43,7 @@ function squeezeFunc () {
     if (radar.on && !focusInt)
         squeeze = Math.max(squeeze - 0.04, 0.7);
     else
-        squeeze = Math.min(squeeze + 0.01, 1);
+        squeeze = Math.min(squeeze + 0.05, 1);
 }
 
 function setNewAngle () {
@@ -98,20 +97,23 @@ function focusFace(faceX, faceY) {
     focusInt = false;
 }
 
+var faces = document.getElementsByClassName("face");
+
 document.addEventListener("mousemove", function(e) { 
     mouse.x = e.clientX - radar.x;
     mouse.y = e.clientY - radar.y;
 
     distance = Math.sqrt(Math.pow(mouse.x, 2) + Math.pow(mouse.y, 2));
 
-    if (distance <= radar.shape.width / 2)
+    if (document.elementFromPoint(e.clientX, e.clientY) == radar.elem ||
+        cube.contains(document.elementFromPoint(e.clientX, e.clientY)))
     {
         if (startInt)
         {
             clearInterval(startInt);
             startInt = false;
         }
-        if (distance <= radar.shape.width / 6)
+        if (cube.contains(document.elementFromPoint(e.clientX, e.clientY)))
         {
             clearInterval(rotateInt);
             rotateInt = false;
