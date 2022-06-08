@@ -151,5 +151,12 @@ document.addEventListener("mousemove", function(e) {
             decrementInt = setInterval(decrementSpeed, 15); 
     }
 });
+var square = document.getElementById("square");
 
-cube.scrollIntoView()
+
+if (window.matchMedia("(min-width: 768px)").matches) {
+    square.scrollIntoView({block: "center"});
+} else {
+    cube.scrollIntoView({block: "center"});
+    
+}
