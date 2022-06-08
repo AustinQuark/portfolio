@@ -158,5 +158,4 @@ if (window.matchMedia("(min-width: 768px)").matches) {
     square.scrollIntoView({block: "center"});
 } else {
     cube.scrollIntoView({block: "center"});
-    
 }
