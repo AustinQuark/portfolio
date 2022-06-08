@@ -89,15 +89,12 @@ function focusFace(faceX, faceY) {
             cubeAngle.y -= Math.sign(cubeAngle.y - faceY);
 
 
-        console.log(cubeAngle.x, cubeAngle.y);
         squeezeFunc();  
         setNewAngle();  
         return ;
     }
     clearInterval(focusInt);
     focusInt = false;
-    console.log("al")
-
 }
 
 document.addEventListener("mousemove", function(e) { 
@@ -108,7 +105,7 @@ document.addEventListener("mousemove", function(e) {
 
     if (distance <= radar.shape.width / 2)
     {
-        if (distance <= radar.shape.width / 10)
+        if (distance <= radar.shape.width / 6)
         {
             clearInterval(rotateInt);
             rotateInt = false;
