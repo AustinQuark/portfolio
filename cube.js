@@ -117,7 +117,7 @@ document.addEventListener("mousemove", function(e) {
                 var closestFaceY = roundFaces.reduce(function(prev, curr) {
                     return (Math.abs(curr - cubeAngle.y) < Math.abs(prev - cubeAngle.y) ? curr : prev);});
 
-                focusInt = setInterval(focusFace, 15, closestFaceX, closestFaceY);
+                focusInt = setInterval(focusFace, 5, closestFaceX, closestFaceY);
             }
         }
         else
