@@ -36,6 +36,7 @@ var cubeAngle = {
 var rotateInt = false;
 var decrementInt = false;
 var focusInt = false;
+var startInt = false;
 
 var squeeze = 1;
 
@@ -105,6 +106,11 @@ document.addEventListener("mousemove", function(e) {
 
     if (distance <= radar.shape.width / 2)
     {
+        if (startInt)
+        {
+            clearInterval(startInt);
+            startInt = false;
+        }
         if (distance <= radar.shape.width / 6)
         {
             clearInterval(rotateInt);
@@ -144,13 +150,20 @@ document.addEventListener("mousemove", function(e) {
         radar.on = false;
         clearInterval(rotateInt);
         rotateInt = false;
-        if (!decrementInt)
+        if (!decrementInt && !startInt)
             decrementInt = setInterval(decrementSpeed, 15); 
     }
 });
+
+function start() {
+    cubeAngle.x += 0.1;
+    cubeAngle.y += 0.06;
+    setNewAngle();
+}
+
+startInt = setInterval(start, 15);
+
 var square = document.getElementById("square");
-
-
 if (window.matchMedia("(min-width: 768px)").matches) {
     square.scrollIntoView({block: "center"});
 } else {
