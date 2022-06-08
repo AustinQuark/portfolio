@@ -151,3 +151,5 @@ document.addEventListener("mousemove", function(e) {
             decrementInt = setInterval(decrementSpeed, 15); 
     }
 });
+
+cube.scrollIntoView()
