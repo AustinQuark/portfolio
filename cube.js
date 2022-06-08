@@ -156,10 +156,14 @@ document.addEventListener("mousemove", function(e) {
 });
 
 function start() {
-    cubeAngle.x += 0.1;
-    cubeAngle.y += 0.06;
+    angle.x = 0.18;
+    angle.y = -0.21;
+    rotateCube();
     setNewAngle();
 }
+
+cubeAngle.x = 25;
+cubeAngle.y = 25;
 
 startInt = setInterval(start, 15);
 

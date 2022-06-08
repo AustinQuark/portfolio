@@ -253,8 +253,8 @@ body {
 
 
 :root {
-	--angleX: 0;
-	--angleY: 0;
+	--angleX: 16deg;
+	--angleY: 87deg;
     --squeeze: 1;
 }
 
