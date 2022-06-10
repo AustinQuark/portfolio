@@ -1,3 +1,83 @@
+var radar = {   x: 0,
+                y: 0, 
+                elem: document.getElementById("radar"), 
+                shape: 0
+            };
+
+radar.shape = radar.elem.getBoundingClientRect();
+radar.x = radar.shape.left + radar.shape.width / 2;
+radar.y = radar.shape.top + radar.shape.height / 2;
+
+var mouseRaw = {x: 0, y: 0};
+var mouse = {x: 0, y: 0};
+
+var distance = 0;
+
+var angle = {x: 0, y: 0};
+var cubeAngle = {x: 0, y: 0};
+
+var time = {now: new Date().getTime(), diff: 0}
+
+var root = document.querySelector(":root");
+var cube = document.getElementById("cube");
+
+//Speed are in ms^-1
+var speed = 0.1; 
+var decrementSpeed = 0.1;
+
+function setNewAngle () {
+	root.style.setProperty("--angleX", `${cubeAngle.x}deg`, "important");
+	root.style.setProperty("--angleY", `${cubeAngle.y}deg`, "important");
+}
+
+document.addEventListener("mousemove", function(e) {
+    mouseRaw.x = e.clientX;
+    mouseRaw.y = e.clientY;
+})
+
+function onRadar() {
+    if (document.elementFromPoint(mouseRaw.x, mouseRaw.y) == radar.elem)
+        return (true);
+    return (false);
+}
+
+function rotateCube () {
+    time.diff = new Date().getTime() - time.now;
+    time.now += time.diff;
+
+    mouse.x = mouseRaw.x - radar.x;
+    mouse.y = mouseRaw.y - radar.y;
+
+    distance = Math.sqrt(Math.pow(mouse.x, 2) + Math.pow(mouse.y, 2));
+
+    console.log(angle.x);
+
+    if (onRadar())
+    {
+        angle.x = mouse.x / distance;
+        angle.y = mouse.y / distance;    
+    }
+    else
+    {
+        if (angle.x > 0)
+            angle.x = Math.max(angle.x - decrementSpeed * time.diff, 0);
+        else if (angle.x < 0)
+            angle.x = Math.min(angle.x + decrementSpeed * time.diff, 0);
+
+        if (angle.y > 0)
+            angle.y = Math.max(angle.y - decrementSpeed * time.diff, 0);
+        else if (angle.y < 0)
+            angle.y = Math.min(angle.y + decrementSpeed * time.diff, 0);
+    }
+    cubeAngle.x = (cubeAngle.x + angle.x * time.diff * speed) % 360;
+    cubeAngle.y = (cubeAngle.y - angle.y * time.diff * speed) % 360;
+
+    setNewAngle();
+}
+
+setInterval(rotateCube, 15);
+
+/*
 var radar = {
     elem: document.getElementById("radar"),
     shape: 0,
@@ -56,8 +136,8 @@ function rotateCube() {
     cubeAngle.x = (cubeAngle.x + angle.x * speed) % 360;
     cubeAngle.y = (cubeAngle.y - angle.y * speed) % 360;
     squeezeFunc();
-	/*angle = 180 * angle/Math.PI;
-						angle = 180 +  Math.round(angle) % 360;*/
+	//angle = 180 * angle/Math.PI;
+	//					angle = 180 +  Math.round(angle) % 360;
     setNewAngle();
 }
 
@@ -175,3 +255,4 @@ if (window.matchMedia("(min-width: 768px)").matches) {
 } else {
     cube.scrollIntoView({block: "center"});
 }
+*/
