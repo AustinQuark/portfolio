@@ -15,19 +15,35 @@ var distance = 0;
 
 var angle = {x: 0, y: 0};
 var cubeAngle = {x: 0, y: 0};
+var squeeze = 1;
 
 var time = {now: new Date().getTime(), diff: 0}
 
 var root = document.querySelector(":root");
 var cube = document.getElementById("cube");
+var square = document.getElementById("square");
+
+if (window.matchMedia("(min-width: 768px)").matches) {
+    square.scrollIntoView({block: "center"});
+} else {
+    cube.scrollIntoView({block: "center"});
+}
+
 
 //Speed are in ms^-1
 var speed = 0.1; 
-var decrementSpeed = 0.1;
+var decrementSpeed = 0.001;
+var squeezeSpeed = 0.001;
+
+function easeInExpo(x) {
+    return x === 0 ? 0 : Math.pow(2, 9 * x - 10) + 0.5;
+}
 
 function setNewAngle () {
 	root.style.setProperty("--angleX", `${cubeAngle.x}deg`, "important");
 	root.style.setProperty("--angleY", `${cubeAngle.y}deg`, "important");
+	root.style.setProperty("--squeeze", `${easeInExpo(squeeze)}`, "important");
+
 }
 
 document.addEventListener("mousemove", function(e) {
@@ -40,6 +56,8 @@ function onRadar() {
         return (true);
     return (false);
 }
+
+
 
 function rotateCube () {
     time.diff = new Date().getTime() - time.now;
@@ -55,7 +73,9 @@ function rotateCube () {
     if (onRadar())
     {
         angle.x = mouse.x / distance;
-        angle.y = mouse.y / distance;    
+        angle.y = mouse.y / distance;
+        squeeze = Math.max(squeeze - squeezeSpeed * time.diff, 0.6);
+
     }
     else
     {
@@ -68,6 +88,7 @@ function rotateCube () {
             angle.y = Math.max(angle.y - decrementSpeed * time.diff, 0);
         else if (angle.y < 0)
             angle.y = Math.min(angle.y + decrementSpeed * time.diff, 0);
+        squeeze = Math.min(squeeze + squeezeSpeed * time.diff, 1);
     }
     cubeAngle.x = (cubeAngle.x + angle.x * time.diff * speed) % 360;
     cubeAngle.y = (cubeAngle.y - angle.y * time.diff * speed) % 360;
@@ -249,10 +270,5 @@ cubeAngle.y = 25;
 
 startInt = setInterval(start, 15);
 
-var square = document.getElementById("square");
-if (window.matchMedia("(min-width: 768px)").matches) {
-    square.scrollIntoView({block: "center"});
-} else {
-    cube.scrollIntoView({block: "center"});
-}
+
 */

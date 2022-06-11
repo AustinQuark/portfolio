@@ -48,7 +48,7 @@ table {
 :root {
 	font-size: 1em;
   --cubeSize: 150px;
-
+	--overflow: none;
   --squareColor: #71ddcd;
   --borderColor: #02040f;
   --boxShadow: #ffffff;
@@ -62,13 +62,14 @@ table {
 }
 
 html {
-	height: 100%;
+	height: 120%;
     width: 100%;
 	outline: none;
 	-webkit-tap-highlight-color: transparent;
 }
 
 body {
+	overflow: none;
 	color: #000000;
 	margin: 0;
 	min-width: 300px;
@@ -423,6 +424,7 @@ body {
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 	:root {
+		overflow: hidden;
         font-size: 0.9em;
 		--cubeSize: 140px;
 	}
