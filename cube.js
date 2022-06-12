@@ -29,33 +29,50 @@ if (window.matchMedia("(min-width: 768px)").matches) {
     cube.scrollIntoView({block: "center"});
 }
 
+var face = null;
+var roundFaces = [["bottom", 270, 0],
+                ["front", 0, 0],
+                ["top", 90, 0],
+                ["back", 0, 180],
+                ["left", 0, 270],
+                ["right", 0, 90]];
 
-//Speed are in ms^-1
+//States
+var onRadar = false;
+var onFocus = false;
+var focused = false;
+
+//Speeds ( in ms^-1 )
 var speed = 0.1; 
 var decrementSpeed = 0.001;
-var squeezeSpeed = 0.001;
+var squeezeSpeed = 0.0015;
 
-function easeInExpo(x) {
-    return x === 0 ? 0 : Math.pow(2, 9 * x - 10) + 0.5;
+
+function isOnRadar() {
+	if (document.elementFromPoint(mouseRaw.x, mouseRaw.y) == radar.elem) return true;
+	return false;
 }
 
-function setNewAngle () {
+function easeInExpo(x){
+	return x === 0 ? 0 : (Math.pow(2, 10 * x - 10) + 1) / 2;
+}
+
+function setNewAngle() {
 	root.style.setProperty("--angleX", `${cubeAngle.x}deg`, "important");
 	root.style.setProperty("--angleY", `${cubeAngle.y}deg`, "important");
-	root.style.setProperty("--squeeze", `${easeInExpo(squeeze)}`, "important");
-
+    root.style.setProperty("--squeeze", `${easeInExpo(squeeze)}`, "important");
 }
+
+document.addEventListener("click", function(e) {
+    face = document.elementFromPoint(mouseRaw.x, mouseRaw.y);
+    if (face.classList.contains("face"))
+        onFocus = true;
+})
 
 document.addEventListener("mousemove", function(e) {
     mouseRaw.x = e.clientX;
     mouseRaw.y = e.clientY;
 })
-
-function onRadar() {
-    if (document.elementFromPoint(mouseRaw.x, mouseRaw.y) == radar.elem)
-        return (true);
-    return (false);
-}
 
 
 
@@ -66,16 +83,37 @@ function rotateCube () {
     mouse.x = mouseRaw.x - radar.x;
     mouse.y = mouseRaw.y - radar.y;
 
+    onRadar = isOnRadar();
     distance = Math.sqrt(Math.pow(mouse.x, 2) + Math.pow(mouse.y, 2));
 
-    console.log(angle.x);
-
-    if (onRadar())
+    if (onFocus)
+    {
+        for(var i = 0; i < roundFaces.length; i++)
+        {
+            if (face.classList.contains(roundFaces[i][0]))
+            {
+                var focusFaceX = roundFaces[i][1];
+                var focusFaceY = roundFaces[i][2];
+            }
+        }        
+        if (cubeAngle.x != focusFaceX || cubeAngle.y != focusFaceY) {
+            if (cubeAngle.x == focusFaceX) {angle.x = 0;}
+            else if (Math.round(cubeAngle.x) == focusFaceX) {angle.x = (cubeAngle.x - focusFaceX) / time.diff / speed ;}
+            else {angle.x = Math.sign(cubeAngle.x - focusFaceX) / time.diff / speed;}
+			
+            if(cubeAngle.y == focusFaceY) {angle.y = 0;}
+            else if (Math.round(cubeAngle.y) == focusFaceY) {angle.y = (focusFaceY - cubeAngle.y) / time.diff / speed;}
+			else {angle.y = Math.sign(cubeAngle.y - focusFaceY) / time.diff / speed;}
+		}
+        else
+            onFocus = false;
+        console.log(angle.x, angle.y);
+    }
+    else if (onRadar)
     {
         angle.x = mouse.x / distance;
         angle.y = mouse.y / distance;
         squeeze = Math.max(squeeze - squeezeSpeed * time.diff, 0.6);
-
     }
     else
     {
@@ -176,18 +214,18 @@ function decrementSpeed() {
 
 var roundFaces = [0, 90, 180, 270, 360, -90, -180, -270, -360];
 
-function focusFace(faceX, faceY) {
+function focusFace(faceX,focusFaceY) {
 
-    if (cubeAngle.x != faceX || cubeAngle.y != faceY)
+    if (cubeAngle.x != faceX || cubeAngle.y !=focusFaceY)
     {
         if (Math.round(cubeAngle.x) == faceX)
             cubeAngle.x = faceX;
         else
             cubeAngle.x -= Math.sign(cubeAngle.x - faceX);
-        if (Math.round(cubeAngle.y) == faceY)
-            cubeAngle.y = faceY;
+        if (Math.round(cubeAngle.y) ==focusFaceY)
+            cubeAngle.y =focusFaceY);
         else
-            cubeAngle.y -= Math.sign(cubeAngle.y - faceY);
+            cubeAngle.y -= Math.sign(cubeAngle.y -focusFaceY);
 
 
         squeezeFunc();  
@@ -220,13 +258,13 @@ document.addEventListener("mousemove", function(e) {
             rotateInt = false;
             if (!focusInt)
             {
-                var closestFaceX = roundFaces.reduce(function(prev, curr) {
+                var focusFaceX = roundFaces.reduce(function(prev, curr) {
                     return (Math.abs(curr - cubeAngle.x) < Math.abs(prev - cubeAngle.x)? curr : prev);});
 
-                var closestFaceY = roundFaces.reduce(function(prev, curr) {
+                var focusFaceY = roundFaces.reduce(function(prev, curr) {
                     return (Math.abs(curr - cubeAngle.y) < Math.abs(prev - cubeAngle.y) ? curr : prev);});
 
-                focusInt = setInterval(focusFace, 5, closestFaceX, closestFaceY);
+                focusInt = setInterval(focusFace, 5, focusFaceX, focusFaceY);
             }
         }
         else
