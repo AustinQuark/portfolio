@@ -274,8 +274,8 @@ body {
 	height: var(--cubeSize);
 	transform: rotateX(var(--angleY)) rotateY(var(--angleX
 )) scale3d(var(--squeeze), var(--squeeze), var(--squeeze));
+	transition: all 1s linear;
 }
-
 
 .face {
   backface-visibility: hidden;

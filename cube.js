@@ -78,18 +78,10 @@ document.addEventListener("click", function(e) {
             {
                 focusFaceX = roundFaces[i][1];
                 focusFaceY = roundFaces[i][2];
-                
-                focusSpeed = 5;
 
-                cubeAngle.x =  Math.round((cubeAngle.x < 0) ? cubeAngle.x + 360: cubeAngle.x);
-                cubeAngle.y =  Math.round((cubeAngle.y < 0) ? cubeAngle.y + 360: cubeAngle.y);
-            
-                cubeAngle.x = cubeAngle.x - (cubeAngle.x % focusSpeed);
-                cubeAngle.y = cubeAngle.y - (cubeAngle.y % focusSpeed);
-            
-                angle.x = (focusFaceX - cubeAngle.x < 360 - focusFaceX + cubeAngle.x) ? focusSpeed: -focusSpeed;
-                angle.y = (focusFaceY - cubeAngle.y < 360 - focusFaceY + cubeAngle.y) ? focusSpeed: -focusSpeed;
-                
+                cubeAngle.x = Math.round((cubeAngle.x < 0) ? cubeAngle.x + 360 : cubeAngle.x);
+                cubeAngle.y = Math.round((cubeAngle.y < 0) ? cubeAngle.y + 360 : cubeAngle.y);
+      
                 onFocus = true;
             }
         }
@@ -115,18 +107,9 @@ function rotateCube () {
 
     if (onFocus)
     {
-
-
-        if (cubeAngle.x == focusFaceX) {angle.x = 0;}
-        if (cubeAngle.y == focusFaceY) {angle.y = 0;}
-
-
-
-        if (cubeAngle.x == focusFaceX && cubeAngle.y == focusFaceY)
-            onFocus = false;
-        
-        cubeAngle.x = (cubeAngle.x + angle.x) % 360;
-        cubeAngle.y = (cubeAngle.y + angle.y) % 360;
+        var style = document.createElement('style');
+        style.innerHTML = `.cssClass { transform : rotate3d(${focusFaceX}deg, ${focusFaceY}deg, 0deg) }`;
+        cube.classList.add("cssClass");
     } 
     else 
     {
@@ -157,7 +140,7 @@ function rotateCube () {
     setNewAngle();
 }
 
-setInterval(rotateCube, 15); //Default 15
+setInterval(rotateCube, 50); //Default 15
 
 /*
 var radar = {
