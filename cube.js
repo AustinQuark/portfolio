@@ -30,17 +30,20 @@ if (window.matchMedia("(min-width: 768px)").matches) {
 }
 
 var face = null;
-var roundFaces = [["bottom", 270, 0],
+var roundFaces = [["right", 270, 0],
                 ["front", 0, 0],
-                ["top", 90, 0],
+                ["left", 90, 0],
                 ["back", 0, 180],
-                ["left", 0, 270],
-                ["right", 0, 90]];
+                ["top", 0, 270],
+                ["bottom", 0, 90]];
 
 //States
 var onRadar = false;
 var onFocus = false;
 var focused = false;
+
+var focusFaceX;
+var focusFaceY;
 
 //Speeds ( in ms^-1 )
 var speed = 0.1; 
@@ -66,7 +69,17 @@ function setNewAngle() {
 document.addEventListener("click", function(e) {
     face = document.elementFromPoint(mouseRaw.x, mouseRaw.y);
     if (face.classList.contains("face"))
+    {
+        for(var i = 0; i < roundFaces.length; i++)
+        {
+            if (face.classList.contains(roundFaces[i][0]))
+            {
+                focusFaceX = roundFaces[i][1];
+                focusFaceY = roundFaces[i][2];
+            }
+        }        
         onFocus = true;
+    }
 })
 
 document.addEventListener("mousemove", function(e) {
@@ -88,53 +101,57 @@ function rotateCube () {
 
     if (onFocus)
     {
-        for(var i = 0; i < roundFaces.length; i++)
-        {
-            if (face.classList.contains(roundFaces[i][0]))
-            {
-                var focusFaceX = roundFaces[i][1];
-                var focusFaceY = roundFaces[i][2];
-            }
-        }        
-        if (cubeAngle.x != focusFaceX || cubeAngle.y != focusFaceY) {
-            if (cubeAngle.x == focusFaceX) {angle.x = 0;}
-            else if (Math.round(cubeAngle.x) == focusFaceX) {angle.x = (cubeAngle.x - focusFaceX) / time.diff / speed ;}
-            else {angle.x = Math.sign(cubeAngle.x - focusFaceX) / time.diff / speed;}
-			
-            if(cubeAngle.y == focusFaceY) {angle.y = 0;}
-            else if (Math.round(cubeAngle.y) == focusFaceY) {angle.y = (focusFaceY - cubeAngle.y) / time.diff / speed;}
-			else {angle.y = Math.sign(cubeAngle.y - focusFaceY) / time.diff / speed;}
-		}
-        else
-            onFocus = false;
-        console.log(angle.x, angle.y);
-    }
-    else if (onRadar)
-    {
-        angle.x = mouse.x / distance;
-        angle.y = mouse.y / distance;
-        squeeze = Math.max(squeeze - squeezeSpeed * time.diff, 0.6);
-    }
-    else
-    {
-        if (angle.x > 0)
-            angle.x = Math.max(angle.x - decrementSpeed * time.diff, 0);
-        else if (angle.x < 0)
-            angle.x = Math.min(angle.x + decrementSpeed * time.diff, 0);
+        cubeAngle.x =  Math.round((cubeAngle.x < 0) ? cubeAngle.x + 360: cubeAngle.x);
+        cubeAngle.y =  Math.round((cubeAngle.y < 0) ? cubeAngle.y + 360: cubeAngle.y);
 
-        if (angle.y > 0)
-            angle.y = Math.max(angle.y - decrementSpeed * time.diff, 0);
-        else if (angle.y < 0)
-            angle.y = Math.min(angle.y + decrementSpeed * time.diff, 0);
-        squeeze = Math.min(squeeze + squeezeSpeed * time.diff, 1);
+        if (cubeAngle.x != focusFaceX)   {
+			angle.x = Math.sign(cubeAngle.x - focusFaceX);
+        } else {angle.x = 0;}
+
+        if (cubeAngle.y != focusFaceY) {
+            angle.y = Math.sign(cubeAngle.y - focusFaceY);
+        } else {angle.y = 0;}
+
+        console.log(`Focus : ${focusFaceX}, ${focusFaceY}`);
+    console.log(`Angle : ${cubeAngle.x}, ${cubeAngle.y}`);
+
+
+        if (cubeAngle.x == focusFaceX && cubeAngle.y == focusFaceY)
+            onFocus = false;
+        
+        cubeAngle.x = (cubeAngle.x - angle.x) % 360;
+        cubeAngle.y = (cubeAngle.y - angle.y) % 360;
+    } 
+    else 
+    {
+        if (onRadar)
+        {
+            angle.x = mouse.x / distance;
+            angle.y = mouse.y / distance;
+            squeeze = Math.max(squeeze - squeezeSpeed * time.diff, 0.6);
+        }
+        else //if (onNothing)
+        {
+            if (angle.x > 0)
+                angle.x = Math.max(angle.x - decrementSpeed * time.diff, 0);
+            else if (angle.x < 0)
+                angle.x = Math.min(angle.x + decrementSpeed * time.diff, 0);
+
+            if (angle.y > 0)
+                angle.y = Math.max(angle.y - decrementSpeed * time.diff, 0);
+            else if (angle.y < 0)
+                angle.y = Math.min(angle.y + decrementSpeed * time.diff, 0);
+            squeeze = Math.min(squeeze + squeezeSpeed * time.diff, 1);
+        }
+        cubeAngle.x = (cubeAngle.x + angle.x * time.diff * speed) % 360;
+        cubeAngle.y = (cubeAngle.y + angle.y * time.diff * speed) % 360;
     }
-    cubeAngle.x = (cubeAngle.x + angle.x * time.diff * speed) % 360;
-    cubeAngle.y = (cubeAngle.y - angle.y * time.diff * speed) % 360;
+
 
     setNewAngle();
 }
 
-setInterval(rotateCube, 15);
+setInterval(rotateCube, 15); //Default 15
 
 /*
 var radar = {
