@@ -50,6 +50,8 @@ var speed = 0.1;
 var decrementSpeed = 0.001;
 var squeezeSpeed = 0.0015;
 
+var focusSpeed;
+
 
 function isOnRadar() {
 	if (document.elementFromPoint(mouseRaw.x, mouseRaw.y) == radar.elem) return true;
@@ -76,9 +78,21 @@ document.addEventListener("click", function(e) {
             {
                 focusFaceX = roundFaces[i][1];
                 focusFaceY = roundFaces[i][2];
+                
+                focusSpeed = 5;
+
+                cubeAngle.x =  Math.round((cubeAngle.x < 0) ? cubeAngle.x + 360: cubeAngle.x);
+                cubeAngle.y =  Math.round((cubeAngle.y < 0) ? cubeAngle.y + 360: cubeAngle.y);
+            
+                cubeAngle.x = cubeAngle.x - (cubeAngle.x % focusSpeed);
+                cubeAngle.y = cubeAngle.y - (cubeAngle.y % focusSpeed);
+            
+                angle.x = (focusFaceX - cubeAngle.x < 360 - focusFaceX + cubeAngle.x) ? focusSpeed: -focusSpeed;
+                angle.y = (focusFaceY - cubeAngle.y < 360 - focusFaceY + cubeAngle.y) ? focusSpeed: -focusSpeed;
+                
+                onFocus = true;
             }
-        }        
-        onFocus = true;
+        }
     }
 })
 
@@ -101,26 +115,18 @@ function rotateCube () {
 
     if (onFocus)
     {
-        cubeAngle.x =  Math.round((cubeAngle.x < 0) ? cubeAngle.x + 360: cubeAngle.x);
-        cubeAngle.y =  Math.round((cubeAngle.y < 0) ? cubeAngle.y + 360: cubeAngle.y);
 
-        if (cubeAngle.x != focusFaceX)   {
-			angle.x = Math.sign(cubeAngle.x - focusFaceX);
-        } else {angle.x = 0;}
 
-        if (cubeAngle.y != focusFaceY) {
-            angle.y = Math.sign(cubeAngle.y - focusFaceY);
-        } else {angle.y = 0;}
+        if (cubeAngle.x == focusFaceX) {angle.x = 0;}
+        if (cubeAngle.y == focusFaceY) {angle.y = 0;}
 
-        console.log(`Focus : ${focusFaceX}, ${focusFaceY}`);
-    console.log(`Angle : ${cubeAngle.x}, ${cubeAngle.y}`);
 
 
         if (cubeAngle.x == focusFaceX && cubeAngle.y == focusFaceY)
             onFocus = false;
         
-        cubeAngle.x = (cubeAngle.x - angle.x) % 360;
-        cubeAngle.y = (cubeAngle.y - angle.y) % 360;
+        cubeAngle.x = (cubeAngle.x + angle.x) % 360;
+        cubeAngle.y = (cubeAngle.y + angle.y) % 360;
     } 
     else 
     {
