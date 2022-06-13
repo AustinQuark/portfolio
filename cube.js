@@ -81,7 +81,7 @@ document.addEventListener("click", function(e) {
 
                 cubeAngle.x = Math.round((cubeAngle.x < 0) ? cubeAngle.x + 360 : cubeAngle.x);
                 cubeAngle.y = Math.round((cubeAngle.y < 0) ? cubeAngle.y + 360 : cubeAngle.y);
-      
+            
                 onFocus = true;
             }
         }
