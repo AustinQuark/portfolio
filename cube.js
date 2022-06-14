@@ -118,17 +118,16 @@ function rotateCube () {
     {
         if (!cube.classList.contains("focus"))
         {
-            focused = true;
 			cube.classList.add("focus");
             root.style.setProperty("--angleX", `${focusFaceX}deg`);
             root.style.setProperty("--angleY", `${focusFaceY}deg`);
 		}
+        squeeze = Math.min(squeeze + squeezeSpeed * time.diff, 1);
     } 
     else
     {
         if (onRadar)
         {
-            focused = false;
             angle.x = mouse.x / distance;
             angle.y = mouse.y / distance;
             squeeze = Math.max(squeeze - squeezeSpeed * time.diff, 0.6);
@@ -144,7 +143,6 @@ function rotateCube () {
                 angle.y = Math.max(angle.y - decrementSpeed * time.diff, 0);
             else if (angle.y < 0)
                 angle.y = Math.min(angle.y + decrementSpeed * time.diff, 0);
-            squeeze = Math.min(squeeze + squeezeSpeed * time.diff, 1);
         }
         cubeAngle.x = (cubeAngle.x + angle.x * time.diff * speed) % 360;
         cubeAngle.y = (cubeAngle.y + angle.y * time.diff * speed) % 360;
