@@ -279,6 +279,7 @@ body {
 }
 
 .focus {
+	transition: 0.5s ease-in-out;
     transform: rotateX(var(--focusAngleX)) rotateY(var(--focusAngleY)) scale3d(var(--squeeze), var(--squeeze), var(--squeeze));
 
 }
