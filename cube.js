@@ -74,10 +74,8 @@ cube.addEventListener("transitionend", function () {
         angle.x = 0;
         cubeAngle.x = focusFaceX;
         cubeAngle.y = focusFaceY;
-        squeeze = 1;
 		onFocus = false;
 });
-
 
 document.addEventListener("click", function(e) {
     face = document.elementFromPoint(mouseRaw.x, mouseRaw.y);
@@ -86,8 +84,7 @@ document.addEventListener("click", function(e) {
         for(var i = 0; i < roundFaces.length; i++)
         {
             if (face.classList.contains(roundFaces[i][0]))
-            {
-                
+            {  
                 focusFaceX = roundFaces[i][1];
                 focusFaceY = roundFaces[i][2];
 
@@ -99,10 +96,7 @@ document.addEventListener("click", function(e) {
             }
         }
     }
-    console.log(cubeAngle);
-    console.log(focusFaceX, focusFaceY);
 })
-
 
 
 document.addEventListener("mousemove", function(e) {
@@ -124,20 +118,17 @@ function rotateCube () {
     {
         if (!cube.classList.contains("focus"))
         {
-			root.style.setProperty("--focusAngleX", `${focusFaceY}deg`);
-			root.style.setProperty("--focusAngleY", `${focusFaceX}deg`);
-			root.style.setProperty("--squeeze", `${1}`);
+            focused = true;
 			cube.classList.add("focus");
+            root.style.setProperty("--angleX", `${focusFaceX}deg`);
+            root.style.setProperty("--angleY", `${focusFaceY}deg`);
 		}
-        else
-        {
-
-        }
     } 
     else
     {
         if (onRadar)
         {
+            focused = false;
             angle.x = mouse.x / distance;
             angle.y = mouse.y / distance;
             squeeze = Math.max(squeeze - squeezeSpeed * time.diff, 0.6);
@@ -159,8 +150,6 @@ function rotateCube () {
         cubeAngle.y = (cubeAngle.y + angle.y * time.diff * speed) % 360;
         setNewAngle();
     }
-
-
 }
 
 setInterval(rotateCube, 15); //Default 15
