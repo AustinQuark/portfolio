@@ -40,7 +40,6 @@ var roundFaces = [["left", 90, 360],
 //States
 var onRadar = false;
 var onFocus = false;
-var focused = false;
 
 var focusFaceX;
 var focusFaceY;
@@ -74,6 +73,7 @@ cube.addEventListener("transitionend", function () {
         angle.x = 0;
         cubeAngle.x = focusFaceX;
         cubeAngle.y = focusFaceY;
+        squeeze = 1;
 		onFocus = false;
 });
 
@@ -116,13 +116,13 @@ function rotateCube () {
 
     if (onFocus)
     {
-        if (!cube.classList.contains("focus"))
+        if (!cube.classList.contains("focus") )
         {
 			cube.classList.add("focus");
             root.style.setProperty("--angleX", `${focusFaceX}deg`);
             root.style.setProperty("--angleY", `${focusFaceY}deg`);
+            root.style.setProperty("--squeeze", "1");
 		}
-        squeeze = Math.min(squeeze + squeezeSpeed * time.diff, 1);
     } 
     else
     {
@@ -143,6 +143,7 @@ function rotateCube () {
                 angle.y = Math.max(angle.y - decrementSpeed * time.diff, 0);
             else if (angle.y < 0)
                 angle.y = Math.min(angle.y + decrementSpeed * time.diff, 0);
+            squeeze = Math.min(squeeze + squeezeSpeed * time.diff, 1);
         }
         cubeAngle.x = (cubeAngle.x + angle.x * time.diff * speed) % 360;
         cubeAngle.y = (cubeAngle.y + angle.y * time.diff * speed) % 360;

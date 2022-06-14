@@ -279,7 +279,7 @@ body {
 }
 
 .focus {
-	transition: 0.5s ease-in-out;
+	transition: 0.7s cubic-bezier(0.85, 0, 0.15, 1);
 }
 
 .face {
