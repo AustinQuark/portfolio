@@ -119,6 +119,7 @@ function rotateCube () {
         if (!cube.classList.contains("focus") )
         {
 			cube.classList.add("focus");
+            radar.elem.classList.add("radarFocus");
             root.style.setProperty("--angleX", `${focusFaceX}deg`);
             root.style.setProperty("--angleY", `${focusFaceY}deg`);
             root.style.setProperty("--squeeze", "1");
@@ -126,25 +127,25 @@ function rotateCube () {
     } 
     else
     {
+        if (!document.elementFromPoint(mouseRaw.x, mouseRaw.y).classList.contains("face"))
+            radar.elem.classList.remove("radarFocus");
         if (onRadar)
         {
             angle.x = mouse.x / distance;
             angle.y = mouse.y / distance;
             squeeze = Math.max(squeeze - squeezeSpeed * time.diff, 0.6);
         }
-        else //if (onNothing)
+        else//if (onNothing)
         {
-            if (angle.x > 0)
-                angle.x = Math.max(angle.x - decrementSpeed * time.diff, 0);
-            else if (angle.x < 0)
-                angle.x = Math.min(angle.x + decrementSpeed * time.diff, 0);
-
-            if (angle.y > 0)
-                angle.y = Math.max(angle.y - decrementSpeed * time.diff, 0);
-            else if (angle.y < 0)
-                angle.y = Math.min(angle.y + decrementSpeed * time.diff, 0);
             squeeze = Math.min(squeeze + squeezeSpeed * time.diff, 1);
         }
+        if (angle.x > 0) angle.x = Math.max(angle.x - decrementSpeed * time.diff, 0);
+        else if (angle.x < 0) angle.x = Math.min(angle.x + decrementSpeed * time.diff, 0);
+
+        if (angle.y > 0) angle.y = Math.max(angle.y - decrementSpeed * time.diff, 0);
+        else if (angle.y < 0) angle.y = Math.min(angle.y + decrementSpeed * time.diff, 0);
+
+
         cubeAngle.x = (cubeAngle.x + angle.x * time.diff * speed) % 360;
         cubeAngle.y = (cubeAngle.y + angle.y * time.diff * speed) % 360;
         setNewAngle();

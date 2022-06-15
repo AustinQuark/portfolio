@@ -256,7 +256,11 @@ body {
 	-moz-border-radius: 50%;
 	-ms-border-radius: 50%;
 	-o-border-radius: 50%;
-	transition: all 1s ease-in-out;
+	transition: all 0.7s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+.radarFocus {
+    transform: scaleX(80%) scaleY(80%);
 }
 
 
@@ -430,7 +434,7 @@ body {
 @media (min-width: 768px) {
 	:root {
 		overflow: hidden;
-        font-size: 0.9em;
+        font-size: 0.6em;
 		--cubeSize: 140px;
 	}
 
