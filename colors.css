@@ -5,35 +5,36 @@
 
 
     /*  body    */
-    --backgroundBody: #184e77;
-    --gradient: linear-gradient(to top, #184e77 0%, #76c893 100%);
+    --backgroundBody:   #184e77;
+    --gradient: linear-gradient(to top, #184e77 0%, 
+                                        #76c893 100%);
 
 
     /*  square  */
     --borderColor: #02040f;
         /* not on hover */
-    --backgroundSquare: #52a756;
-    --boxShadowSquare: #67b99a;
-    --boxShadowSquareInsetA: #78df9d;
-    --boxShadowSquareInsetB: #52a786;
+    --backgroundSquare:         #52a756;
+    --boxShadowSquare:          #67b99a;
+    --boxShadowSquareInsetA:    #78df9d;
+    --boxShadowSquareInsetB:    #52a786;
         /* on hover */
-    --backgroundSquareHover:#BDD9BB;
-	--boxShadowSquareHover: #ade7a2; 
+    --backgroundSquareHover:      #BDD9BB;
+	--boxShadowSquareHover:       #ade7a2; 
 	--boxShadowSquareHoverInsetA: #BDD9BB; 
 	--boxShadowSquareHoverInsetB: #ade7a2;		
 
 
     /*  radar   */
-    --backgroundRadar: #38d02d;
-	--boxshadowRadar: #fdeda4;
+    --backgroundRadar:      #38d02d;
+	--boxshadowRadar:       #fdeda4;
     --boxshadowRadarInsetA: #ecf5a2;
     --boxshadowRadarInsetB: #ee7132;
 
     /*  face    */
-    --backgroundFace: #52a756;
-    --boxShadowFace: #fbeba2;
-    --boxShadowFaceInsetA: #f8dcb9;
-    --boxShadowFaceInsetB: #fab99f;
+    --backgroundFace:       #52a756;
+    --boxShadowFace:        #fbeba2;
+    --boxShadowFaceInsetA:  #f8dcb9;
+    --boxShadowFaceInsetB:  #fab99f;
   
 }
 
