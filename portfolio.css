@@ -222,9 +222,10 @@ body {
 }
 
 .cube {
-    z-index: 2;
+    z-index: 1;
 	position:absolute;
 	transform-style: preserve-3d;
+    
 	width: var(--cubeSize);
 	height: var(--cubeSize);
 	transform: rotateX(var(--angleY)) rotateY(var(--angleX
