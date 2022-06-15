@@ -195,6 +195,8 @@ body {
 }
 
 .radar {
+    position: absolute;
+    z-index: 0;
 	width: calc(var(--cubeSize) * 2);
 	height: calc(var(--cubeSize) * 2);
 	border-radius: 50%;
@@ -220,6 +222,7 @@ body {
 }
 
 .cube {
+    z-index: 2;
 	position:absolute;
 	transform-style: preserve-3d;
 	width: var(--cubeSize);

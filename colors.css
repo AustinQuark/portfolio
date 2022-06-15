@@ -25,15 +25,15 @@
 
     /*  radar   */
     --backgroundRadar: #38d02d;
-	--boxshadowRadar: #ade7a2;
-    --boxshadowRadarInsetA: #92d98d;
-    --boxshadowRadarInsetB: #092703;
+	--boxshadowRadar: #fdeda4;
+    --boxshadowRadarInsetA: #ecf5a2;
+    --boxshadowRadarInsetB: #ee7132;
 
     /*  face    */
     --backgroundFace: #52a756;
-    --boxShadowFace: #67b99a;
-    --boxShadowFaceInsetA: #78df9d;
-    --boxShadowFaceInsetB: #52a786;
+    --boxShadowFace: #fbeba2;
+    --boxShadowFaceInsetA: #f8dcb9;
+    --boxShadowFaceInsetB: #fab99f;
   
 }
 
