@@ -1,7 +1,40 @@
 :root {
-  --squareColor: #71ddcd;
-  --borderColor: #02040f;
-  --boxShadow: #ffffff;
+    /**********************\
+    *   COLOR VARIABLES    *  
+    \**********************/
+
+
+    /*  body    */
+    --backgroundBody: #184e77;
+    --gradient: linear-gradient(to top, #184e77 0%, #76c893 100%);
+
+
+    /*  square  */
+    --borderColor: #02040f;
+        /* not on hover */
+    --backgroundSquare: #52a756;
+    --boxShadowSquare: #67b99a;
+    --boxShadowSquareInsetA: #78df9d;
+    --boxShadowSquareInsetB: #52a786;
+        /* on hover */
+    --backgroundSquareHover:#BDD9BB;
+	--boxShadowSquareHover: #ade7a2; 
+	--boxShadowSquareHoverInsetA: #BDD9BB; 
+	--boxShadowSquareHoverInsetB: #ade7a2;		
+
+
+    /*  radar   */
+    --backgroundRadar: #38d02d;
+	--boxshadowRadar: #ade7a2;
+    --boxshadowRadarInsetA: #92d98d;
+    --boxshadowRadarInsetB: #092703;
+
+    /*  face    */
+    --backgroundFace: #52a756;
+    --boxShadowFace: #67b99a;
+    --boxShadowFaceInsetA: #78df9d;
+    --boxShadowFaceInsetB: #52a786;
+  
 }
 
 html {
@@ -10,79 +43,84 @@ html {
 
 body {
 	color: #000000;
-	background: #184e77;
-	background: linear-gradient(to top, #184e77 0%, #76c893 100%);
+	background: var(--backgroundBody);
+	background: var(--gradient);
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
 .square {
-	background-color: #52a786;
-	-webkit-box-shadow: 15px 20px 70px #67b99a, 
-						inset 0px -30px 90px 30px #78df9d, 
-						inset 0px 70px 100px 180px #52a786;
-	-moz-box-shadow: 	15px 20px 70px #67b99a, 
-	  					inset 0px -30px 90px 30px #78df9d, 
-	  					inset 0px 70px 100px 180px #52a786;
+	background-color: var(--backgroundSquare);
+	-webkit-box-shadow: 15px 20px 70px var(--boxShadowSquare), 
+						inset 0px -30px 90px 30px var(--boxShadowSquareInsetA), 
+						inset 0px 70px 100px 180px var(--boxShadowSquareInsetB);
+	-moz-box-shadow: 	15px 20px 70px var(--boxShadowSquare), 
+	  					inset 0px -30px 90px 30px var(--boxShadowSquareInsetA), 
+	  					inset 0px 70px 100px 180px var(--boxShadowSquareInsetB);
 
-	box-shadow: 		15px 20px 70px #67b99a, 
-	  					inset 0px -30px 90px 30px #78df9d, 
-	  					inset 0px 70px 100px 180px #52a786;
+	box-shadow: 		15px 20px 70px var(--boxShadowSquare), 
+	  					inset 0px -30px 90px 30px var(--boxShadowSquareInsetA), 
+	  					inset 0px 70px 100px 180px var(--boxShadowSquareInsetB);
 
 }
 
 
 @media (pointer:fine) {
 	.square:hover {
-		background:#BDD9BB;
+		background: var(--backgroundSquareHover);
 		transform: translate(-10px, -10px);
-		-webkit-box-shadow: 15px 20px 70px #ade7a2, 
-					inset 0px -30px 90px 30px #BDD9BB, 
-					inset 0px 70px 100px 180px #ade7a2;
-		-moz-box-shadow: 15px 20px 70px #ade7a2, 
-					inset 0px -30px 90px 30px #BDD9BB, 
-					inset 0px 70px 100px 180px #ade7a2;
-		box-shadow: 15px 20px 70px #ade7a2, 
-					inset 0px -30px 90px 30px #BDD9BB, 
-					inset 0px 70px 100px 180px #ade7a2;
-		
+		-webkit-box-shadow: 15px 20px 70px var(--boxShadowSquareHover), 
+                            inset 0px -30px 90px 30px var(--boxShadowSquareHoverInsetA), 
+                            inset 0px 70px 100px 180px var(--boxShadowSquareHoverInsetB);
+		-moz-box-shadow:    15px 20px 70px var(--boxShadowSquareHover), 
+                            inset 0px -30px 90px 30px var(--boxShadowSquareHoverInsetA), 
+                            inset 0px 70px 100px 180px var(--boxShadowSquareHoverInsetB);
+		box-shadow:         15px 20px 70px var(--boxShadowSquareHoverInsetB), 
+                            inset 0px -30px 90px 30px var(--boxShadowSquareHoverInsetA), 
+                            inset 0px 70px 100px 180px var(--boxShadowSquareHoverInsetB);
 	}
 }
 
 @media (pointer:coarse) {
 	.square {
-		background:#BDD9BB;
-		-webkit-box-shadow: 15px 20px 70px #ade7a2, 
-					inset 0px -30px 90px 30px #BDD9BB, 
-					inset 0px 70px 100px 180px #ade7a2;
-		-moz-box-shadow: 15px 20px 60px #ade7a2, 
-					inset 0px -30px 90px 30px #BDD9BB, 
-					inset 0px 70px 100px 180px #ade7a2;
-		box-shadow: 15px 20px 70px #ade7a2, 
-					inset 0px -30px 90px 30px #BDD9BB, 
-					inset 0px 70px 100px 180px #ade7a2;
+		background: var(--backgroundSquareHover);
+		transform: translate(-10px, -10px);
+		-webkit-box-shadow: 15px 20px 70px var(--boxShadowSquareHover), 
+                            inset 0px -30px 90px 30px var(--boxShadowSquareHoverInsetA), 
+                            inset 0px 70px 100px 180px var(--boxShadowSquareHoverInsetB);
+		-moz-box-shadow:    15px 20px 70px var(--boxShadowSquareHover), 
+                            inset 0px -30px 90px 30px var(--boxShadowSquareHoverInsetA), 
+                            inset 0px 70px 100px 180px var(--boxShadowSquareHoverInsetB);
+		box-shadow:         15px 20px 70px var(--boxShadowSquareHoverInsetB), 
+                            inset 0px -30px 90px 30px var(--boxShadowSquareHoverInsetA), 
+                            inset 0px 70px 100px 180px var(--boxShadowSquareHoverInsetB);	
 	}
 }
 
 .radar {
-	background-color: #79bca735;
-	-webkit-box-shadow: 15px 20px 70px #67b99a, 						inset 0px -30px 90px 30px #78df9d, 						inset 0px 70px 100px 180px #52a786;
-	-moz-box-shadow: 	15px 20px 70px #67b99a, 	  					inset 0px -30px 90px 30px #78df9d, 	  					inset 0px 70px 100px 180px #52a786;
-	box-shadow: 		15px 20px 70px #67b99a, 	  					inset 0px -30px 90px 30px #78df9d, 	  					inset 0px 70px 100px 180px #52a786;
-
+	background-color: var(--backgroundRadar);
+	-webkit-box-shadow: 15px 20px 70px var(--boxshadowRadar),
+     				    inset 0px -30px 90px 30px var(--boxshadowRadarInsetA),
+                        inset 0px 70px 100px 180px var(--boxshadowRadarInsetB);
+	-moz-box-shadow:    15px 20px 70px var(--boxshadowRadar),
+                        inset 0px -30px 90px 30px var(--boxshadowRadarInsetA),
+                        inset 0px 70px 100px 180px var(--boxshadowRadarInsetB);
+	box-shadow: 		15px 20px 70px var(--boxshadowRadar),
+                        inset 0px -30px 90px 30px var(--boxshadowRadarInsetA),
+                        inset 0px 70px 100px 180px var(--boxshadowRadarInsetB);
 }
 
 .face {
-  background-color: #acc2b4;
-  	-webkit-box-shadow: 15px 20px 70px #67b99a, 
-						inset 0px -30px 90px 30px #78df9d, 
-						inset 0px 70px 100px 180px #97e6c8;
-	-moz-box-shadow: 	15px 20px 70px #67b99a, 
-	  					inset 0px -30px 90px 30px #78df9d, 
-	  					inset 0px 70px 100px 180px #52a786;
+	background-color: var(--backgroundFace);
+	-webkit-box-shadow: 15px 20px 70px var(--boxShadowFace), 
+						inset 0px -30px 90px 30px var(--boxShadowFaceInsetA), 
+						inset 0px 70px 100px 180px var(--boxShadowFaceInsetB);
+	-moz-box-shadow: 	15px 20px 70px var(--boxShadowFace), 
+	  					inset 0px -30px 90px 30px var(--boxShadowFaceInsetA), 
+	  					inset 0px 70px 100px 180px var(--boxShadowFaceInsetB);
 
-	box-shadow: 		15px 20px 70px #67b99a, 
-	  					inset 0px -30px 90px 30px #78df9d, 
-	  					inset 0px 70px 100px 180px #b7c6c0;
+	box-shadow: 		15px 20px 70px var(--boxShadowFace), 
+	  					inset 0px -30px 90px 30px var(--boxShadowFaceInsetA), 
+	  					inset 0px 70px 100px 180px var(--boxShadowFaceInsetB);
 
 }
