@@ -49,9 +49,6 @@ table {
 	font-size: 1em;
   --cubeSize: 150px;
 	--overflow: none;
-  --squareColor: #71ddcd;
-  --borderColor: #02040f;
-  --boxShadow: #ffffff;
   -webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -65,12 +62,10 @@ html {
 	height: 120%;
     width: 100%;
 	outline: none;
-	-webkit-tap-highlight-color: transparent;
 }
 
 body {
 	overflow: none;
-	color: #000000;
 	margin: 0;
 	min-width: 300px;
 	font-family: junction_regular;
@@ -81,10 +76,6 @@ body {
 	display: -ms-flexbox;  /* TWEENER - IE 10 */
 	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
-	background: #184e77;
-	background: linear-gradient(to top, #184e77 0%, #76c893 100%);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
 }
 
 .square {
@@ -99,50 +90,9 @@ body {
   	-o-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
   	transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
 	
-	background-color: #52a786;
-	-webkit-box-shadow: 15px 20px 70px #67b99a, 
-						inset 0px -30px 90px 30px #78df9d, 
-						inset 0px 70px 100px 180px #52a786;
-	-moz-box-shadow: 	15px 20px 70px #67b99a, 
-	  					inset 0px -30px 90px 30px #78df9d, 
-	  					inset 0px 70px 100px 180px #52a786;
-
-	box-shadow: 		15px 20px 70px #67b99a, 
-	  					inset 0px -30px 90px 30px #78df9d, 
-	  					inset 0px 70px 100px 180px #52a786;
 }
 
-@media (pointer:fine) {
-	.square:hover {
-		background:#BDD9BB;
-		transform: translate(-10px, -10px);
-		-webkit-box-shadow: 15px 20px 70px #ade7a2, 
-					inset 0px -30px 90px 30px #BDD9BB, 
-					inset 0px 70px 100px 180px #ade7a2;
-		-moz-box-shadow: 15px 20px 70px #ade7a2, 
-					inset 0px -30px 90px 30px #BDD9BB, 
-					inset 0px 70px 100px 180px #ade7a2;
-		box-shadow: 15px 20px 70px #ade7a2, 
-					inset 0px -30px 90px 30px #BDD9BB, 
-					inset 0px 70px 100px 180px #ade7a2;
-		
-	}
-}
 
-@media (pointer:coarse) {
-	.square {
-		background:#BDD9BB;
-		-webkit-box-shadow: 15px 20px 70px #ade7a2, 
-					inset 0px -30px 90px 30px #BDD9BB, 
-					inset 0px 70px 100px 180px #ade7a2;
-		-moz-box-shadow: 15px 20px 60px #ade7a2, 
-					inset 0px -30px 90px 30px #BDD9BB, 
-					inset 0px 70px 100px 180px #ade7a2;
-		box-shadow: 15px 20px 70px #ade7a2, 
-					inset 0px -30px 90px 30px #BDD9BB, 
-					inset 0px 70px 100px 180px #ade7a2;
-	}
-}
 
 .name {
 	font-family: junction_bold;
@@ -245,10 +195,6 @@ body {
 }
 
 .radar {
-	background-color: #79bca735;
-	-webkit-box-shadow: 15px 20px 70px #67b99a, 						inset 0px -30px 90px 30px #78df9d, 						inset 0px 70px 100px 180px #52a786;
-	-moz-box-shadow: 	15px 20px 70px #67b99a, 	  					inset 0px -30px 90px 30px #78df9d, 	  					inset 0px 70px 100px 180px #52a786;
-	box-shadow: 		15px 20px 70px #67b99a, 	  					inset 0px -30px 90px 30px #78df9d, 	  					inset 0px 70px 100px 180px #52a786;
 	width: calc(var(--cubeSize) * 2);
 	height: calc(var(--cubeSize) * 2);
 	border-radius: 50%;
@@ -289,17 +235,6 @@ body {
 .face {
   backface-visibility: hidden;
   position: absolute;
-  background-color: #acc2b4;
-  	-webkit-box-shadow: 15px 20px 70px #67b99a, 
-						inset 0px -30px 90px 30px #78df9d, 
-						inset 0px 70px 100px 180px #97e6c8;
-	-moz-box-shadow: 	15px 20px 70px #67b99a, 
-	  					inset 0px -30px 90px 30px #78df9d, 
-	  					inset 0px 70px 100px 180px #52a786;
-
-	box-shadow: 		15px 20px 70px #67b99a, 
-	  					inset 0px -30px 90px 30px #78df9d, 
-	  					inset 0px 70px 100px 180px #b7c6c0;
   border: 2px solid black;
   border-radius: 3px;
   width: var(--cubeSize);
@@ -346,7 +281,6 @@ body {
 }
 .contact {
 	position: relative;
-	background-color: blue;
 	float: right;
 	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
 	display: -ms-flexbox;  /* TWEENER - IE 10 */
@@ -389,7 +323,6 @@ body {
 }
 
 .board {
-	background-color: rgb(190, 119, 26);
 	position: relative;
 	float: right;
 	display: flex;
