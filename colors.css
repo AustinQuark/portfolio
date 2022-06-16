@@ -5,32 +5,32 @@
 
 
     /*  body    */
-    --backgroundBody:   #184e77;
-    --gradient: linear-gradient(to top, #08AEEA
-                                    0%, #2AF598 100%);
+    --backgroundBody:   rgb(245,99,31);
+    --gradient: linear-gradient(to top, #f5631f
+                                    0%, #ffe863 100%);
 
 
     /*  square  */
     --borderColor: #02040f;
         /* not on hover */
-    --backgroundSquare:         #F76B1C;
-    --boxShadowSquare:          #fad961;
-    --boxShadowSquareInsetA:    #fad961;
-    --boxShadowSquareInsetB:    #f7f01c;
-    --squareGradient: linear-gradient(to top,   #ffe863
-                                            0%, #f5631f 100%);
+    --backgroundSquare:         #1db8f5; 
+    --boxShadowSquare:          #fad96100;
+    --boxShadowSquareInsetA:    #2E9DF6;
+    --boxShadowSquareInsetB:    #3F83FA;
+
+
         /* on hover */
-    --backgroundSquareHover:        #ffffff;
-	--boxShadowSquareHover:       #d32525;
-	--boxShadowSquareHoverInsetA: #ffc863; 
-	--boxShadowSquareHoverInsetB: #ff8652;		
+    --backgroundSquareHover:      #9fe1ff;
+	--boxShadowSquareHover:       #00699d;
+	--boxShadowSquareHoverInsetA: #0084ff; 
+	--boxShadowSquareHoverInsetB: #005697;
 
 
     /*  radar   */
-    --backgroundRadar:      #2AF598;
-	--boxshadowRadar:       #ade7a2;
-    --boxshadowRadarInsetA: #e8e8e8;
-    --boxshadowRadarInsetB: #2af5bb;
+    --backgroundRadar:      #ffcd58;
+	--boxshadowRadar:       #FFF8DD;
+    --boxshadowRadarInsetA: #fff8dd;
+    --boxshadowRadarInsetB: #ffad33;
 
     /*  face    */
     --backgroundFace:       #52a756;
@@ -53,32 +53,24 @@ body {
 }
 
 .square {
-	background: var(--backgroundSquare);
-    background: var(--squareGradient);
+    background-color: var(--backgroundSquare);
 }
 
 
 @media (pointer:fine) {
 	.square:hover {
-		background: var(--backgroundSquareHover);
-		transform: translate(-10px, -10px);
-		-webkit-box-shadow: 15px 20px 70px var(--boxShadowSquareHover), 
-                            inset 0px -30px 90px 30px var(--boxShadowSquareHoverInsetA), 
-                            inset 0px 70px 100px 180px var(--boxShadowSquareHoverInsetB);
-		-moz-box-shadow:    15px 20px 70px var(--boxShadowSquareHover), 
-                            inset 0px -30px 90px 30px var(--boxShadowSquareHoverInsetA), 
-                            inset 0px 70px 100px 180px var(--boxShadowSquareHoverInsetB);
-		box-shadow:         15px 20px 15px #4d52527d, 
-                            inset 0px -30px 90px 30px var(--boxShadowSquareHoverInsetA), 
-                            inset 0px 70px 100px 180px var(--boxShadowSquareHoverInsetB);
+            transform: translate(-10px, -10px);
+            background-color: var(--backgroundSquareHover);
+		    -webkit-box-shadow: inset 0px 0px 50px 0px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 15px 7px var(--boxShadowSquareHover); 
+            box-shadow: inset 0px 0px 50px 0px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 0px 0px var(--boxShadowSquareHover);
 	}
 }
 
 @media (pointer:coarse) {
 	.square {
-		background: var(--backgroundSquareHover);
+		background: var(--boxShadowSquareHoverInsetB);
 		transform: translate(-10px, -10px);
-		-webkit-box-shadow: 15px 20px 70px var(--boxShadowSquareHover), 
+		-webkit-box-shadow: 15px 20px 70px vvar(--boxShadowSquareHoverInsetB), 
                             inset 0px -30px 90px 30px var(--boxShadowSquareHoverInsetA), 
                             inset 0px 70px 100px 180px var(--boxShadowSquareHoverInsetB);
 		-moz-box-shadow:    15px 20px 70px var(--boxShadowSquareHover), 
@@ -91,16 +83,9 @@ body {
 }
 
 .radar {
-	background-color: var(--backgroundRadar);
-	-webkit-box-shadow: 15px 20px 70px var(--boxshadowRadar),
-     				    inset 0px -30px 90px 30px var(--boxshadowRadarInsetA),
-                        inset 0px 70px 100px 180px var(--boxshadowRadarInsetB);
-	-moz-box-shadow:    15px 20px 70px var(--boxshadowRadar),
-                        inset 0px -30px 90px 30px var(--boxshadowRadarInsetA),
-                        inset 0px 70px 100px 180px var(--boxshadowRadarInsetB);
-	box-shadow: 		15px 20px 70px var(--boxshadowRadar),
-                        inset 0px -30px 90px 30px var(--boxshadowRadarInsetA),
-                        inset 0px 70px 100px 180px var(--boxshadowRadarInsetB);
+    background-color: var(--backgroundRadar);
+    -webkit-box-shadow: inset 0px 0px 50px 15px var(--boxshadowRadarInsetA), inset 0px 0px 50px 50px var(--boxshadowRadarInsetB), 0px 0px 10px 5px var(--boxshadowRadar);
+    box-shadow: inset 0px 0px 50px 15px var(--boxshadowRadarInsetA), inset 0px 0px 50px 50px var(--boxshadowRadarInsetB), 0px 0px 10px 5px var(--boxshadowRadar); 
 }
 
 .face {

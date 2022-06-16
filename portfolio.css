@@ -161,10 +161,11 @@ body {
 .presentation {
 	font-family: junction_regular;
 	letter-spacing: 1px;
-	font-size: 2.7em;
+	font-size: 2.9em;
 	padding: 3em 1em;
     text-align: justify;
     text-justify: inter-word;
+    line-height: 1.5em;
 }
 
 .project {
@@ -372,14 +373,14 @@ body {
 @media (min-width: 768px) {
 	:root {
 		overflow: hidden;
-        font-size: 0.6em;
+        font-size: 0.9em;
 		--cubeSize: 140px;
 	}
 
     .cube_container {
         shape-outside: circle();
-        margin-right: 5em;
-        float: left;
+        margin-left: 8em;
+        float: right;
         padding: 3em 0em;
     }
 
