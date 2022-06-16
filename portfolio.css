@@ -82,8 +82,8 @@ body {
 	margin: auto;
 	z-index: 1;
   	width: 90%;
-  	border: 3px solid var(--borderColor);
-  	border-radius: 3px;
+  	border: 2px solid var(--borderColor);
+  	border-radius: 5px;
 	-webkit-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
   	-moz-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
   	-ms-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
@@ -159,7 +159,7 @@ body {
 }
 
 .presentation {
-	font-family: junction_regular;
+	font-family: junction_light;
 	letter-spacing: 1px;
 	font-size: 2.9em;
 	padding: 3em 1em;
@@ -317,7 +317,7 @@ body {
 
 .trait {
 	width: 3em;
-	border-top: 3px solid #1b2124;
+	border-top: 3px solid #ededed;
 }
 
 .icon {
@@ -326,6 +326,7 @@ body {
 	transform-origin: center;
 	transform: rotate(-45deg);
 	-webkit-transform: rotate(-45deg);
+    filter: invert(100%) sepia(4%) saturate(131%) hue-rotate(145deg) brightness(113%) contrast(86%);
 }
 
 .board {
@@ -341,6 +342,7 @@ body {
 	right: 0px;
 	bottom: 0px;
 	width: 15em;
+    filter: invert(100%) sepia(4%) saturate(131%) hue-rotate(145deg) brightness(113%) contrast(86%);
 }
 
 .status {

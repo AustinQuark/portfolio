@@ -11,18 +11,18 @@
 
 
     /*  square  */
-    --borderColor: #02040f;
+    --borderColor: #ededed;
         /* not on hover */
-    --backgroundSquare:         #1db8f5; 
+    --backgroundSquare:         #414141; 
     --boxShadowSquare:          #fad96100;
     --boxShadowSquareInsetA:    #2E9DF6;
     --boxShadowSquareInsetB:    #3F83FA;
 
 
         /* on hover */
-    --backgroundSquareHover:      #f1f1f1;
-	--boxShadowSquareHover:       #5c8091;
-	--boxShadowSquareHoverInsetA: #839cb5; 
+    --backgroundSquareHover:      #414141;
+	--boxShadowSquareHover:       #414141;
+	--boxShadowSquareHoverInsetA: #1a1a1a; 
 	--boxShadowSquareHoverInsetB: #00569727;
 
 
@@ -45,7 +45,7 @@ html {
 }
 
 body {
-	color: #0f0f0f;
+	color: #ededed;
 	background: var(--backgroundBody);
 	background: var(--gradient);
     background-repeat: no-repeat;
@@ -56,17 +56,15 @@ body {
     background-color: var(--backgroundSquare);
 }
 
-.skills {
-    color: rgba(0, 0, 0, 0.728);
-}
-
+.board-svg { color: #414141;}
+.diag-contact {}
 
 @media (pointer:fine) {
 	.square:hover {
             transform: translate(-10px, -10px);
             background-color: var(--backgroundSquareHover);
 		    -webkit-box-shadow: inset 0px 0px 50px 0px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 15px 7px var(--boxShadowSquareHover); 
-            box-shadow: inset 0px 0px 50px 0px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 0px 0px var(--boxShadowSquareHover);
+            box-shadow: inset 0px 0px 20px 0px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 0px 0px var(--boxShadowSquareHover);
 	}
 }
 
