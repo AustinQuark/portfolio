@@ -6,37 +6,35 @@
 
     /*  body    */
     --backgroundBody:   #184e77;
-    --gradient: linear-gradient(to top, #08AEEA
-                                    0%, #2AF598 100%);
+    --gradient: linear-gradient(to top, #184e77
+                                    0%, #76c893 100%);
 
 
     /*  square  */
     --borderColor: #02040f;
         /* not on hover */
-    --backgroundSquare:         #F76B1C;
-    --boxShadowSquare:          #fad961;
-    --boxShadowSquareInsetA:    #fad961;
-    --boxShadowSquareInsetB:    #f7f01c;
-    --squareGradient: linear-gradient(to top,   #ffe863
-                                            0%, #f5631f 100%);
+    --backgroundSquare:         #52a756;
+    --boxShadowSquare:          #67b99a;
+    --boxShadowSquareInsetA:    #6d927b;
+    --boxShadowSquareInsetB:    #d8e4b9;
         /* on hover */
-    --backgroundSquareHover:        #ffffff;
-	--boxShadowSquareHover:       #d32525;
-	--boxShadowSquareHoverInsetA: #ffc863; 
-	--boxShadowSquareHoverInsetB: #ff8652;		
+    --backgroundSquareHover:      #BDD9BB;
+	--boxShadowSquareHover:       #ade7a2;
+	--boxShadowSquareHoverInsetA: #f7c6a88b; 
+	--boxShadowSquareHoverInsetB: #84778f;		
 
 
     /*  radar   */
-    --backgroundRadar:      #2AF598;
+    --backgroundRadar:      #1dac13;
 	--boxshadowRadar:       #ade7a2;
-    --boxshadowRadarInsetA: #e8e8e8;
-    --boxshadowRadarInsetB: #2af5bb;
+    --boxshadowRadarInsetA: #BDD9BB;
+    --boxshadowRadarInsetB: #52a786;
 
     /*  face    */
     --backgroundFace:       #52a756;
-    --boxShadowFace:        #57ff6a20;
-    --boxShadowFaceInsetA:  #05090b00;
-    --boxShadowFaceInsetB:  #414141;
+    --boxShadowFace:        #fbeba2ae;
+    --boxShadowFaceInsetA:  #05090b;
+    --boxShadowFaceInsetB:  #7f70ef;
   
 }
 
@@ -45,7 +43,7 @@ html {
 }
 
 body {
-	color: #0f0f0f;
+	color: #000000;
 	background: var(--backgroundBody);
 	background: var(--gradient);
     background-repeat: no-repeat;
@@ -53,8 +51,18 @@ body {
 }
 
 .square {
-	background: var(--backgroundSquare);
-    background: var(--squareGradient);
+	background-color: var(--backgroundSquare);
+	-webkit-box-shadow: 15px 20px 70px var(--boxShadowSquare), 
+						inset 0px -30px 90px 30px var(--boxShadowSquareInsetA), 
+						inset 0px 70px 100px 180px var(--boxShadowSquareInsetB);
+	-moz-box-shadow: 	15px 20px 70px var(--boxShadowSquare), 
+	  					inset 0px -30px 90px 30px var(--boxShadowSquareInsetA), 
+	  					inset 0px 70px 100px 180px var(--boxShadowSquareInsetB);
+
+	box-shadow: 		15px 20px 70px var(--boxShadowSquare), 
+	  					inset 0px -30px 90px 30px var(--boxShadowSquareInsetA), 
+	  					inset 0px 70px 100px 180px var(--boxShadowSquareInsetB);
+
 }
 
 
@@ -68,7 +76,7 @@ body {
 		-moz-box-shadow:    15px 20px 70px var(--boxShadowSquareHover), 
                             inset 0px -30px 90px 30px var(--boxShadowSquareHoverInsetA), 
                             inset 0px 70px 100px 180px var(--boxShadowSquareHoverInsetB);
-		box-shadow:         15px 20px 15px #4d52527d, 
+		box-shadow:         15px 20px 70px var(--boxShadowSquareHoverInsetB), 
                             inset 0px -30px 90px 30px var(--boxShadowSquareHoverInsetA), 
                             inset 0px 70px 100px 180px var(--boxShadowSquareHoverInsetB);
 	}
@@ -84,7 +92,7 @@ body {
 		-moz-box-shadow:    15px 20px 70px var(--boxShadowSquareHover), 
                             inset 0px -30px 90px 30px var(--boxShadowSquareHoverInsetA), 
                             inset 0px 70px 100px 180px var(--boxShadowSquareHoverInsetB);
-		box-shadow:         10px 20px 70px var(--boxShadowSquareHoverInsetB), 
+		box-shadow:         15px 20px 70px var(--boxShadowSquareHoverInsetB), 
                             inset 0px -30px 90px 30px var(--boxShadowSquareHoverInsetA), 
                             inset 0px 70px 100px 180px var(--boxShadowSquareHoverInsetB);	
 	}
@@ -104,9 +112,6 @@ body {
 }
 
 .face {
-    color: white;
-    font-family: junction_bold;
-    font-size: 20px;
 	background-color: var(--backgroundFace);
 	-webkit-box-shadow: 15px 20px 70px var(--boxShadowFace), 
 						inset 0px -30px 90px 30px var(--boxShadowFaceInsetA), 
