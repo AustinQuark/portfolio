@@ -20,10 +20,10 @@
 
 
         /* on hover */
-    --backgroundSquareHover:      #9fe1ff;
-	--boxShadowSquareHover:       #00699d;
-	--boxShadowSquareHoverInsetA: #0084ff; 
-	--boxShadowSquareHoverInsetB: #005697;
+    --backgroundSquareHover:      #f1f1f1;
+	--boxShadowSquareHover:       #5c8091;
+	--boxShadowSquareHoverInsetA: #839cb5; 
+	--boxShadowSquareHoverInsetB: #00569727;
 
 
     /*  radar   */
@@ -33,8 +33,8 @@
     --boxshadowRadarInsetB: #ffad33;
 
     /*  face    */
-    --backgroundFace:       #52a756;
-    --boxShadowFace:        #57ff6a20;
+    --backgroundFace:       #fffb87;
+    --boxShadowFace:        #fffb8752;
     --boxShadowFaceInsetA:  #05090b00;
     --boxShadowFaceInsetB:  #414141;
   
@@ -54,6 +54,10 @@ body {
 
 .square {
     background-color: var(--backgroundSquare);
+}
+
+.skills {
+    color: rgba(0, 0, 0, 0.728);
 }
 
 

@@ -409,6 +409,10 @@ body {
 	:root {
 		--cubeSize: 180px;
 	}
+
+    .name {
+        font-size: 6em;
+    }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
