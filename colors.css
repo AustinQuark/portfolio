@@ -6,12 +6,12 @@
 
     /*  body    */
     --backgroundBody:   rgb(245,99,31);
-    --gradient: linear-gradient(to top, #f5631f
-                                    0%, #ffe863 100%);
+    --gradient: linear-gradient(to top, rgba(51,8,103,1)
+                                    0%, rgba(48,207,208, 100%));
 
 
     /*  square  */
-    --borderColor: #ededed;
+    --borderColor: #d3d3d3;
         /* not on hover */
     --backgroundSquare:         #414141; 
     --boxShadowSquare:          #fad96100;
@@ -27,14 +27,14 @@
 
 
     /*  radar   */
-    --backgroundRadar:      #ffcd58;
-	--boxshadowRadar:       #FFF8DD;
-    --boxshadowRadarInsetA: #fff8dd;
-    --boxshadowRadarInsetB: #ffad33;
+    --backgroundRadar:      #86c9ff;
+	--boxshadowRadar:       #ffffff;
+    --boxshadowRadarInsetA: #f3fffe;
+    --boxshadowRadarInsetB: #90f4d9;
 
     /*  face    */
-    --backgroundFace:       #fffb87;
-    --boxShadowFace:        #fffb8752;
+    --backgroundFace:       #5d5d5d;
+    --boxShadowFace:        #86c8ff67;
     --boxShadowFaceInsetA:  #05090b00;
     --boxShadowFaceInsetB:  #414141;
   
@@ -54,17 +54,17 @@ body {
 
 .square {
     background-color: var(--backgroundSquare);
+  	border: 2px solid var(--borderColor);
 }
 
 .board-svg { color: #414141;}
-.diag-contact {}
 
 @media (pointer:fine) {
 	.square:hover {
             transform: translate(-10px, -10px);
             background-color: var(--backgroundSquareHover);
 		    -webkit-box-shadow: inset 0px 0px 50px 0px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 15px 7px var(--boxShadowSquareHover); 
-            box-shadow: inset 0px 0px 20px 0px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 0px 0px var(--boxShadowSquareHover);
+            box-shadow: inset 0px 0px 20px 3px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 0px 0px var(--boxShadowSquareHover);
 	}
 }
 
@@ -91,7 +91,7 @@ body {
 }
 
 .face {
-    color: white;
+    border: 0px solid var(--borderColor);
     font-family: junction_bold;
     font-size: 20px;
 	background-color: var(--backgroundFace);

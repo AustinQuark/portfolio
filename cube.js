@@ -24,9 +24,9 @@ var cube = document.getElementById("cube");
 var square = document.getElementById("square");
 
 if (window.matchMedia("(min-width: 768px)").matches) {
-    square.scrollIntoView({block: "center"});
+	square.scrollIntoView({ block: "center" });
 } else {
-    cube.scrollIntoView({block: "center"});
+	cube.scrollIntoView({ block: "center" });
 }
 
 var face = null;

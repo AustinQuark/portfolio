@@ -28,94 +28,74 @@ table {
   border-spacing: 0;
 }
 
-
-/*
- * FONT IMPORT
- */
-@font-face {
-  font-family: junction_regular;
-  src: url(junction.ttf/junction_regular.ttf);
-}
-@font-face {
-  font-family: junction_bold;
-  src: url(junction.ttf/junction_bold.ttf);
-}
-@font-face {
-  font-family: junction_light;
-  src: url(junction.ttf/junction_light.ttf);
-}
-
 :root {
-	font-size: 1em;
-  --cubeSize: 150px;
+    --cubeSize: 150px;
 	--overflow: none;
-  -webkit-touch-callout: none;
+
+    -webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	-o-user-select: none;
+
 	user-select: none;
 }
 
 html {
-	height: 120%;
-    width: 100%;
-	outline: none;
+    font-family: 'Ubuntu Mono';
+    height: auto;
 }
 
 body {
-	overflow: none;
-	margin: 0;
-	min-width: 300px;
-	font-family: junction_regular;
+    height: auto;
+	min-width: 400px;
 	font-size: 0.5em;
-	height: 120%;
-    width: 100%;
 	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
 	display: -ms-flexbox;  /* TWEENER - IE 10 */
 	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
+    flex-direction: column;
+    align-items: center;
 }
 
 .square {
-	margin: auto;
-	z-index: 1;
   	width: 90%;
-  	border: 2px solid var(--borderColor);
-  	border-radius: 5px;
+  	border-radius: 7px;
+
 	-webkit-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
   	-moz-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
   	-ms-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
   	-o-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
   	transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
-	
 }
 
-
-
 .name {
-	font-family: junction_bold;
-	font-size: 5em;
 	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
 	display: -ms-flexbox;  /* TWEENER - IE 10 */
 	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
-	flex-direction: column;
-	text-align: start;
+	
+    flex-direction: column;
+	text-align: end;
 	letter-spacing: 0.05em;
 	padding-top: 0.4em;
-	padding-left: 0.5em;
+	padding-left: 0.8em;
 	padding-bottom: 1em;
+    font-weight: bold;
+    font-size: 7em;
 }
 
 .nameplate {
+    margin-right: -0.05em;
+
 	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
 	display: -ms-flexbox;  /* TWEENER - IE 10 */
 	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
+
 	flex-direction: row;
-	justify-content: start;
+	justify-content: end;
 }
 
 .nameplate-letter {
@@ -130,54 +110,44 @@ body {
 	letter-spacing: 0.05em;
 	font-size: 0.3em;
 	white-space: nowrap;
-	padding-left: 2.4em;
 	padding-top: 0.1em;
 	transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
-
 }
 
 .skills {
-	font-size: 1.6em;
-	z-index: 1;
-	font-family: junction_bold;
+	font-size: 2em;
 	letter-spacing: 0.1em;
+
 	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
 	display: -ms-flexbox;  /* TWEENER - IE 10 */
 	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
+
 	text-align: center;
-	justify-content:space-around;
+	justify-content: space-around;
 	flex-wrap: wrap;
-	padding-bottom: 0.8em;
+	padding-bottom: 0.7em;
 }
 
 .skills > span {
-	padding: 1em 1.5em;
-}
-
-.skills > span:hover {
-}
-
-.presentation {
-	font-family: junction_light;
-	letter-spacing: 1px;
-	font-size: 2.9em;
-	padding: 3em 1em;
-    text-align: justify;
-    text-justify: inter-word;
-    line-height: 1.5em;
+	padding: 1em 1.3em;
 }
 
 .project {
     cursor: crosshair;
-	width: 100%;
-    
-	/*display: -webkit-box;  
-	display: -ms-flexbox;  
-	display: -webkit-flex; 
-	display: flex;         
-	justify-content: center;
-	text-align: center;*/
+    padding: 5em 2.5em 7em 2.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.presentation {
+    padding-top: 3em;
+	letter-spacing: 1px;
+	font-size: 2.9em;
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 1.5em;
 }
 
 .cube_container {
@@ -190,18 +160,13 @@ body {
 	align-items: center;
 }
 
-.project {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .radar {
     position: absolute;
     z-index: 0;
 	width: calc(var(--cubeSize) * 2);
 	height: calc(var(--cubeSize) * 2);
 	border-radius: 50%;
+
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	-ms-border-radius: 50%;
@@ -212,8 +177,6 @@ body {
 .radarFocus {
     transform: scaleX(80%) scaleY(80%);
 }
-
-
 
 :root {
 	--angleX: 0deg;
@@ -227,11 +190,10 @@ body {
     z-index: 1;
 	position:absolute;
 	transform-style: preserve-3d;
-    
 	width: var(--cubeSize);
 	height: var(--cubeSize);
 	transform: rotateX(var(--angleY)) rotateY(var(--angleX
-)) scale3d(var(--squeeze), var(--squeeze), var(--squeeze));
+                )) scale3d(var(--squeeze), var(--squeeze), var(--squeeze));
 }
 
 .focus {
@@ -239,24 +201,24 @@ body {
 }
 
 .face {
-  backface-visibility: hidden;
-  position: absolute;
-  border: 2px solid black;
-  border-radius: 3px;
-  width: var(--cubeSize);
-  height: var(--cubeSize);
-	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-	display: -ms-flexbox;  /* TWEENER - IE 10 */
-	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-  font-size: 2em;
-  letter-spacing: 5px;
+    backface-visibility: hidden;
+    position: absolute;
+    border-radius: 3px;
+    width: var(--cubeSize);
+    height: var(--cubeSize);
+	
+    display: -webkit-box;   
+	display: -ms-flexbox;  
+	display: -webkit-flex;
+	display: flex;
+    
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    font-size: 2em;
+    letter-spacing: 5px;
+	font-family: 'Ubuntu Mono';
 }
-
-
 
 /*	Faces Placement		*/
 .front {transform: translateZ(calc(var(--cubeSize) / 2));}
@@ -266,35 +228,15 @@ body {
 .left {transform: translateX(calc(var(--cubeSize) / -2)) rotateY(270deg);}
 .right {transform: translateX(calc(var(--cubeSize) / 2)) rotateY(90deg);}
 
-/*	Movement Of The Cube*/
-@keyframes showBack {
-    to {transform: rotateX(180deg) rotateZ(180deg);}
-}
-@keyframes showTop {
-    to {transform: rotateX(-90deg);}
-}
-@keyframes showBot {
-    to {transform: rotateX(90deg);}
-}
-@keyframes showLeft {
-    to {transform: rotateY(90deg);}
-}
-@keyframes showRight {
-    to {transform: rotateY(-90deg);}
-}
-@keyframes showFront {
-    to {transform: rotateX(0deg);}
-}
 .contact {
 	position: relative;
 	float: right;
-	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+	
+    display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
 	display: -ms-flexbox;  /* TWEENER - IE 10 */
 	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
-	justify-content: end;
 	height: 0px;
-	width: auto;
 }
 
 .diag-contact {
@@ -302,9 +244,11 @@ body {
 	display: -ms-flexbox;  /* TWEENER - IE 10 */
 	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
-	align-items: center;
-	-webkit-transform: translateX(17px) translateY(39px) rotate(45deg);
-	transform: translateX(17px) translateY(39px) rotate(45deg);
+	width: 100%;
+	
+    align-items: center;
+	-webkit-transform: translateX(20px) translateY(45px) rotate(45deg);
+	transform: translateX(20px) translateY(45px) rotate(45deg);
 }
 
 .diag-icons {
@@ -316,8 +260,8 @@ body {
 }
 
 .trait {
-	width: 3em;
-	border-top: 3px solid #ededed;
+	width: 4em;
+	border-top: 3px solid var(--borderColor);
 }
 
 .icon {
@@ -329,29 +273,21 @@ body {
     filter: invert(100%) sepia(4%) saturate(131%) hue-rotate(145deg) brightness(113%) contrast(86%);
 }
 
-.board {
-	position: relative;
-	float: right;
-	display: flex;
-	width: fit-content;
-	
+.icon:nth-child(2n) {
+    margin-right: 3px;
 }
 
-.board-svg {
-	position: absolute;
-	right: 0px;
-	bottom: 0px;
-	width: 15em;
-    filter: invert(100%) sepia(4%) saturate(131%) hue-rotate(145deg) brightness(113%) contrast(86%);
+.board {
+    font-family: 'Ubuntu Mono';
+    font-style: italic;
+    font-weight: bold;
+    font-size: 4em;
+    display: flex;
+    justify-content: center;
 }
 
 .status {
-	position: absolute;
-	letter-spacing: 2px;
-	font-size: 2em;
-	font-family: 'Caveat', cursive;
-	right: 48px;
-	bottom: 70px;
+    padding: 1em 0em;
 }
 
 @media (min-width: 576px) {
@@ -360,48 +296,42 @@ body {
 		--cubeSize: 230px;
 	}
 
-	.status {
-		right: 54px;
-		bottom: 75px;
-	}
-
 	.diag-contact {
-		-webkit-transform: translateX(19px) translateY(40px) rotate(45deg);
-		transform: translateX(19px) translateY(40px) rotate(45deg);
+		-webkit-transform: translateX(21px) translateY(48px) rotate(45deg);
+		transform: translateX(21px) translateY(48px) rotate(45deg);
 	}
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 	:root {
-		overflow: hidden;
-        font-size: 0.9em;
-		--cubeSize: 140px;
+        font-size: 1em;
+		--cubeSize: 200px;
 	}
 
     .cube_container {
         shape-outside: circle();
-        margin-left: 8em;
+        margin: 2em;
         float: right;
-        padding: 3em 0em;
+    }
+
+    .presentation {
+        padding: 0em;
     }
 
     .project {
         display: inline;
+        padding-left: 5em;
+        padding-right: 5em;
     }
 
     .diag-contact {
-		-webkit-transform: translateX(18px) translateY(37px) rotate(45deg);
-		transform: translateX(18px) translateY(37px) rotate(45deg);
+		-webkit-transform: translateX(20px) translateY(45px) rotate(45deg);
+		transform: translateX(20px) translateY(45px) rotate(45deg);
 	}
 
-    .status {
-        right: 44px;
-        bottom: 60px;
-    }
-
     .skills {
-        padding-top: 2em;
+        padding-top: 3em;
     }
 
 }
@@ -414,6 +344,15 @@ body {
 
     .name {
         font-size: 6em;
+    }
+
+    .skills {
+        align-items:  end;
+        padding-bottom: 1em;
+    }
+
+    .project {
+        padding: 0em 5em;
     }
 }
 
