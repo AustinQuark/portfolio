@@ -2,7 +2,6 @@ const scene = new THREE.Scene();
 const cubeContainer = document.getElementById("cube_container");
 const camera = new THREE.PerspectiveCamera(75, cubeContainer.offsetWidth / cubeContainer.offsetHeight);
 
-
 const renderer = new THREE.WebGLRenderer({ alpha: false });
 renderer.setSize(cubeContainer.offsetWidth, cubeContainer.offsetHeight)
 renderer.domElement.style.borderRadius = "50%";
@@ -14,11 +13,15 @@ const cube = new THREE.Mesh(geometry, material);
 
 scene.add(cube);
 
+var control = new THREE.OrbitControls(camera, renderer.domElement);
+control.enableDamping = true;
+
 camera.position.z = 2;
 
 
 function animate() {
 	requestAnimationFrame(animate);
+    control.update();
 	renderer.render(scene, camera);
 }
 
