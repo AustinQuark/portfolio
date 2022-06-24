@@ -151,7 +151,6 @@ body {
 }
 
 .cube_container {
-	perspective: 600px;
 	border-radius: 50%;
 	width: calc(var(--cubeSize) * 2);
 	height: calc(var(--cubeSize) * 2);
@@ -160,23 +159,6 @@ body {
 	align-items: center;
 }
 
-.radar {
-    position: absolute;
-    z-index: -1;
-	width: calc(var(--cubeSize) * 2);
-	height: calc(var(--cubeSize) * 2);
-	border-radius: 50%;
-
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	-ms-border-radius: 50%;
-	-o-border-radius: 50%;
-	transition: all 0.7s cubic-bezier(0.85, 0, 0.15, 1);
-}
-
-.radarFocus {
-    transform: scaleX(80%) scaleY(80%);
-}
 
 :root {
 	--angleX: 0deg;
@@ -186,46 +168,16 @@ body {
     --focusAngleY: 0deg;
 }
 
-.cube {
-	position:absolute;
-	transform-style: preserve-3d;
-	width: var(--cubeSize);
-	height: var(--cubeSize);
-	transform: rotateX(var(--angleY)) rotateY(var(--angleX
-                )) scale3d(var(--squeeze), var(--squeeze), var(--squeeze));
-}
-
 .focus {
 	transition: 0.7s cubic-bezier(0.85, 0, 0.15, 1);
 }
 
 .face {
-    backface-visibility: hidden;
-    position: absolute;
-    border-radius: 3px;
-    width: var(--cubeSize);
-    height: var(--cubeSize);
-	
-    display: -webkit-box;   
-	display: -ms-flexbox;  
-	display: -webkit-flex;
-	display: flex;
-    
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    font-size: 2em;
-    letter-spacing: 5px;
+    font-size: 5px;
+    border: 2px solid white;
+    background-color: black;
 	font-family: 'Ubuntu Mono';
 }
-
-/*	Faces Placement		*/
-.front {transform: translateZ(calc(var(--cubeSize) / 2));}
-.back {transform: translateZ(calc(var(--cubeSize) / -2)) rotateY(180deg);}
-.top {transform: translateY(calc(var(--cubeSize) / -2)) rotateX(90deg);}
-.bottom {transform: translateY(calc(var(--cubeSize) / 2)) rotateX(270deg);}
-.left {transform: translateX(calc(var(--cubeSize) / -2)) rotateY(270deg);}
-.right {transform: translateX(calc(var(--cubeSize) / 2)) rotateY(90deg);}
 
 .contact {
 	position: relative;

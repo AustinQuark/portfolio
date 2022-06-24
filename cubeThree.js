@@ -1,11 +1,43 @@
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const cubeContainer = document.getElementById("cube_container");
+const camera = new THREE.PerspectiveCamera(75, cubeContainer.offsetWidth / cubeContainer.offsetHeight);
 
+
+const renderer = new THREE.WebGLRenderer({ alpha: false });
+renderer.setSize(cubeContainer.offsetWidth, cubeContainer.offsetHeight)
+renderer.domElement.style.borderRadius = "50%";
+cubeContainer.appendChild(renderer.domElement);
+
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshBasicMaterial({ color: 0xf1f1f1 });
+const cube = new THREE.Mesh(geometry, material);
+
+scene.add(cube);
+
+camera.position.z = 2;
+
+
+function animate() {
+	requestAnimationFrame(animate);
+	renderer.render(scene, camera);
+}
+
+animate();
+
+function toRadians(angle) {
+	return angle * (Math.PI / 180);
+}
+function toDegrees(angle) {
+	return angle * (180 / Math.PI);
+}
+
+/*
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const cubeContainer = document.getElementById("cube_container");
 
 const renderer = new THREE.WebGLRenderer({alpha: true});
 renderer.setSize(window.innerWidth, window.innerHeight);
-
 cubeContainer.appendChild(renderer.domElement);
 
 const geometry = new THREE.BoxGeometry(2, 2, 2);
@@ -32,16 +64,6 @@ renderer.domElement.addEventListener("mousemove", function(e) {
     deltaMove.x = e.offsetX - previousMousePosition.x;
     deltaMove.y = e.offsetY - previousMousePosition.y;
 
-    if (isDragging) {
-        var deltaRotationQuaternion = new THREE.Quaternion().setFromEuler( new THREE.Euler(
-            toRadians(deltaMove.y * 0.5),
-            toRadians(deltaMove.x * 0.5),
-            0,
-            'XYZ'
-        ));
-        cube.quaternion.multiplyQuaternions(deltaRotationQuaternion, cube.quaternion);
-    }
-
     previousMousePosition.x = e.offsetX;
     previousMousePosition.y = e.offsetY;
 });
@@ -64,9 +86,25 @@ function update(dt, t) {
     }, 0);
 }
 
-function animate() {
-	renderer.render(scene, camera);
+var move = { x: 0, y: 0};
+var speed = 0.2;
+var inertia = 2; //lower is higher
 
+function animate() {
+    if (!isDragging) {
+        move.x = move.x > 0 ? Math.max(0, move.x - inertia) : Math.min(0, move.x + inertia);
+        move.y = move.y > 0 ? Math.max(0, move.y - inertia) : Math.min(0, move.y + inertia);
+    }
+    else {
+        move.x = deltaMove.x;
+        move.y = deltaMove.y;
+    }
+
+    var deltaRotationQuaternion = new THREE.Quaternion().setFromEuler(
+        new THREE.Euler(toRadians(move.y * speed), toRadians(move.x * speed), 0, "XYZ")
+    );
+    cube.quaternion.multiplyQuaternions(deltaRotationQuaternion, cube.quaternion);
+	renderer.render(scene, camera);
 	requestAnimationFrame(animate);
 }
 
@@ -75,3 +113,4 @@ update(0, totalTime);
 
 function toRadians (angle) { return angle * (Math.PI / 180);}
 function toDegrees(angle) { return angle * (180 / Math.PI);}
+*/
