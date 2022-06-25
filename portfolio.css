@@ -29,7 +29,7 @@ table {
 }
 
 :root {
-    --cubeSize: 150px;
+    --cubeSize: 200px;
 	--overflow: none;
 
     -webkit-touch-callout: none;
@@ -173,8 +173,8 @@ body {
 }
 
 .face {
-    font-size: 5px;
-    border: 2px solid white;
+    font-size: 2em;
+    border: 1px solid cyan;
     background-color: black;
 	font-family: 'Ubuntu Mono';
 }

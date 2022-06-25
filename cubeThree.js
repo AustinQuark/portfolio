@@ -1,31 +1,58 @@
 import * as THREE from "three";
 import { OrbitControls } from "https://unpkg.com/three/examples/jsm/controls/OrbitControls.js";
+import { CSS3DRenderer } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
+import { CSS3DObject } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
 
+
+
+const cubeContainer = document.getElementById("cube_container");
 
 const scene = new THREE.Scene();
-const cubeContainer = document.getElementById("cube_container");
 const camera = new THREE.PerspectiveCamera(75, cubeContainer.offsetWidth / cubeContainer.offsetHeight);
-
 const renderer = new THREE.WebGLRenderer({ alpha: false });
+const faceRenderer = new CSS3DRenderer();
+
 renderer.setSize(cubeContainer.offsetWidth, cubeContainer.offsetHeight);
 renderer.domElement.style.borderRadius = "50%";
-cubeContainer.appendChild(renderer.domElement);
 
-const geometry = new THREE.BoxGeometry(1, 1, 1);
+const geometry = new THREE.BoxGeometry(100, 100, 100);
 const material = new THREE.MeshBasicMaterial({ color: 0xf1f1f1 });
 const cube = new THREE.Mesh(geometry, material);
 
-scene.add(cube);
+faceRenderer.setSize(cubeContainer.offsetWidth, cubeContainer.offsetHeight);
+faceRenderer.domElement.style.borderRadius = "50%";
+faceRenderer.domElement.style.position = "absolute";
 
-var control = new OrbitControls(camera, renderer.domElement);
+cubeContainer.appendChild(faceRenderer.domElement);
+cubeContainer.appendChild(renderer.domElement);
+
+var control = new OrbitControls(camera, faceRenderer.domElement);
+
+var test = document.createElement("test");
+test.className = "face";
+test.textContent = "Hello World";
+var label = new CSS3DObject(test);
+label.position.copy(new THREE.Vector3(50, 0, 0));
+label.rotation.y = Math.PI * 0.5;
+label.scale.set(1, 1, 1);
+cube.add(label);
+
+scene.add(cube);
+camera.position.x = 150;
+
 control.enableDamping = true;
 
 camera.position.z = 2;
+
+document.body.addEventListener("mousedown", function(e) {
+    camera.lookAt(new THREE.Vector3(1, 1, 1));
+})
 
 function animate() {
 	requestAnimationFrame(animate);
 	control.update();
 	renderer.render(scene, camera);
+    faceRenderer.render(scene, camera);
 }
 
 animate();
