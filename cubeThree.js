@@ -3,50 +3,50 @@ import { OrbitControls } from "https://unpkg.com/three/examples/jsm/controls/Orb
 import { CSS3DRenderer } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
 import { CSS3DObject } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
 
-
+//Scene Units
+var cubeSize = 100;
 
 const cubeContainer = document.getElementById("cube_container");
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, cubeContainer.offsetWidth / cubeContainer.offsetHeight);
-const renderer = new THREE.WebGLRenderer({ alpha: false });
-const faceRenderer = new CSS3DRenderer();
+scene.background = new THREE.Color(0x6fff1);
 
-renderer.setSize(cubeContainer.offsetWidth, cubeContainer.offsetHeight);
-renderer.domElement.style.borderRadius = "50%";
+const camera = new THREE.PerspectiveCamera(70, cubeContainer.offsetWidth / cubeContainer.offsetHeight);
+camera.position.x = cubeSize * 1.5;
 
-const geometry = new THREE.BoxGeometry(100, 100, 100);
-const material = new THREE.MeshBasicMaterial({ color: 0xf1f1f1 });
-const cube = new THREE.Mesh(geometry, material);
 
+const faceRenderer = new CSS3DRenderer({antialias: true});
 faceRenderer.setSize(cubeContainer.offsetWidth, cubeContainer.offsetHeight);
 faceRenderer.domElement.style.borderRadius = "50%";
 faceRenderer.domElement.style.position = "absolute";
 
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(cubeContainer.offsetWidth, cubeContainer.offsetHeight);
+renderer.domElement.style.borderRadius = "50%";
+
+var control = new OrbitControls(camera, faceRenderer.domElement);
+control.enableDamping = true;
+control.enableZoom = false;
+
+const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+const material = new THREE.MeshBasicMaterial({ color: 0x414141 });
+const cube = new THREE.Mesh(geometry, material);
+
 cubeContainer.appendChild(faceRenderer.domElement);
 cubeContainer.appendChild(renderer.domElement);
 
-var control = new OrbitControls(camera, faceRenderer.domElement);
+var face = document.createElement("front");
+face.className = "face";
+face.textContent = 'Hello World';
+face.style.width = cubeSize + 'px';
+face.style.height = cubeSize + 'px';
 
-var test = document.createElement("test");
-test.className = "face";
-test.textContent = "Hello World";
-var label = new CSS3DObject(test);
-label.position.copy(new THREE.Vector3(50, 0, 0));
+var label = new CSS3DObject(face);
+label.position.copy(new THREE.Vector3(cubeSize / 2, 0, 0));
 label.rotation.y = Math.PI * 0.5;
-label.scale.set(1, 1, 1);
+
 cube.add(label);
-
 scene.add(cube);
-camera.position.x = 150;
-
-control.enableDamping = true;
-
-camera.position.z = 2;
-
-document.body.addEventListener("mousedown", function(e) {
-    camera.lookAt(new THREE.Vector3(1, 1, 1));
-})
 
 function animate() {
 	requestAnimationFrame(animate);

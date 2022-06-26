@@ -174,7 +174,7 @@ body {
 
 .face {
     font-size: 2em;
-    border: 1px solid cyan;
+    border: 1px solid rgb(0, 255, 102);
     background-color: black;
 	font-family: 'Ubuntu Mono';
 }
