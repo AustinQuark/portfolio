@@ -34,8 +34,8 @@
 
     /*  face    */
     --backgroundFace:       #5d5d5d;
-    --boxShadowFace:        #86c8ff67;
-    --boxShadowFaceInsetA:  #05090b00;
+    --boxShadowFace:        #86c8ff;
+    --boxShadowFaceInsetA:  #09050b;
     --boxShadowFaceInsetB:  #414141;
   
 }
@@ -88,4 +88,19 @@ body {
     background-color: var(--backgroundRadar);
     -webkit-box-shadow: inset 0px 0px 50px 15px var(--boxshadowRadarInsetA), inset 0px 0px 50px 50px var(--boxshadowRadarInsetB), 0px 0px 10px 5px var(--boxshadowRadar);
     box-shadow: inset 0px 0px 50px 15px var(--boxshadowRadarInsetA), inset 0px 0px 50px 50px var(--boxshadowRadarInsetB), 0px 0px 10px 5px var(--boxshadowRadar); 
+}
+
+.face {
+	background-color: var(--backgroundFace);
+	-webkit-box-shadow: 15px 20px 70px var(--boxShadowFace), 
+						inset 0px -30px 90px 30px var(--boxShadowFaceInsetA), 
+						inset 0px 70px 100px 180px var(--boxShadowFaceInsetB);
+	-moz-box-shadow: 	15px 20px 70px var(--boxShadowFace), 
+	  					inset 0px -30px 90px 30px var(--boxShadowFaceInsetA), 
+	  					inset 0px 70px 100px 180px var(--boxShadowFaceInsetB);
+
+	box-shadow: 		0px 0px 10px var(--boxShadowFace), 
+	  					inset 0px -30px 90px 30px var(--boxShadowFaceInsetA), 
+	  					inset 0px 0px 100px 100px var(--boxShadowFaceInsetB);
+
 }

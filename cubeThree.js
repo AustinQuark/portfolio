@@ -9,7 +9,7 @@ var cubeSize = 100;
 const cubeContainer = document.getElementById("cube_container");
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x6fff1);
+scene.background = new THREE.Color(0x414141);
 
 const camera = new THREE.PerspectiveCamera(70, cubeContainer.offsetWidth / cubeContainer.offsetHeight);
 camera.position.x = cubeSize * 1.5;
@@ -20,17 +20,17 @@ faceRenderer.setSize(cubeContainer.offsetWidth, cubeContainer.offsetHeight);
 faceRenderer.domElement.style.borderRadius = "50%";
 faceRenderer.domElement.style.position = "absolute";
 
-const renderer = new THREE.WebGLRenderer({ antialias: true });
+const renderer = new THREE.WebGLRenderer({ antialias: true});
 renderer.setSize(cubeContainer.offsetWidth, cubeContainer.offsetHeight);
 renderer.domElement.style.borderRadius = "50%";
-
-var control = new OrbitControls(camera, faceRenderer.domElement);
-control.enableDamping = true;
-control.enableZoom = false;
 
 const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
 const material = new THREE.MeshBasicMaterial({ color: 0x414141 });
 const cube = new THREE.Mesh(geometry, material);
+
+var control = new OrbitControls(camera, faceRenderer.domElement);
+control.enableDamping = true;
+control.enableZoom = false;
 
 cubeContainer.appendChild(faceRenderer.domElement);
 cubeContainer.appendChild(renderer.domElement);
@@ -48,21 +48,38 @@ cubeFile.onreadystatechange = function ()
         var faceElem = document.createElement("front");
         faceElem.className = "face";
         faceElem.style.position = "absolute";
-        faceElem.textContent = cubeContent[i].header;
         faceElem.style.width = cubeSize + 'px';
         faceElem.style.height = cubeSize + 'px';
         
         var label = new CSS3DObject(faceElem);
-        label.position.copy(new THREE.Vector3(cubeSize / 2 * i, 0, 0));
-        label.rotation.z = 0;
-        label.rotation.y = 0;
+        if (i < 4)
+        {
+            label.position.x = i % 2 ? 0 : i ? cubeSize / -2 : cubeSize / 2;
+            label.position.y = 0;
+            label.position.z = !(i % 2) ? 0 : (i - 1) ? cubeSize / -2 : cubeSize / 2;
+
+            label.rotation.x = 0;
+            label.rotation.y = (i == 1 || i == 3) ? 0 : Math.PI / 2;
+            label.rotation.z = 0;
+        }
+        else
+        {
+            label.position.x = 0;
+			label.position.y = i % 2 ? cubeSize / -2 : cubeSize / 2;
+			label.position.z = 0;
+
+			label.rotation.x = Math.PI / 2;
+			label.rotation.y = 0;
+			label.rotation.z = 0;
+        }
+        faceElem.textContent = cubeContent[i].side;
+
         cube.add(label);
 
        }
         
     }
 cubeFile.send(null);
-
 scene.add(cube);
 
 function animate() {

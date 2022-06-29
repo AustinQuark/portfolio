@@ -1,33 +1,38 @@
 [
-    {
-        "header": "header",
-        "description": "description",
-        "link" : "link"
-    }, 
-    {
-        "header": "header",
-        "description": "description",
-        "link" : "link"
-    },
-    {
-        "header": "header",
-        "description": "description",
-        "link" : "link"
-    },
-    {
-        "header": "header",
-        "description": "description",
-        "link" : "link"
-    },
-    {
-        "header": "header",
-        "description": "description",
-        "link" : "link"
-    },
-    {
-        "header": "header",
-        "description": "description",
-        "link" : "link"
-    }
+	{
+		"side": "front",
+		"header": "header",
+		"description": "description",
+		"link": "link"
+	},
+	{
+		"side": "left",
+		"header": "header",
+		"description": "description",
+		"link": "link"
+	},
+	{
+		"side": "back",
+		"header": "header",
+		"description": "description",
+		"link": "link"
+	},
+	{
+		"side": "right",
+		"header": "header",
+		"description": "description",
+		"link": "link"
+	},
+	{
+		"side": "top",
+		"header": "header",
+		"description": "description",
+		"link": "link"
+	},
+	{
+		"side": "bottom",
+		"header": "header",
+		"description": "description",
+		"link": "link"
+	}
 ]
-  
