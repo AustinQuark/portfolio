@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "https://unpkg.com/three/examples/jsm/controls/OrbitControls.js";
+import { TransformControls } from "https://unpkg.com/three/examples/jsm/controls/TransformControls.js";
 import { CSS3DRenderer } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
 import { CSS3DObject } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
 import { TWEEN } from "https://unpkg.com/three/examples//jsm/libs/tween.module.min";
@@ -28,17 +29,27 @@ renderer.setSize(cubeContainer.offsetWidth, cubeContainer.offsetHeight);
 renderer.domElement.style.borderRadius = "50%";
 
 const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-const material = new THREE.MeshBasicMaterial({ color: 0x414141 });
+const material = new THREE.MeshBasicMaterial({ color: 0x520900 });
 const cube = new THREE.Mesh(geometry, material);
 
+function is_touch_enabled() {
+	return "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+}
 
 var control = new OrbitControls(camera, faceRenderer.domElement);
 control.enableDamping = true;
 control.enableZoom = false;
 control.enablePan = false;
-control.touches = {
-	ONE: THREE.TOUCH.ROTATE,
-};
+
+
+if (is_touch_enabled()) {
+    control.enabled = false;
+    var transformControls = new TransformControls(camera, faceRenderer.domElement);
+    transformControls.attach(cube);
+    transformControls.setMode("rotate");
+
+    scene.add(transformControls);
+}
 
 cubeContainer.appendChild(faceRenderer.domElement);
 cubeContainer.appendChild(renderer.domElement);
@@ -107,10 +118,11 @@ setInterval(bounce, halfTime * 2);
 
 function animate() {
 	requestAnimationFrame(animate);
-	control.update();
+	if (control)
+        control.update();
     TWEEN.update();
-	renderer.render(scene, camera);
     faceRenderer.render(scene, camera);
+	renderer.render(scene, camera);
 }
 
 animate();
