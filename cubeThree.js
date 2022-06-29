@@ -2,6 +2,8 @@ import * as THREE from "three";
 import { OrbitControls } from "https://unpkg.com/three/examples/jsm/controls/OrbitControls.js";
 import { CSS3DRenderer } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
 import { CSS3DObject } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
+import { TWEEN } from "https://unpkg.com/three/examples//jsm/libs/tween.module.min";
+
 
 //Scene Units
 var cubeSize = 100;
@@ -12,7 +14,8 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x414141);
 
 const camera = new THREE.PerspectiveCamera(70, cubeContainer.offsetWidth / cubeContainer.offsetHeight);
-camera.position.x = cubeSize * 1.5;
+camera.position.x = cubeSize * 1.7;
+
 
 
 const faceRenderer = new CSS3DRenderer({antialias: true});
@@ -27,6 +30,7 @@ renderer.domElement.style.borderRadius = "50%";
 const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
 const material = new THREE.MeshBasicMaterial({ color: 0x414141 });
 const cube = new THREE.Mesh(geometry, material);
+
 
 var control = new OrbitControls(camera, faceRenderer.domElement);
 control.enableDamping = true;
@@ -59,7 +63,7 @@ cubeFile.onreadystatechange = function ()
             label.position.z = !(i % 2) ? 0 : (i - 1) ? cubeSize / -2 : cubeSize / 2;
 
             label.rotation.x = 0;
-            label.rotation.y = (i == 1 || i == 3) ? 0 : Math.PI / 2;
+            label.rotation.y = (i == 1) ? 0 : (i == 2) ? -Math.PI / 2 : (i == 0) ? Math.PI / 2 : Math.PI;
             label.rotation.z = 0;
         }
         else
@@ -68,9 +72,9 @@ cubeFile.onreadystatechange = function ()
 			label.position.y = i % 2 ? cubeSize / -2 : cubeSize / 2;
 			label.position.z = 0;
 
-			label.rotation.x = Math.PI / 2;
-			label.rotation.y = 0;
-			label.rotation.z = 0;
+			label.rotation.x = -Math.PI / 2;
+			label.rotation.y = (i == 5) ? Math.PI : 0;
+			label.rotation.z = Math.PI / 2;
         }
         faceElem.textContent = cubeContent[i].side;
 
@@ -80,11 +84,27 @@ cubeFile.onreadystatechange = function ()
         
     }
 cubeFile.send(null);
+
 scene.add(cube);
+
+
+var halfTime = 1000;
+const bounce = () => {
+	new TWEEN.Tween(cube.position)
+		.to({ y: 3 }, halfTime)
+		.easing(TWEEN.Easing.Quadratic.InOut)
+		.start()
+		.onComplete(() => {
+			new TWEEN.Tween(cube.position).to({ y: 0 }, halfTime).easing(TWEEN.Easing.Quadratic.InOut).start();
+		});
+};
+bounce();
+setInterval(bounce, halfTime * 2);
 
 function animate() {
 	requestAnimationFrame(animate);
 	control.update();
+    TWEEN.update();
 	renderer.render(scene, camera);
     faceRenderer.render(scene, camera);
 }

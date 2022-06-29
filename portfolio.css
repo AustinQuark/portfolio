@@ -29,9 +29,8 @@ table {
 }
 
 :root {
-    --cubeSize: 200px;
 	--overflow: none;
-
+    --cubeSize: 180px;
     -webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -151,12 +150,8 @@ body {
 }
 
 .cube_container {
-	border-radius: 50%;
 	width: calc(var(--cubeSize) * 2);
 	height: calc(var(--cubeSize) * 2);
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
 }
 
 
@@ -244,7 +239,7 @@ body {
 @media (min-width: 576px) {
 	:root {
 		font-size: 1.1em;
-		--cubeSize: 230px;
+		--cubeSize: 260px;
 	}
 
 	.diag-contact {
@@ -290,7 +285,7 @@ body {
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
 	:root {
-		--cubeSize: 180px;
+		--cubeSize: 200px;
 	}
 
     .name {
