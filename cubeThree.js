@@ -35,6 +35,10 @@ const cube = new THREE.Mesh(geometry, material);
 var control = new OrbitControls(camera, faceRenderer.domElement);
 control.enableDamping = true;
 control.enableZoom = false;
+control.enablePan = false;
+control.touches = {
+	ONE: THREE.TOUCH.ROTATE,
+};
 
 cubeContainer.appendChild(faceRenderer.domElement);
 cubeContainer.appendChild(renderer.domElement);
