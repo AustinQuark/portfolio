@@ -40,7 +40,7 @@ var control = new OrbitControls(camera, faceRenderer.domElement);
 control.enableDamping = true;
 control.enableZoom = false;
 control.enablePan = false;
-
+//
 
 if (is_touch_enabled()) {
     control.enabled = false;
