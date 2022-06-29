@@ -35,17 +35,34 @@ const cube = new THREE.Mesh(geometry, material);
 cubeContainer.appendChild(faceRenderer.domElement);
 cubeContainer.appendChild(renderer.domElement);
 
-var face = document.createElement("front");
-face.className = "face";
-face.textContent = 'Hello World';
-face.style.width = cubeSize + 'px';
-face.style.height = cubeSize + 'px';
 
-var label = new CSS3DObject(face);
-label.position.copy(new THREE.Vector3(cubeSize / 2, 0, 0));
-label.rotation.y = Math.PI * 0.5;
 
-cube.add(label);
+var cubeFile= new XMLHttpRequest();
+cubeFile.open("GET", './cubeContent.json', true);
+cubeFile.onreadystatechange = function ()
+    {
+       var cubeContent = JSON.parse(cubeFile.responseText);
+
+       for (var i = 0; i < cubeContent.length; i++)
+       {
+        var faceElem = document.createElement("front");
+        faceElem.className = "face";
+        faceElem.style.position = "absolute";
+        faceElem.textContent = cubeContent[i].header;
+        faceElem.style.width = cubeSize + 'px';
+        faceElem.style.height = cubeSize + 'px';
+        
+        var label = new CSS3DObject(faceElem);
+        label.position.copy(new THREE.Vector3(cubeSize / 2 * i, 0, 0));
+        label.rotation.z = 0;
+        label.rotation.y = 0;
+        cube.add(label);
+
+       }
+        
+    }
+cubeFile.send(null);
+
 scene.add(cube);
 
 function animate() {
