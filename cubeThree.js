@@ -42,8 +42,28 @@ if (isTouch) {
 	control.enabled = false;
 
 	// Source : https://stackoverflow.com/questions/2264072/detect-a-finger-swipe-through-javascript-on-the-iphone-and-android
-	document.addEventListener("touchstart", handleTouchStart, false);
-	document.addEventListener("touchmove", handleTouchMove, false);
+	cubeContainer.addEventListener("touchstart", handleTouchStart, false);
+	cubeContainer.addEventListener("touchmove", handleTouchMove, false);
+
+
+    var scrollTop;
+    var scrollLeft;
+
+    cubeContainer.addEventListener("touchstart", function (e) {
+		scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+		scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+	});
+
+	cubeContainer.addEventListener("touchmove", function (e) {
+		window.onscroll = function () {
+			window.scrollTo(scrollLeft, scrollTop);
+		};
+	});
+
+	cubeContainer.addEventListener("touchend", function (e) {
+		window.onscroll = function () {};
+	});
+
 }
 
 var xDown = null;
