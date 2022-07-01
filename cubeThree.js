@@ -37,6 +37,7 @@ var control = new OrbitControls(camera, faceRenderer.domElement);
 control.enableDamping = true;
 control.enableZoom = false;
 control.enablePan = false;
+control.rotateSpeed = 0.4;
 
 if (isTouch) {
 	control.enabled = false;
@@ -67,6 +68,8 @@ if (isTouch) {
 
 var xDown = null;
 var yDown = null;
+var tweening = false;
+
 
 function getTouches(evt) {
 	return (
@@ -113,7 +116,14 @@ function handleTouchMove(evt) {
 	deltaRotationQuaternion.multiply(cube.quaternion);
 	var rotation = new THREE.Euler().setFromQuaternion(deltaRotationQuaternion, "XYZ");
 
-	new TWEEN.Tween(cube.rotation).to({ y: rotation.y, z: rotation.z }, 1500).easing(TWEEN.Easing.Back.InOut).start();
+    if (!tweening) {
+        tweening = true;
+	    new TWEEN.Tween(cube.rotation)
+        .to({ y: rotation.y, z: rotation.z }, 1500)
+        .easing(TWEEN.Easing.Back.InOut)
+        .start()
+        .onComplete(() => { tweening = false;});
+    }
 
 	/* reset values */
 	xDown = null;
@@ -179,7 +189,7 @@ setInterval(bounce, halfTime * 2);
 
 function animate() {
 	requestAnimationFrame(animate);
-	if (control) control.update();
+	control.update();
 	TWEEN.update();
 	faceRenderer.render(scene, camera);
 	renderer.render(scene, camera);
