@@ -1,6 +1,5 @@
 import * as THREE from "three";
 import { OrbitControls } from "https://unpkg.com/three/examples/jsm/controls/OrbitControls.js";
-import { TransformControls } from "https://unpkg.com/three/examples/jsm/controls/TransformControls.js";
 import { CSS3DRenderer } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
 import { CSS3DObject } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
 import { TWEEN } from "https://unpkg.com/three/examples//jsm/libs/tween.module.min";
@@ -11,23 +10,29 @@ var cubeSize = 100;
 const cubeContainer = document.getElementById("cube_container");
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x414141);
 
-const camera = new THREE.PerspectiveCamera(70, cubeContainer.offsetWidth / cubeContainer.offsetHeight);
+const camera = new THREE.PerspectiveCamera(70, cubeContainer.offsetWidth / cubeContainer.offsetHeight, 1, 1100);
 camera.position.x = cubeSize * 1.7;
 
-const faceRenderer = new CSS3DRenderer({ antialias: true });
+const faceRenderer = new CSS3DRenderer({alpha: true});
 faceRenderer.setSize(cubeContainer.offsetWidth, cubeContainer.offsetHeight);
 faceRenderer.domElement.style.borderRadius = "50%";
 faceRenderer.domElement.style.position = "absolute";
 
-const renderer = new THREE.WebGLRenderer({ antialias: true });
+const renderer = new THREE.WebGLRenderer({ alpha: true });
 renderer.setSize(cubeContainer.offsetWidth, cubeContainer.offsetHeight);
 renderer.domElement.style.borderRadius = "50%";
 
 const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-const material = new THREE.MeshBasicMaterial({ color: 0x520900 });
+const material = new THREE.MeshBasicMaterial();
 const cube = new THREE.Mesh(geometry, material);
+
+const skyboxGeometry = new THREE.SphereGeometry(500, 60, 40);
+skyboxGeometry.scale(-1, 1, 1);
+const skyboxTexture = new THREE.TextureLoader().load("skybox.jpg");
+const skyboxMaterial = new THREE.MeshBasicMaterial({ map: skyboxTexture });
+
+const skyboxMesh = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
 
 var isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
@@ -65,6 +70,7 @@ if (isTouch) {
 	cubeContainer.addEventListener("touchstart", preventDefault, wheelOpt);
     cubeContainer.removeEventListener("touchend", preventDefault, wheelOpt);
 }
+
 
 var xDown = null;
 var yDown = null;
@@ -173,6 +179,7 @@ cubeFile.onreadystatechange = function () {
 cubeFile.send(null);
 
 scene.add(cube);
+scene.add(skyboxMesh);
 
 var halfTime = 1000;
 const bounce = () => {

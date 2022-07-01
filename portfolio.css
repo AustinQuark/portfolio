@@ -154,6 +154,12 @@ body {
 	height: calc(var(--cubeSize) * 2);
 }
 
+.radar {
+    position: absolute;
+	width: calc(var(--cubeSize) * 2);
+	height: calc(var(--cubeSize) * 2);
+    border-radius: 50%;
+}
 
 :root {
 	--angleX: 0deg;
