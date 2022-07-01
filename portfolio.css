@@ -263,8 +263,8 @@ body {
 
     .cube_container {
         shape-outside: circle();
-        margin: 2em;
         float: right;
+        margin-left: 15em;
     }
 
     .presentation {

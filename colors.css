@@ -6,21 +6,21 @@
 
     /*  body    */
     --backgroundBody:   rgb(245,99,31);
-    --gradient: linear-gradient(to top, rgba(51,8,103,1)
-                                    0%, rgba(48,207,208, 100%));
+    --gradient: linear-gradient(to top, #0d2751
+                                    0%, #55c7de);
 
 
     /*  square  */
     --borderColor: #d3d3d3;
         /* not on hover */
-    --backgroundSquare:         #414141; 
+    --backgroundSquare:         #414141c7; 
     --boxShadowSquare:          #fad96100;
     --boxShadowSquareInsetA:    #2E9DF6;
     --boxShadowSquareInsetB:    #3F83FA;
 
 
         /* on hover */
-    --backgroundSquareHover:      #414141;
+    --backgroundSquareHover:      #414141d5;
 	--boxShadowSquareHover:       #414141;
 	--boxShadowSquareHoverInsetA: #1a1a1a; 
 	--boxShadowSquareHoverInsetB: #00569727;
@@ -79,7 +79,7 @@ body {
 
 .radar {
     -webkit-box-shadow: 0px 0px 10px 5px var(--boxshadowRadar);
-    box-shadow: 0px 0px 10px 5px var(--boxshadowRadar); 
+    box-shadow: 0px 0px 30px 5px var(--boxshadowRadar); 
 }
 
 /*.radar {

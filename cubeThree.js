@@ -129,6 +129,7 @@ function handleTouchMove(evt) {
         .easing(TWEEN.Easing.Back.InOut)
         .start()
         .onComplete(() => { tweening = false;});
+
         new TWEEN.Tween(skybox.rotation)
         .to({ y: rotation.y, z: rotation.z }, 1500)
         .easing(TWEEN.Easing.Back.InOut)
