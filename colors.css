@@ -70,17 +70,10 @@ body {
 
 @media (pointer:coarse) {
 	.square {
-		background: var(--boxShadowSquareHoverInsetB);
 		transform: translate(-10px, -10px);
-		-webkit-box-shadow: 15px 20px 70px vvar(--boxShadowSquareHoverInsetB), 
-                            inset 0px -30px 90px 30px var(--boxShadowSquareHoverInsetA), 
-                            inset 0px 70px 100px 180px var(--boxShadowSquareHoverInsetB);
-		-moz-box-shadow:    15px 20px 70px var(--boxShadowSquareHover), 
-                            inset 0px -30px 90px 30px var(--boxShadowSquareHoverInsetA), 
-                            inset 0px 70px 100px 180px var(--boxShadowSquareHoverInsetB);
-		box-shadow:         10px 20px 70px var(--boxShadowSquareHoverInsetB), 
-                            inset 0px -30px 90px 30px var(--boxShadowSquareHoverInsetA), 
-                            inset 0px 70px 100px 180px var(--boxShadowSquareHoverInsetB);	
+        background-color: var(--backgroundSquareHover);
+        -webkit-box-shadow: inset 0px 0px 50px 0px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 15px 7px var(--boxShadowSquareHover); 
+        box-shadow: inset 0px 0px 20px 3px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 0px 0px var(--boxShadowSquareHover);
 	}
 }
 
