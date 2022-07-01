@@ -45,25 +45,24 @@ if (isTouch) {
 	cubeContainer.addEventListener("touchstart", handleTouchStart, false);
 	cubeContainer.addEventListener("touchmove", handleTouchMove, false);
 
-
-    var scrollTop;
-    var scrollLeft;
-
-    cubeContainer.addEventListener("touchstart", function (e) {
-		scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-		scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-	});
-
-	cubeContainer.addEventListener("touchmove", function (e) {
-		window.onscroll = function () {
-			window.scrollTo(scrollLeft, scrollTop);
-		};
-	});
-
-	cubeContainer.addEventListener("touchend", function (e) {
-		window.onscroll = function () {};
-	});
-
+    function preventDefault(e) {
+		e.preventDefault();
+	}
+    var supportsPassive = false;
+    var wheelOpt = supportsPassive ? { passive: false } : false;
+    try {
+        window.addEventListener(
+            "test",
+            null,
+            Object.defineProperty({}, "passive", {
+                get: function () {
+                    supportsPassive = true;
+                },
+            })
+        );
+    } catch (e) {}
+	cubeContainer.addEventListener("touchstart", preventDefault, wheelOpt);
+    cubeContainer.removeEventListener("touchend", preventDefault, wheelOpt);
 }
 
 var xDown = null;
