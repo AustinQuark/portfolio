@@ -95,6 +95,16 @@ body {
 
 	flex-direction: row;
 	justify-content: end;
+    text-align: center;
+}
+
+.supp {
+    font-size: 0.5em;
+    align-self: end;
+    padding-bottom: 0.3em;
+}
+
+.supp:first-child {
 }
 
 .nameplate-letter {
@@ -175,7 +185,7 @@ body {
 
 .face {
     font-size: 2em;
-    border: 1px solid rgb(0, 255, 102);
+    border: 1px solid #83f3ff8f;
     background-color: black;
 	font-family: 'Ubuntu Mono';
 }
@@ -208,7 +218,7 @@ body {
 	display: -ms-flexbox;  /* TWEENER - IE 10 */
 	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
-	cursor: pointer;
+	cursor: pointer;    
 }
 
 .trait {
