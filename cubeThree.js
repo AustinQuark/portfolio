@@ -32,7 +32,7 @@ skyboxGeometry.scale(-1, 1, 1);
 const skyboxTexture = new THREE.TextureLoader().load("skybox.jpg");
 const skyboxMaterial = new THREE.MeshBasicMaterial({ map: skyboxTexture });
 
-const skyboxMesh = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
+const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
 
 var isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
@@ -129,6 +129,10 @@ function handleTouchMove(evt) {
         .easing(TWEEN.Easing.Back.InOut)
         .start()
         .onComplete(() => { tweening = false;});
+        new TWEEN.Tween(skybox.rotation)
+        .to({ y: rotation.y, z: rotation.z }, 1500)
+        .easing(TWEEN.Easing.Back.InOut)
+        .start();
     }
 
 	/* reset values */
@@ -179,7 +183,7 @@ cubeFile.onreadystatechange = function () {
 cubeFile.send(null);
 
 scene.add(cube);
-scene.add(skyboxMesh);
+scene.add(skybox);
 
 var halfTime = 1000;
 const bounce = () => {
