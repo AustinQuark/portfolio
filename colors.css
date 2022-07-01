@@ -28,13 +28,13 @@
 
     /*  radar   */
     --backgroundRadar:      #86c9ff;
-	--boxshadowRadar:       #ffffff;
+	--boxshadowRadar:       #b2fbff;
     --boxshadowRadarInsetA: #f3fffe;
     --boxshadowRadarInsetB: #90f4d9;
 
     /*  face    */
     --backgroundFace:       #5d5d5d;
-    --boxShadowFace:        #86c8ff;
+    --boxShadowFace:        #44aafe64;
     --boxShadowFaceInsetA:  #09050b;
     --boxShadowFaceInsetB:  #414141;
   
@@ -78,10 +78,15 @@ body {
 }
 
 .radar {
+    -webkit-box-shadow: 0px 0px 10px 5px var(--boxshadowRadar);
+    box-shadow: 0px 0px 10px 5px var(--boxshadowRadar); 
+}
+
+/*.radar {
     background-color: var(--backgroundRadar);
     -webkit-box-shadow: inset 0px 0px 50px 15px var(--boxshadowRadarInsetA), inset 0px 0px 50px 50px var(--boxshadowRadarInsetB), 0px 0px 10px 5px var(--boxshadowRadar);
     box-shadow: inset 0px 0px 50px 15px var(--boxshadowRadarInsetA), inset 0px 0px 50px 50px var(--boxshadowRadarInsetB), 0px 0px 10px 5px var(--boxshadowRadar); 
-}
+}*/
 
 .face {
 	background-color: var(--backgroundFace);

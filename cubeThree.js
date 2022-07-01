@@ -27,7 +27,7 @@ const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
 const material = new THREE.MeshBasicMaterial();
 const cube = new THREE.Mesh(geometry, material);
 
-const skyboxGeometry = new THREE.SphereGeometry(500, 60, 40);
+const skyboxGeometry = new THREE.SphereGeometry(300, 60, 40);
 skyboxGeometry.scale(-1, 1, 1);
 const skyboxTexture = new THREE.TextureLoader().load("skybox.jpg");
 const skyboxMaterial = new THREE.MeshBasicMaterial({ map: skyboxTexture });
