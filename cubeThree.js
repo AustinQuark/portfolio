@@ -1,49 +1,53 @@
+// Skybox's Author : Hannes Delbeke
+// Source : https://sketchfab.com/3d-models/fantasy-sky-background-15c79bb2fc1147128039fe4ff90fd5a0
+
 import * as THREE from "three";
 import { OrbitControls } from "https://unpkg.com/three/examples/jsm/controls/OrbitControls.js";
 import { CSS3DRenderer } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
 import { CSS3DObject } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
 import { TWEEN } from "https://unpkg.com/three/examples//jsm/libs/tween.module.min";
 
-//Scene Units
 var cubeSize = 100;
 
 const cubeContainer = document.getElementById("cube_container");
 
 const scene = new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera(70, cubeContainer.offsetWidth / cubeContainer.offsetHeight, 1, 1100);
+const camera = new THREE.PerspectiveCamera(65, cubeContainer.offsetWidth / cubeContainer.offsetHeight, 1, 1100);
 camera.position.x = cubeSize * 1.7;
 
-const faceRenderer = new CSS3DRenderer({alpha: true});
-faceRenderer.setSize(cubeContainer.offsetWidth, cubeContainer.offsetHeight);
+//CSS Renderer
+const faceRenderer = new CSS3DRenderer({antialias: true});
 faceRenderer.domElement.style.borderRadius = "50%";
 faceRenderer.domElement.style.position = "absolute";
 
-const renderer = new THREE.WebGLRenderer({ alpha: true });
-renderer.setSize(cubeContainer.offsetWidth, cubeContainer.offsetHeight);
+//Standart Renderer
+const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.domElement.style.borderRadius = "50%";
 
+//Cube Mesh
 const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
 const material = new THREE.MeshBasicMaterial();
 const cube = new THREE.Mesh(geometry, material);
 
+//Skybox Mesh
 const skyboxGeometry = new THREE.SphereGeometry(300, 60, 40);
 skyboxGeometry.scale(-1, 1, 1);
 const skyboxTexture = new THREE.TextureLoader().load("skybox.jpg");
 const skyboxMaterial = new THREE.MeshBasicMaterial({ map: skyboxTexture });
-
 const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
 
+//Detect Touch Screen
 var isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
-//Desktop followed by Mobile camera gestion.
-
+//Orbit Control for Desktop
 var control = new OrbitControls(camera, faceRenderer.domElement);
 control.enableDamping = true;
 control.enableZoom = false;
 control.enablePan = false;
 control.rotateSpeed = 0.4;
 
+//Swipe Control for touch screens
 if (isTouch) {
 	control.enabled = false;
 
@@ -71,17 +75,12 @@ if (isTouch) {
     cubeContainer.removeEventListener("touchend", preventDefault, wheelOpt);
 }
 
-
 var xDown = null;
 var yDown = null;
 var tweening = false;
 
-
 function getTouches(evt) {
-	return (
-		evt.touches || // browser API
-		evt.originalEvent.touches
-	); // jQuery
+	return (evt.touches || evt.originalEvent.touches);
 }
 
 function handleTouchStart(evt) {
@@ -136,7 +135,6 @@ function handleTouchMove(evt) {
         .start();
     }
 
-	/* reset values */
 	xDown = null;
 	yDown = null;
 }
@@ -144,6 +142,8 @@ function handleTouchMove(evt) {
 cubeContainer.appendChild(faceRenderer.domElement);
 cubeContainer.appendChild(renderer.domElement);
 
+
+//Reading CubeContent.json for filling the cube
 var cubeFile = new XMLHttpRequest();
 cubeFile.open("GET", "./cubeContent.json", true);
 cubeFile.onreadystatechange = function () {
@@ -186,6 +186,7 @@ cubeFile.send(null);
 scene.add(cube);
 scene.add(skybox);
 
+//Bounce effect
 var halfTime = 1000;
 const bounce = () => {
 	new TWEEN.Tween(cube.position)
@@ -199,12 +200,38 @@ const bounce = () => {
 bounce();
 setInterval(bounce, halfTime * 2);
 
+
+//Resizer (source : https://discoverthreejs.com/book/first-steps/responsive-design/)
+const setSize = (container, camera, renderer, faceRenderer) => {
+	camera.aspect = container.clientWidth / container.clientHeight;
+	camera.updateProjectionMatrix();
+
+	renderer.setSize(container.clientWidth, container.clientHeight);
+	renderer.setPixelRatio(window.devicePixelRatio);
+    faceRenderer.setSize(container.clientWidth, container.clientHeight);
+};
+
+class Resizer {
+	constructor(container, camera, renderer, faceRenderer) {
+		// set initial size
+		setSize(container, camera, renderer, faceRenderer);
+
+		window.addEventListener("resize", () => {
+			// set the size again if a resize occurs
+			setSize(container, camera, renderer, faceRenderer);
+		});
+	}
+}
+
+const resize = new Resizer(cubeContainer, camera, renderer, faceRenderer);
+
 function animate() {
-	requestAnimationFrame(animate);
 	control.update();
 	TWEEN.update();
 	faceRenderer.render(scene, camera);
 	renderer.render(scene, camera);
+	requestAnimationFrame(animate);
+
 }
 
 animate();
