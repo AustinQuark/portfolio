@@ -149,7 +149,6 @@ body {
 }
 
 .project {
-    cursor: crosshair;
     padding: 5em 2.5em 5em 2.5em;
     display: flex;
     flex-direction: column;
@@ -166,6 +165,8 @@ body {
 }
 
 .cube_container {
+    cursor: crosshair;
+    border-radius: 50%;
 	width: calc(var(--cubeSize) * 2);
 	height: calc(var(--cubeSize) * 2);
 }
