@@ -280,7 +280,7 @@ body {
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 	:root {
-        font-size: 1.1em;
+        font-size: 1em;
 		--cubeSize: 200px;
 	}
 
@@ -302,7 +302,7 @@ body {
 
     .diag-contact {
 		-webkit-transform: translateX(20px) translateY(45px) rotate(45deg);
-		transform: translateX(21px) translateY(47px) rotate(45deg);
+		transform: translateX(20px) translateY(45px) rotate(45deg);
 	}
 
     .skills {
@@ -314,7 +314,7 @@ body {
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
 	:root {
-        font-size: 1.3em;
+        font-size: 1em;
 		--cubeSize: 230px;
 	}
 
@@ -329,7 +329,7 @@ body {
 
     .diag-contact {
 		-webkit-transform: translateX(20px) translateY(45px) rotate(45deg);
-		transform: translateX(23px) translateY(52px) rotate(45deg);
+		transform: translateX(20px) translateY(45px) rotate(45deg);
 	}
 
     .project {
