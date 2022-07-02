@@ -75,7 +75,6 @@ body {
 
 @media (pointer:coarse) {
 	.square {
-		transform: translate(-10px, -10px);
         background-color: var(--backgroundSquareHover);
         -webkit-box-shadow: inset 0px 0px 50px 0px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 15px 7px var(--boxShadowSquareHover); 
         box-shadow: inset 0px 0px 20px 3px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 0px 0px var(--boxShadowSquareHover);
