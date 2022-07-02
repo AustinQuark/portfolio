@@ -44,6 +44,7 @@ table {
 html {
     font-family: 'Ubuntu Mono';
     height: auto;
+    overflow-x: hidden;
 }
 
 body {
