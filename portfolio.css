@@ -43,12 +43,12 @@ table {
 
 html {
     font-family: 'Ubuntu Mono';
-    height: auto;
+    height: max-content;
     overflow-x: hidden;
 }
 
 body {
-    height: auto;
+    height: max-content;
     overflow-x: hidden;
 	min-width: 450px;
 	font-size: 0.5em;
@@ -62,7 +62,7 @@ body {
 }
 
 .square {
-    margin: 2em auto 2em auto;
+    margin: 5em auto 5em auto;
   	width: 90%;
   	border-radius: 7px;
     z-index: 0;
