@@ -54,25 +54,6 @@ if (isTouch) {
 	// Source : https://stackoverflow.com/questions/2264072/detect-a-finger-swipe-through-javascript-on-the-iphone-and-android
 	cubeContainer.addEventListener("touchstart", handleTouchStart, false);
 	cubeContainer.addEventListener("touchmove", handleTouchMove, false);
-
-    function preventDefault(e) {
-		e.preventDefault();
-	}
-    var supportsPassive = false;
-    var wheelOpt = supportsPassive ? { passive: false } : false;
-    try {
-        window.addEventListener(
-            "test",
-            null,
-            Object.defineProperty({}, "passive", {
-                get: function () {
-                    supportsPassive = true;
-                },
-            })
-        );
-    } catch (e) {}
-	cubeContainer.addEventListener("touchstart", preventDefault, wheelOpt);
-    cubeContainer.removeEventListener("touchend", preventDefault, wheelOpt);
 }
 
 var xDown = null;
@@ -84,6 +65,7 @@ function getTouches(evt) {
 }
 
 function handleTouchStart(evt) {
+    disableScroll();
 	const firstTouch = getTouches(evt)[0];
 	xDown = firstTouch.clientX;
 	yDown = firstTouch.clientY;
@@ -127,7 +109,7 @@ function handleTouchMove(evt) {
         .to({ y: rotation.y, z: rotation.z }, 1500)
         .easing(TWEEN.Easing.Back.InOut)
         .start()
-        .onComplete(() => { tweening = false;});
+        .onComplete(() => { tweening = false; enableScroll();});
 
         new TWEEN.Tween(skybox.rotation)
         .to({ y: rotation.y, z: rotation.z }, 1500)
