@@ -132,7 +132,7 @@ cubeFile.onreadystatechange = function () {
 	var cubeContent = JSON.parse(cubeFile.responseText);
 
 	for (var i = 0; i < cubeContent.length; i++) {
-		var faceElem = document.createElement("front");
+		var faceElem = document.createElement("face");
 		faceElem.className = "face";
 		faceElem.style.position = "absolute";
 		faceElem.style.width = cubeSize + "px";
@@ -158,7 +158,18 @@ cubeFile.onreadystatechange = function () {
 			label.rotation.y = i == 5 ? Math.PI : 0;
 			label.rotation.z = Math.PI / 2;
 		}
-		faceElem.textContent = cubeContent[i].side;
+		var header = document.createElement('h1');
+        header.textContent = cubeContent[i].header;
+        var description = document.createElement('p');
+        description.textContent = cubeContent[i].description;
+        var link = document.createElement('a');
+        link.textContent = cubeContent[i].link;
+        link.href = 'test';
+
+        faceElem.appendChild(header);
+        faceElem.appendChild(description);
+        faceElem.appendChild(link);
+
 
 		cube.add(label);
 	}

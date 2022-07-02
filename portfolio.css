@@ -190,10 +190,14 @@ body {
 }
 
 .face {
-    font-size: 2em;
+    font-size: 1.2em;
     border: 1px solid #83f3ff8f;
 	font-family: 'Ubuntu Mono';
     font-smooth: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
 }
 
 .contact {
