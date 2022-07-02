@@ -61,7 +61,7 @@ body {
 .square {
   	width: 90%;
   	border-radius: 7px;
-
+    z-index: 0;
 	-webkit-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
   	-moz-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
   	-ms-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
@@ -100,11 +100,8 @@ body {
 
 .supp {
     font-size: 0.5em;
-    align-self: end;
-    padding-bottom: 0.3em;
-}
-
-.supp:first-child {
+    align-self: start;
+    padding-top: 0.2em;
 }
 
 .nameplate-letter {
@@ -138,8 +135,20 @@ body {
 	padding-bottom: 0.7em;
 }
 
-.skills > span {
-	padding: 1em 1.3em;
+.button {
+    border-radius: 15px;
+	margin: 1em 1.3em;
+    padding: 1em;;
+    font-weight: bold;
+    letter-spacing: 3px;
+    background-color: #2d333a00;
+    box-shadow: 0px 0px 0px 0px #282c31;
+    transition: all 0.2s linear;
+}
+
+.buttonUp {
+    background-color: #4a5864a7;
+    box-shadow: 5px 8px 9px 1px #282c31;
 }
 
 .project {
@@ -186,7 +195,6 @@ body {
 .face {
     font-size: 2em;
     border: 1px solid #83f3ff8f;
-    background-color: black;
 	font-family: 'Ubuntu Mono';
 }
 

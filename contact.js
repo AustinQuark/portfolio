@@ -17,3 +17,18 @@ document.documentElement.addEventListener("click", function (e) {
     if (git !== e.target && !git.contains(e.target)) {return;}
   window.open("https://github.com/AustinQuark", "_blank")
 })
+
+var square = document.getElementById("square");
+var buttons = document.getElementsByClassName("button");
+
+square.addEventListener("mouseenter", function (e) {
+	for (var i = 0; i < buttons.length; i++) {
+		buttons[i].classList.add("buttonUp");
+	}
+});
+
+square.addEventListener("mouseout", function (e) {
+	for (var i = 0; i < buttons.length; i++) {
+		buttons[i].classList.remove("buttonUp");
+	}
+});

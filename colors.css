@@ -33,10 +33,10 @@
     --boxshadowRadarInsetB: #90f4d9;
 
     /*  face    */
-    --backgroundFace:       #5d5d5d;
-    --boxShadowFace:        #44aafe64;
-    --boxShadowFaceInsetA:  #09050b;
-    --boxShadowFaceInsetB:  #414141;
+    --backgroundFace:       #1b1b1b;
+    --boxShadowFace:        #a6f5ffb8;
+    --boxShadowFaceInsetA:  #28303300;
+    --boxShadowFaceInsetB:  #73aaa700;
   
 }
 
@@ -97,7 +97,7 @@ body {
 	  					inset 0px -30px 90px 30px var(--boxShadowFaceInsetA), 
 	  					inset 0px 70px 100px 180px var(--boxShadowFaceInsetB);
 
-	box-shadow: 		0px 0px 10px var(--boxShadowFace), 
+	box-shadow: 		0px 0px 5px var(--boxShadowFace), 
 	  					inset 0px -30px 90px 30px var(--boxShadowFaceInsetA), 
 	  					inset 0px 0px 100px 100px var(--boxShadowFaceInsetB);
 
