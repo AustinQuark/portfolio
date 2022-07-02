@@ -44,15 +44,12 @@ table {
 html {
     font-family: 'Ubuntu Mono';
     height: auto;
-    width: auto;
 }
 
 body {
     height: auto;
-    width: auto;
-    overflow-x: none;
-    -webkit-overflow-scrolling: touch;
-	min-width: 430px;
+    overflow-x: hidden;
+	min-width: 450px;
 	font-size: 0.5em;
 	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
 	display: -ms-flexbox;  /* TWEENER - IE 10 */
