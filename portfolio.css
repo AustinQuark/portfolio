@@ -30,28 +30,29 @@ table {
 
 :root {
 	--overflow: none;
-    --cubeSize: 160px;
+    --cubeSize: 5rem;
     -webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	-o-user-select: none;
-    font-size: 0.6em;
 	user-select: none;
+
 }
 
 html {
     font-family: 'Ubuntu Mono';
     height: max-content;
     overflow-x: hidden;
+    font-size: clamp(1em, 1em + 0.5vw, 3em);
+
 }
 
 body {
     height: max-content;
     overflow-x: hidden;
-	min-width: 450px;
-	font-size: 0.5em;
+	min-width: 300px;
 	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
 	display: -ms-flexbox;  /* TWEENER - IE 10 */
 	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
@@ -62,10 +63,10 @@ body {
 }
 
 .square {
-    margin: 5em auto 5em auto;
-  	width: 90%;
+    margin: 2em auto 2em auto;
+    min-width: 350px;
+  	width: 90vw;
   	border-radius: 7px;
-    z-index: 0;
 	-webkit-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
   	-moz-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
   	-ms-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
@@ -81,16 +82,12 @@ body {
 	
     flex-direction: column;
 	text-align: end;
-	letter-spacing: 0.05em;
-	padding-top: 0.4em;
-	padding-left: 0.8em;
-	padding-bottom: 0.8em;
+	padding-top: 1.3em;
+    padding-left: 3em;
     font-weight: bold;
-    font-size: 7em;
 }
 
 .nameplate {
-    margin-right: -0.05em;
 
 	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
 	display: -ms-flexbox;  /* TWEENER - IE 10 */
@@ -100,13 +97,17 @@ body {
 	flex-direction: row;
 	justify-content: end;
     text-align: center;
+
+    font-size: 1.96em;
+    letter-spacing: 0.06em;
 }
 
 .supp {
-    font-size: 0.5em;
     align-self: start;
-    padding-top: 0.2em;
     color : #95d8de;
+    font-size: 0.5em;
+    padding-top: 0.2em;
+    letter-spacing: 0.03em;
 }
 
 .nameplate-letter {
@@ -118,15 +119,13 @@ body {
 }
 
 .description {
-	letter-spacing: 0.05em;
-	font-size: 0.3em;
+    font-size: 0.65em;
+    letter-spacing: 0.03em;
 	white-space: nowrap;
-	padding-top: 0.1em;
 	transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .skills {
-	font-size: 2em;
 	letter-spacing: 0.1em;
 
 	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
@@ -137,21 +136,22 @@ body {
 	text-align: center;
 	justify-content: space-around;
 	flex-wrap: wrap;
-	padding-bottom: 0.7em;
+	padding-bottom: 0.6em;
 }
 
 .button {
+    font-size: 0.7em;
     border-radius: 15px;
-	margin: 1em 1em;
+	margin: 0.6em 0.8em;
     padding: 0.8em 1em;
     font-weight: bold;
-    letter-spacing: 3px;
+    letter-spacing: 0.2em;
     background-color: #2d333a00;
     transition: all 0.2s linear;
 }
 
 .project {
-    padding: 2em 2.5em;
+    padding: 3em 2em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -159,8 +159,7 @@ body {
 
 .presentation {
 	letter-spacing: 1px;
-    padding-top: 3em;
-	font-size: 2.9em;
+    padding-top: 1.5em;
     text-align: justify;
     text-justify: inter-word;
     line-height: 1.5em;
@@ -169,19 +168,19 @@ body {
 .cube_container {
     cursor: crosshair;
     border-radius: 50%;
-	width: calc(var(--cubeSize) * 2);
-	height: calc(var(--cubeSize) * 2);
+	width: clamp(10em, 10em + 20vw, 20em);
+	height: clamp(10em, 10em + 20vw, 20em);
 }
 
 .radar {
     position: absolute;
-	width: calc(var(--cubeSize) * 2);
-	height: calc(var(--cubeSize) * 2);
+	width: clamp(10em, 10em + 20vw, 20em);
+	height: clamp(10em, 10em + 20vw, 20em);
     border-radius: 50%;
 }
 
 .face {
-    font-size: 1.2em;
+    font-size: 0.8em;
     border: 1px solid #83f3ff8f;
 	font-family: 'Ubuntu Mono';
     font-smooth: always;
@@ -241,53 +240,31 @@ body {
 }
 
 @media (min-width: 576px) {
-	:root {
-		--cubeSize: 230px;
-	}
+
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-	:root {
-        font-size: 1em;
-		--cubeSize: 200px;
-	}
-
-    .diag-contact {
-        -webkit-transform: translateX(20px) translateY(45px) rotate(45deg);
-        transform: translateX(20px) translateY(45px) rotate(45deg);
-    }
-
     .cube_container {
         shape-outside: circle();
         float: right;
-        margin-left: 15em;
+        margin-left: 5em;
     }
 
     .project {
         display: inline;
-        padding: 2em 5em;
+        padding-top: 0.5em;
     }
 
-    .presentation {
-        padding-top: 0em;
-    }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-	:root {
-		--cubeSize: 230px;
-	}
 
-    .name {
-        font-size: 6em;
-    }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-	:root {
-		--cubeSize: 250px;
-	}
+
+
 }
