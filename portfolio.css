@@ -198,12 +198,15 @@ body {
 
 .contact {
     margin-left: auto;
+    margin-top: auto;
     display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
 	display: -ms-flexbox;  /* TWEENER - IE 10 */
 	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-    height: calc(2.29 * 2.5em);
-    width: calc(2.81 * 2.5em);
+    height: calc(2.25 * 2.5em);
+    width: calc(2.78 * 2.5em);
     display: flex;
+    overflow: hidden;
+    padding-bottom: 0.1em;
 }
 
 .diag-contact {
