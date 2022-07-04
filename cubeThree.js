@@ -1,6 +1,5 @@
 // Skybox's Author : Hannes Delbeke
 // Source : https://sketchfab.com/3d-models/fantasy-sky-background-15c79bb2fc1147128039fe4ff90fd5a0
-
 import * as THREE from "three";
 import { OrbitControls } from "https://unpkg.com/three/examples/jsm/controls/OrbitControls.js";
 import { CSS3DRenderer } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
@@ -12,6 +11,7 @@ var cubeSize = 100;
 const cubeContainer = document.getElementById("cube_container");
 
 const scene = new THREE.Scene();
+scene.background = new THREE.Color("rgb(166, 251, 255)");
 
 const camera = new THREE.PerspectiveCamera(65, cubeContainer.offsetWidth / cubeContainer.offsetHeight, 1, 1100);
 camera.position.x = cubeSize * 1.7;
@@ -27,14 +27,15 @@ renderer.domElement.style.borderRadius = "50%";
 
 //Cube Mesh
 const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-const material = new THREE.MeshBasicMaterial();
+const material = new THREE.MeshBasicMaterial({opacity:0, transparent:true});
 const cube = new THREE.Mesh(geometry, material);
+cube.scale.set(0,0,0);
 
 //Skybox Mesh
 const skyboxGeometry = new THREE.SphereGeometry(300, 60, 40);
 skyboxGeometry.scale(-1, 1, 1);
 const skyboxTexture = new THREE.TextureLoader().load("skybox.jpg");
-const skyboxMaterial = new THREE.MeshBasicMaterial({ map: skyboxTexture });
+const skyboxMaterial = new THREE.MeshBasicMaterial({ map: skyboxTexture, opacity:0, transparent:true });
 const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
 
 //Detect Touch Screen
@@ -56,74 +57,8 @@ if (isTouch) {
 	cubeContainer.addEventListener("touchmove", handleTouchMove, false);
 }
 
-var xDown = null;
-var yDown = null;
-var tweening = false;
-
-function getTouches(evt) {
-	return (evt.touches || evt.originalEvent.touches);
-}
-
-function handleTouchStart(evt) {
-    disableScroll();
-	const firstTouch = getTouches(evt)[0];
-	xDown = firstTouch.clientX;
-	yDown = firstTouch.clientY;
-}
-
-function handleTouchMove(evt) {
-	if (!xDown || !yDown) {
-		return;
-	}
-	var xSwipe = 0;
-	var ySwipe = 0;
-
-	var xUp = evt.touches[0].clientX;
-	var yUp = evt.touches[0].clientY;
-
-	var xDiff = xDown - xUp;
-	var yDiff = yDown - yUp;
-
-	if (Math.abs(xDiff) > Math.abs(yDiff)) {
-		/*most significant*/
-		if (xDiff > 0) {
-			xSwipe = Math.PI / -2;
-		} else {
-			xSwipe = Math.PI / 2;
-		}
-	} else {
-		if (yDiff > 0) {
-			ySwipe = Math.PI / 2;
-		} else {
-			ySwipe = Math.PI / -2;
-		}
-	}
-
-	var deltaRotationQuaternion = new THREE.Quaternion().setFromEuler(new THREE.Euler(0, xSwipe, ySwipe, "XYZ"));
-	deltaRotationQuaternion.multiply(cube.quaternion);
-	var rotation = new THREE.Euler().setFromQuaternion(deltaRotationQuaternion, "XYZ");
-
-    if (!tweening) {
-        tweening = true;
-	    new TWEEN.Tween(cube.rotation)
-        .to({ y: rotation.y, z: rotation.z }, 1500)
-        .easing(TWEEN.Easing.Back.InOut)
-        .start()
-        .onComplete(() => { tweening = false; enableScroll();});
-
-        new TWEEN.Tween(skybox.rotation)
-        .to({ y: rotation.y, z: rotation.z }, 1500)
-        .easing(TWEEN.Easing.Back.InOut)
-        .start();
-    }
-
-	xDown = null;
-	yDown = null;
-}
-
 cubeContainer.appendChild(faceRenderer.domElement);
 cubeContainer.appendChild(renderer.domElement);
-
 
 //Reading CubeContent.json for filling the cube
 var cubeFile = new XMLHttpRequest();
@@ -218,13 +153,88 @@ class Resizer {
 
 const resize = new Resizer(cubeContainer, camera, renderer, faceRenderer);
 
+
+var xDown = null;
+var yDown = null;
+var tweening = true;
+
+function getTouches(evt) {
+	return (evt.touches || evt.originalEvent.touches);
+}
+
+function handleTouchStart(evt) {
+    disableScroll();
+	const firstTouch = getTouches(evt)[0];
+	xDown = firstTouch.clientX;
+	yDown = firstTouch.clientY;
+}
+
+function handleTouchMove(evt) {
+	if (!xDown || !yDown) {
+		return;
+	}
+	var xSwipe = 0;
+	var ySwipe = 0;
+
+	var xUp = evt.touches[0].clientX;
+	var yUp = evt.touches[0].clientY;
+
+	var xDiff = xDown - xUp;
+	var yDiff = yDown - yUp;
+
+	if (Math.abs(xDiff) > Math.abs(yDiff)) {
+		/*most significant*/
+		if (xDiff > 0) {
+			xSwipe = Math.PI / -2;
+		} else {
+			xSwipe = Math.PI / 2;
+		}
+	} else {
+		if (yDiff > 0) {
+			ySwipe = Math.PI / 2;
+		} else {
+			ySwipe = Math.PI / -2;
+		}
+	}
+
+	var deltaRotationQuaternion = new THREE.Quaternion().setFromEuler(new THREE.Euler(0, xSwipe, ySwipe, "XYZ"));
+	deltaRotationQuaternion.multiply(cube.quaternion);
+	var rotation = new THREE.Euler().setFromQuaternion(deltaRotationQuaternion, "XYZ");
+
+    if (!tweening) {
+        tweening = true;
+	    new TWEEN.Tween(cube.rotation)
+        .to({ y: rotation.y, z: rotation.z }, 1500)
+        .easing(TWEEN.Easing.Back.InOut)
+        .start()
+        .onComplete(() => { tweening = false; enableScroll();});
+
+        new TWEEN.Tween(skybox.rotation)
+        .to({ y: rotation.y, z: rotation.z }, 1500)
+        .easing(TWEEN.Easing.Back.InOut)
+        .start();
+    }
+
+	xDown = null;
+	yDown = null;
+}
+
 function animate() {
 	control.update();
 	TWEEN.update();
 	faceRenderer.render(scene, camera);
 	renderer.render(scene, camera);
 	requestAnimationFrame(animate);
-
 }
+
+cubeContainer.classList.add("cube_pop");
+new TWEEN.Tween(skyboxMaterial).to({ opacity: 1 }, 2000).easing(TWEEN.Easing.Cubic.Out).start();
+new TWEEN.Tween(cube.scale).to({ x: 1, y: 1, z: 1 }, 2000).easing(TWEEN.Easing.Quartic.InOut).start();
+new TWEEN.Tween(cube.rotation)
+	.to({ x: 0, y: 8 * Math.PI, z: 2 * Math.PI }, 3500)
+	.easing(TWEEN.Easing.Circular.Out)
+	.start()
+    .onComplete(() => {tweening = false;});
+
 
 animate();

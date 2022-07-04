@@ -45,7 +45,7 @@ html {
     font-family: 'Ubuntu Mono';
     height: max-content;
     overflow-x: hidden;
-    font-size: clamp(1em, 1em + 0.5vw, 3em);
+    font-size: clamp(1em, 1em + 0.45vw, 3em);
 
 }
 
@@ -174,18 +174,18 @@ body {
 .cube_container {
     cursor: crosshair;
     border-radius: 50%;
-	width: clamp(10em, 10em + 20vw, 20em);
-	height: clamp(10em, 10em + 20vw, 20em);
+	width: clamp(0em, 10em + 20vw, 20em);
+	height: clamp(0em, 10em + 20vw, 20em);
+    transform: scale(0, 0);
+    transition: all 1s ease-out;
 }
 
-.radar {
-    position: absolute;
-	width: clamp(10em, 10em + 20vw, 20em);
-	height: clamp(10em, 10em + 20vw, 20em);
-    border-radius: 50%;
+.cube_pop {
+    transform: scale(1, 1);
 }
 
 .face {
+
     font-size: 0.8em;
     border: 1px solid #83f3ff8f;
 	font-family: 'Ubuntu Mono';

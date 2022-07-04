@@ -27,7 +27,7 @@
 
 
     /*  radar   */
-    --backgroundRadar:      #86c9ff;
+    --backgroundRadar:      #b2fbff;
 	--boxshadowRadar:       #b2fbff;
     --boxshadowRadarInsetA: #f3fffe;
     --boxshadowRadarInsetB: #90f4d9;
@@ -86,9 +86,10 @@ body {
     }
 }
 
-.radar {
+.cube_container {
     -webkit-box-shadow: 0px 0px 10px 5px var(--boxshadowRadar);
     box-shadow: 0px 0px 30px 5px var(--boxshadowRadar); 
+    background-color: var(--backgroundRadar);
 }
 
 /*.radar {
