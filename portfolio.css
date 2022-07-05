@@ -171,8 +171,8 @@ body {
 .cube_container {
     cursor: crosshair;
     border-radius: 50%;
-	width: clamp(0em, 10em + 20vw, 20em);
-	height: clamp(0em, 10em + 20vw, 20em);
+    width: 17em;
+    height: 17em;
     transform: scale(0, 0);
     transition: all 1s cubic-bezier(0.65, 0, 0.35, 1);
 }
@@ -182,15 +182,43 @@ body {
 }
 
 .face {
-
-    font-size: 0.8em;
     border: 1px solid #83f3ff8f;
 	font-family: 'Ubuntu Mono';
     font-smooth: always;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+}
+
+.faceHeader {
+    font-size: 0.45em;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+.faceHeader::before {
+    content: "$>";
+    color: #86d0d7;
+}
+
+.faceHeader::after {
+    content: "_";
+    animation: blink 1s steps(2, start) infinite;
+    -webkit-animation: blink 1s steps(2, start) infinite;
+    color: #86d0d7;
+}
+
+@keyframes blink {
+    to {visibility: hidden;}
+}
+
+.faceDescription {
+    font-size: 0.35em;
+    font-style: italic;
     text-align: center;
+    color: #bbf8fe;
+    padding: 2em 2em 0em 2em;
 }
 
 .contact {

@@ -94,16 +94,19 @@ cubeFile.onreadystatechange = function () {
 			label.rotation.z = Math.PI / 2;
 		}
 		var header = document.createElement('h1');
-        header.textContent = cubeContent[i].header;
+        header.classList.add("faceHeader");
         var description = document.createElement('p');
         description.textContent = cubeContent[i].description;
+        description.classList.add("faceDescription");
         var link = document.createElement('a');
-        link.textContent = cubeContent[i].link;
-        link.href = 'test';
+        link.textContent = cubeContent[i].header;
+        link.href = cubeContent[i].link;
+        link.style.textDecoration = "none";
+        link.style.color = "inherit";
+        header.appendChild(link);
 
         faceElem.appendChild(header);
         faceElem.appendChild(description);
-        faceElem.appendChild(link);
 
 
 		cube.add(label);

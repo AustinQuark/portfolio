@@ -1,9 +1,9 @@
 [
 	{
 		"side": "front",
-		"header": "header",
-		"description": "description",
-		"link": "link"
+		"header": "PHILOSOPHERS",
+		"description": "A C program using multi-threading, based on dinnning philosophers problem",
+		"link": "https://github.com/AustinQuark/philosophers"
 	},
 	{
 		"side": "left",
