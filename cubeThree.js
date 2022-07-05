@@ -128,32 +128,6 @@ const bounce = () => {
 bounce();
 setInterval(bounce, halfTime * 2);
 
-
-//Resizer (source : https://discoverthreejs.com/book/first-steps/responsive-design/)
-const setSize = (container, camera, renderer, faceRenderer) => {
-	camera.aspect = container.clientWidth / container.clientHeight;
-	camera.updateProjectionMatrix();
-
-	renderer.setSize(container.clientWidth, container.clientHeight);
-	renderer.setPixelRatio(window.devicePixelRatio);
-    faceRenderer.setSize(container.clientWidth, container.clientHeight);
-};
-
-class Resizer {
-	constructor(container, camera, renderer, faceRenderer) {
-		// set initial size
-		setSize(container, camera, renderer, faceRenderer);
-
-		window.addEventListener("resize", () => {
-			// set the size again if a resize occurs
-			setSize(container, camera, renderer, faceRenderer);
-		});
-	}
-}
-
-const resize = new Resizer(cubeContainer, camera, renderer, faceRenderer);
-
-
 var xDown = null;
 var yDown = null;
 var tweening = true;
@@ -219,6 +193,30 @@ function handleTouchMove(evt) {
 	yDown = null;
 }
 
+//Resizer (source : https://discoverthreejs.com/book/first-steps/responsive-design/)
+const setSize = (container, camera, renderer, faceRenderer) => {
+	camera.aspect = container.clientWidth / container.clientHeight;
+	camera.updateProjectionMatrix();
+
+	renderer.setSize(container.clientWidth, container.clientHeight);
+	renderer.setPixelRatio(window.devicePixelRatio);
+    faceRenderer.setSize(container.clientWidth, container.clientHeight);
+};
+
+class Resizer {
+	constructor(container, camera, renderer, faceRenderer) {
+		// set initial size
+		setSize(container, camera, renderer, faceRenderer);
+
+		window.addEventListener("resize", () => {
+			// set the size again if a resize occurs
+			setSize(container, camera, renderer, faceRenderer);
+		});
+	}
+}
+
+const resize = new Resizer(cubeContainer, camera, renderer, faceRenderer);
+
 function animate() {
 	control.update();
 	TWEEN.update();
@@ -228,13 +226,21 @@ function animate() {
 }
 
 cubeContainer.classList.add("cube_pop");
-new TWEEN.Tween(skyboxMaterial).to({ opacity: 1 }, 2000).easing(TWEEN.Easing.Cubic.Out).start();
-new TWEEN.Tween(cube.scale).to({ x: 1, y: 1, z: 1 }, 2000).easing(TWEEN.Easing.Quartic.InOut).start();
+new TWEEN.Tween(skyboxMaterial)
+    .to({ opacity: 1 }, 3000)
+    .easing(TWEEN.Easing.Cubic.Out)
+    .start();
+new TWEEN.Tween(cube.scale)
+    .to({ x: 1, y: 1, z: 1 }, 3000)
+    .easing(TWEEN.Easing.Cubic.Out)
+    .start()
+    .onComplete(() => {cubeContainer.style.transitionDuration = "0s";})
 new TWEEN.Tween(cube.rotation)
-	.to({ x: 0, y: 8 * Math.PI, z: 2 * Math.PI }, 3500)
-	.easing(TWEEN.Easing.Circular.Out)
+	.to({ x: 0, y: 4 * Math.PI, z: 2 * Math.PI }, 3000)
+	.easing(TWEEN.Easing.Back.Out)
 	.start()
-    .onComplete(() => {tweening = false;});
-
+	.onComplete(() => {
+		tweening = false;
+	});
 
 animate();

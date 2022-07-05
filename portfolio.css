@@ -38,7 +38,6 @@ table {
 	-ms-user-select: none;
 	-o-user-select: none;
 	user-select: none;
-
 }
 
 html {
@@ -63,7 +62,6 @@ body {
 }
 
 .square {
-    margin: 2em auto 2em auto;
     min-width: 350px;
   	width: 90vw;
   	border-radius: 7px;
@@ -72,7 +70,6 @@ body {
   	-ms-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
   	-o-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
   	transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
-
     display: flex;
     flex-direction: column;
 }
@@ -177,7 +174,7 @@ body {
 	width: clamp(0em, 10em + 20vw, 20em);
 	height: clamp(0em, 10em + 20vw, 20em);
     transform: scale(0, 0);
-    transition: all 1s ease-out;
+    transition: all 1s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .cube_pop {
