@@ -100,15 +100,13 @@ cubeFile.onreadystatechange = function () {
         description.classList.add("faceDescription");
         var link = document.createElement('a');
         link.textContent = cubeContent[i].header;
-        link.href = cubeContent[i].link;
+        link.setAttribute('href', cubeContent[i].link);
         link.style.textDecoration = "none";
         link.style.color = "inherit";
+        
         header.appendChild(link);
-
         faceElem.appendChild(header);
         faceElem.appendChild(description);
-
-
 		cube.add(label);
 	}
 };
@@ -219,6 +217,8 @@ class Resizer {
 }
 
 const resize = new Resizer(cubeContainer, camera, renderer, faceRenderer);
+renderer.domElement.classList.add("scene");
+faceRenderer.domElement.classList.add("scene");
 
 function animate() {
 	control.update();
