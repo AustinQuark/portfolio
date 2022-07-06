@@ -21,9 +21,11 @@ const faceRenderer = new CSS3DRenderer({antialias: true});
 faceRenderer.domElement.style.borderRadius = "50%";
 faceRenderer.domElement.style.position = "absolute";
 
+
 //Standart Renderer
-const renderer = new THREE.WebGLRenderer({ antialias: true });
+const renderer = new THREE.WebGLRenderer({ antialias: true , alpha: true});
 renderer.domElement.style.borderRadius = "50%";
+
 
 //Cube Mesh
 const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
@@ -60,16 +62,16 @@ if (isTouch) {
 cubeContainer.appendChild(faceRenderer.domElement);
 cubeContainer.appendChild(renderer.domElement);
 
+var cubeContent;
 //Reading CubeContent.json for filling the cube
 var cubeFile = new XMLHttpRequest();
 cubeFile.open("GET", "./cubeContent.json", true);
 cubeFile.onreadystatechange = function () {
-	var cubeContent = JSON.parse(cubeFile.responseText);
+	cubeContent = JSON.parse(cubeFile.responseText);
 
 	for (var i = 0; i < cubeContent.length; i++) {
 		var faceElem = document.createElement("face");
 		faceElem.className = "face";
-		faceElem.style.position = "absolute";
 		faceElem.style.width = cubeSize + "px";
 		faceElem.style.height = cubeSize + "px";
 
@@ -100,14 +102,18 @@ cubeFile.onreadystatechange = function () {
         description.classList.add("faceDescription");
         var link = document.createElement('a');
         link.textContent = cubeContent[i].header;
-        link.setAttribute('href', cubeContent[i].link);
+        link.href = cubeContent[i].link;
         link.style.textDecoration = "none";
         link.style.color = "inherit";
+
         
         header.appendChild(link);
         faceElem.appendChild(header);
         faceElem.appendChild(description);
 		cube.add(label);
+		header.addEventListener("mousedown", function (){
+			window.open(`${link.getAttribute("href")}`);
+		})
 	}
 };
 cubeFile.send(null);

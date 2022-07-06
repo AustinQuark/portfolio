@@ -170,7 +170,13 @@ body {
     pointer-events: none;
 }
 
+.renderer{
+    pointer-events: none;
+    z-index: 1;
+}
+
 .cube_container {
+    pointer-events: auto;
     cursor: crosshair;
     border-radius: 50%;
     width: 17em;
@@ -184,6 +190,8 @@ body {
 }
 
 .face {
+    pointer-events: all;
+    z-index: 1000;
     border: 1px solid #83f3ff8f;
 	font-family: 'Ubuntu Mono';
     font-smooth: always;
