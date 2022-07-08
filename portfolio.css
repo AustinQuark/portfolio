@@ -42,8 +42,8 @@ html {
     font-family: 'Ubuntu Mono';
     height: max-content;
     overflow-x: hidden;
+    font-size: 16px;
     font-size: clamp(1em, 1em + 0.45vw, 3em);
-
 }
 
 body {
@@ -166,10 +166,6 @@ body {
     line-height: 1.5em;
 }
 
-.scene {
-    pointer-events: none;
-}
-
 .cube_container {
     cursor: crosshair;
     border-radius: 50%;
@@ -197,11 +193,12 @@ body {
     font-size: 0.45em;
     font-weight: bold;
     letter-spacing: 0.1em;
+    pointer-events: all;
 }
 
-.faceHeader > a {
-    pointer-events: auto;
+.links {
 }
+
 
 .faceHeader::before {
     content: "$>";

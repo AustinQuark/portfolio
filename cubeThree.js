@@ -48,6 +48,17 @@ control.enableZoom = false;
 control.enablePan = false;
 control.rotateSpeed = 0.4;
 
+function fov() {
+	var vx = control.getAzimuthalAngle();
+    var vy = control.getPolarAngle();
+
+    if (!vx && !vy)
+    {
+        new TWEEN.Tween(camera).to({ fov: 80 }, 500).easing(TWEEN.Easing.Cubic.Out).start();
+
+    }
+}
+
 //Swipe Control for touch screens
 if (isTouch) {
 	control.enabled = false;
@@ -61,11 +72,21 @@ cubeContainer.appendChild(faceRenderer.domElement);
 cubeContainer.appendChild(renderer.domElement);
 
 //Reading CubeContent.json for filling the cube
-var cubeFile = new XMLHttpRequest();
-cubeFile.open("GET", "./cubeContent.json", true);
-cubeFile.onreadystatechange = function () {
-	var cubeContent = JSON.parse(cubeFile.responseText);
+function readTextFile(file, callback) {
+	var rawFile = new XMLHttpRequest();
+	rawFile.overrideMimeType("application/json");
+	rawFile.open("GET", file, true);
+	rawFile.onreadystatechange = function () {
+		if (rawFile.readyState === 4 && rawFile.status == "200") {
+			callback(rawFile.responseText);
+		}
+	};
+	rawFile.send(null);
+}
 
+
+readTextFile("./cubeContent.json", function (text) {
+	var cubeContent = JSON.parse(text);
 	for (var i = 0; i < cubeContent.length; i++) {
 		var faceElem = document.createElement("face");
 		faceElem.className = "face";
@@ -103,15 +124,14 @@ cubeFile.onreadystatechange = function () {
         link.setAttribute('href', cubeContent[i].link);
         link.style.textDecoration = "none";
         link.style.color = "inherit";
-        
+        link.classList.add("links");
+
         header.appendChild(link);
         faceElem.appendChild(header);
         faceElem.appendChild(description);
 		cube.add(label);
 	}
-};
-cubeFile.send(null);
-
+});
 scene.add(cube);
 scene.add(skybox);
 
@@ -194,6 +214,7 @@ function handleTouchMove(evt) {
 	yDown = null;
 }
 
+
 //Resizer (source : https://discoverthreejs.com/book/first-steps/responsive-design/)
 const setSize = (container, camera, renderer, faceRenderer) => {
 	camera.aspect = container.clientWidth / container.clientHeight;
@@ -217,12 +238,11 @@ class Resizer {
 }
 
 const resize = new Resizer(cubeContainer, camera, renderer, faceRenderer);
-renderer.domElement.classList.add("scene");
-faceRenderer.domElement.classList.add("scene");
 
 function animate() {
 	control.update();
 	TWEEN.update();
+    fov();
 	faceRenderer.render(scene, camera);
 	renderer.render(scene, camera);
 	requestAnimationFrame(animate);
@@ -239,11 +259,12 @@ new TWEEN.Tween(cube.scale)
     .start()
     .onComplete(() => {cubeContainer.style.transitionDuration = "0s";})
 new TWEEN.Tween(cube.rotation)
-	.to({ x: 0, y: 4 * Math.PI, z: 2 * Math.PI }, 3000)
+	.to({ x: 0, y: 6 * Math.PI, z: 4 * Math.PI }, 3000)
 	.easing(TWEEN.Easing.Back.Out)
 	.start()
 	.onComplete(() => {
 		tweening = false;
+        document.dispatchEvent(new CustomEvent("fileLoaded"));
 	});
 
 animate();
