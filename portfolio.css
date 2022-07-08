@@ -193,12 +193,7 @@ body {
     font-size: 0.45em;
     font-weight: bold;
     letter-spacing: 0.1em;
-    pointer-events: all;
 }
-
-.links {
-}
-
 
 .faceHeader::before {
     content: "$>";

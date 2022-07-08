@@ -21,9 +21,11 @@ const faceRenderer = new CSS3DRenderer({antialias: true});
 faceRenderer.domElement.style.borderRadius = "50%";
 faceRenderer.domElement.style.position = "absolute";
 
+
 //Standart Renderer
-const renderer = new THREE.WebGLRenderer({ antialias: true });
+const renderer = new THREE.WebGLRenderer({ antialias: true , alpha: true});
 renderer.domElement.style.borderRadius = "50%";
+
 
 //Cube Mesh
 const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
@@ -48,17 +50,6 @@ control.enableZoom = false;
 control.enablePan = false;
 control.rotateSpeed = 0.4;
 
-function fov() {
-	var vx = control.getAzimuthalAngle();
-    var vy = control.getPolarAngle();
-
-    if (!vx && !vy)
-    {
-        new TWEEN.Tween(camera).to({ fov: 80 }, 500).easing(TWEEN.Easing.Cubic.Out).start();
-
-    }
-}
-
 //Swipe Control for touch screens
 if (isTouch) {
 	control.enabled = false;
@@ -71,7 +62,6 @@ if (isTouch) {
 cubeContainer.appendChild(faceRenderer.domElement);
 cubeContainer.appendChild(renderer.domElement);
 
-//Reading CubeContent.json for filling the cube
 function readTextFile(file, callback) {
 	var rawFile = new XMLHttpRequest();
 	rawFile.overrideMimeType("application/json");
@@ -84,13 +74,11 @@ function readTextFile(file, callback) {
 	rawFile.send(null);
 }
 
-
 readTextFile("./cubeContent.json", function (text) {
 	var cubeContent = JSON.parse(text);
 	for (var i = 0; i < cubeContent.length; i++) {
 		var faceElem = document.createElement("face");
 		faceElem.className = "face";
-		faceElem.style.position = "absolute";
 		faceElem.style.width = cubeSize + "px";
 		faceElem.style.height = cubeSize + "px";
 
@@ -121,10 +109,9 @@ readTextFile("./cubeContent.json", function (text) {
         description.classList.add("faceDescription");
         var link = document.createElement('a');
         link.textContent = cubeContent[i].header;
-        link.setAttribute('href', cubeContent[i].link);
+        link.href = cubeContent[i].link;
         link.style.textDecoration = "none";
         link.style.color = "inherit";
-        link.classList.add("links");
 
         header.appendChild(link);
         faceElem.appendChild(header);
@@ -242,7 +229,6 @@ const resize = new Resizer(cubeContainer, camera, renderer, faceRenderer);
 function animate() {
 	control.update();
 	TWEEN.update();
-    fov();
 	faceRenderer.render(scene, camera);
 	renderer.render(scene, camera);
 	requestAnimationFrame(animate);
