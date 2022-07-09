@@ -13,14 +13,14 @@
     /*  square  */
     --borderColor: #d3d3d3;
         /* not on hover */
-    --backgroundSquare:         #414141c7; 
+    --backgroundSquare:         #25252555; 
     --boxShadowSquare:          #fad96100;
     --boxShadowSquareInsetA:    #2E9DF6;
     --boxShadowSquareInsetB:    #3F83FA;
 
 
         /* on hover */
-    --backgroundSquareHover:      #414141d5;
+    --backgroundSquareHover:      #202020d5;
 	--boxShadowSquareHover:       #414141;
 	--boxShadowSquareHoverInsetA: #1a1a1a; 
 	--boxShadowSquareHoverInsetB: #00569727;
@@ -33,8 +33,8 @@
     --boxshadowRadarInsetB: #90f4d9;
 
     /*  face    */
-    --backgroundFace:       #1b1b1b;
-    --boxShadowFace:        #a6f5ffb8;
+    --backgroundFace:       #00042e;
+    --boxShadowFace:        #ffffffb8;
     --boxShadowFaceInsetA:  #28303300;
     --boxShadowFaceInsetB:  #73aaa700;
   
