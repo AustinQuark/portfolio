@@ -276,6 +276,14 @@ body {
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+    html, body { 
+        height: 100%;
+    }
+
+    body {
+        
+    }
+
     .cube_container {
         shape-outside: circle();
         float: right;
