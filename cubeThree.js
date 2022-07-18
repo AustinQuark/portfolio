@@ -49,6 +49,10 @@ control.enableDamping = true;
 control.enableZoom = false;
 control.enablePan = false;
 control.rotateSpeed = 0.4;
+control.touches = {
+	ONE: 3,
+};
+console.log(control.touches);
 
 cubeContainer.appendChild(faceRenderer.domElement);
 cubeContainer.appendChild(renderer.domElement);
