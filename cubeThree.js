@@ -50,7 +50,7 @@ control.enableZoom = false;
 control.enablePan = false;
 control.rotateSpeed = 0.4;
 control.touches = {
-	ONE: 3,
+	ONE: 6,
 };
 console.log(control.touches);
 
