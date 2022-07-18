@@ -49,10 +49,6 @@ control.enableDamping = true;
 control.enableZoom = false;
 control.enablePan = false;
 control.rotateSpeed = 0.4;
-control.touches = {
-	ONE: 6,
-};
-console.log(control.touches);
 
 cubeContainer.appendChild(faceRenderer.domElement);
 cubeContainer.appendChild(renderer.domElement);
@@ -180,5 +176,59 @@ new TWEEN.Tween(cube.rotation)
 	.onComplete(() => {
         document.dispatchEvent(new CustomEvent("fileLoaded"));
 	});
+
+function touchHandler(event) {
+	var touches = event.changedTouches,
+		first = touches[0],
+		type = "";
+	switch (event.type) {
+		case "touchstart":
+			type = "mousedown";
+			break;
+		case "touchmove":
+			type = "mousemove";
+			break;
+		case "touchend":
+			type = "mouseup";
+			break;
+		default:
+			return;
+	}
+
+	// initMouseEvent(type, canBubble, cancelable, view, clickCount,
+	//                screenX, screenY, clientX, clientY, ctrlKey,
+	//                altKey, shiftKey, metaKey, button, relatedTarget);
+
+	var simulatedEvent = document.createEvent("MouseEvent");
+	simulatedEvent.initMouseEvent(
+		type,
+		true,
+		true,
+		window,
+		1,
+		first.screenX,
+		first.screenY,
+		first.clientX,
+		first.clientY,
+		false,
+		false,
+		false,
+		false,
+		0 /*left*/,
+		null
+	);
+
+	first.target.dispatchEvent(simulatedEvent);
+	event.preventDefault();
+}
+
+function init() {
+	document.addEventListener("touchstart", touchHandler, true);
+	document.addEventListener("touchmove", touchHandler, true);
+	document.addEventListener("touchend", touchHandler, true);
+	document.addEventListener("touchcancel", touchHandler, true);
+}
+
+init();
 
 animate();
