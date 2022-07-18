@@ -179,49 +179,39 @@ new TWEEN.Tween(cube.rotation)
 
 
 function touchHandler(event) {
-	var touches = event.changedTouches,
-		first = touches[0],
-		type = "";
-	switch (event.type) {
-		case "touchstart":
-			type = "mousedown";
-			break;
-		case "touchmove":
-			type = "mousemove";
-			break;
-		case "touchend":
-			type = "mouseup";
-			break;
-		default:
-			return;
-	}
+	var touch = event.changedTouches[0];
 
 	var simulatedEvent = document.createEvent("MouseEvent");
-	simulatedEvent.MouseEvent(
-		type,
+	simulatedEvent.initMouseEvent(
+		{
+			touchstart: "mousedown",
+			touchmove: "mousemove",
+			touchend: "mouseup",
+		}[event.type],
 		true,
 		true,
 		window,
 		1,
-		first.screenX,
-		first.screenY,
-		first.clientX,
-		first.clientY,
+		touch.screenX,
+		touch.screenY,
+		touch.clientX,
+		touch.clientY,
 		false,
 		false,
 		false,
 		false,
-		0 /*left*/,
+		0,
 		null
 	);
 
-	first.target.dispatchEvent(simulatedEvent);
+	touch.target.dispatchEvent(simulatedEvent);
 	event.preventDefault();
 }
 
-cubeContainer.addEventListener("touchstart", touchHandler, true);
-cubeContainer.addEventListener("touchmove", touchHandler, true);
-cubeContainer.addEventListener("touchend", touchHandler, true);
-cubeContainer.addEventListener("touchcancel", touchHandler, true);    
+// Translate touch events to mouse events
+document.addEventListener("touchstart", touchHandler, true);
+document.addEventListener("touchmove", touchHandler, true);
+document.addEventListener("touchend", touchHandler, true);
+document.addEventListener("touchcancel", touchHandler, true);
 
 animate();
