@@ -205,13 +205,11 @@ function touchHandler(event) {
 	);
 
 	touch.target.dispatchEvent(simulatedEvent);
-	event.preventDefault();
 }
 
 // Translate touch events to mouse events
 document.addEventListener("touchstart", touchHandler, true);
 document.addEventListener("touchmove", touchHandler, true);
 document.addEventListener("touchend", touchHandler, true);
-document.addEventListener("touchcancel", touchHandler, true);
 
 animate();
