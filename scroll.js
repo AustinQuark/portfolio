@@ -55,6 +55,14 @@ var isInViewport = function (elem) {
 	);
 };
 
+cube_container.addEventListener("touchstart", function(e) {
+    disableScroll();
+});
+
+cube_container.addEventListener("touchend", function (e) {
+	enableScroll();
+});
+
 document.addEventListener("resize", function(e) {
 if (square.offsetHeight < window.innerHeight)
 	disableScroll();

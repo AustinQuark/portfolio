@@ -40,6 +40,9 @@ const skyboxTexture = new THREE.TextureLoader().load("skybox.jpg");
 const skyboxMaterial = new THREE.MeshBasicMaterial({ map: skyboxTexture, opacity:0, transparent:true });
 const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
 
+//Detect Touch Screen
+var isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+
 //Orbit Control for Desktop
 var control = new OrbitControls(camera, faceRenderer.domElement);
 control.enableDamping = true;
