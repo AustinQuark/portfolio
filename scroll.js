@@ -55,11 +55,11 @@ var isInViewport = function (elem) {
 	);
 };
 
-cube_container.addEventListener("touchstart", function(e) {
+document.getElementById('cube_container').addEventListener("touchstart", function(e) {
     disableScroll();
 });
 
-cube_container.addEventListener("touchend", function (e) {
+document.getElementById("cube_container").addEventListener("touchend", function (e) {
 	enableScroll();
 });
 

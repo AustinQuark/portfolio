@@ -177,6 +177,7 @@ new TWEEN.Tween(cube.rotation)
         document.dispatchEvent(new CustomEvent("fileLoaded"));
 	});
 
+
 function touchHandler(event) {
 	var touches = event.changedTouches,
 		first = touches[0],
@@ -222,13 +223,9 @@ function touchHandler(event) {
 	event.preventDefault();
 }
 
-function init() {
-	document.addEventListener("touchstart", touchHandler, true);
-	document.addEventListener("touchmove", touchHandler, true);
-	document.addEventListener("touchend", touchHandler, true);
-	document.addEventListener("touchcancel", touchHandler, true);
-}
-
-init();
+cubeContainer.addEventListener("touchstart", touchHandler, true);
+cubeContainer.addEventListener("touchmove", touchHandler, true);
+cubeContainer.addEventListener("touchend", touchHandler, true);
+cubeContainer.addEventListener("touchcancel", touchHandler, true);    
 
 animate();
