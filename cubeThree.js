@@ -40,24 +40,12 @@ const skyboxTexture = new THREE.TextureLoader().load("skybox.jpg");
 const skyboxMaterial = new THREE.MeshBasicMaterial({ map: skyboxTexture, opacity:0, transparent:true });
 const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
 
-//Detect Touch Screen
-var isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-
 //Orbit Control for Desktop
 var control = new OrbitControls(camera, faceRenderer.domElement);
 control.enableDamping = true;
 control.enableZoom = false;
 control.enablePan = false;
 control.rotateSpeed = 0.4;
-
-//Swipe Control for touch screens
-if (isTouch) {
-	control.enabled = false;
-
-	// Source : https://stackoverflow.com/questions/2264072/detect-a-finger-swipe-through-javascript-on-the-iphone-and-android
-	cubeContainer.addEventListener("touchstart", handleTouchStart, false);
-	cubeContainer.addEventListener("touchmove", handleTouchMove, false);
-}
 
 cubeContainer.appendChild(faceRenderer.domElement);
 cubeContainer.appendChild(renderer.domElement);
@@ -92,7 +80,7 @@ readTextFile("./cubeContent.json", function (text) {
 			label.rotation.y = i == 1 ? 0 : i == 2 ? -Math.PI / 2 : i == 0 ? Math.PI / 2 : Math.PI;
 			label.rotation.z = 0;
 
-			if (i == 2 && isTouch) label.rotation.x = -Math.PI;
+			if (i == 2) label.rotation.x = -Math.PI;
 		} else {
 			label.position.x = 0;
 			label.position.y = i % 2 ? cubeSize / -2 : cubeSize / 2;
@@ -135,72 +123,6 @@ const bounce = () => {
 };
 bounce();
 setInterval(bounce, halfTime * 2);
-
-var xDown = null;
-var yDown = null;
-var tweening = true;
-
-function getTouches(evt) {
-	return (evt.touches || evt.originalEvent.touches);
-}
-
-function handleTouchStart(evt) {
-    disableScroll();
-	const firstTouch = getTouches(evt)[0];
-	xDown = firstTouch.clientX;
-	yDown = firstTouch.clientY;
-}
-
-function handleTouchMove(evt) {
-	if (!xDown || !yDown) {
-		return;
-	}
-	var xSwipe = 0;
-	var ySwipe = 0;
-
-	var xUp = evt.touches[0].clientX;
-	var yUp = evt.touches[0].clientY;
-
-	var xDiff = xDown - xUp;
-	var yDiff = yDown - yUp;
-
-	if (Math.abs(xDiff) > Math.abs(yDiff)) {
-		/*most significant*/
-		if (xDiff > 0) {
-			xSwipe = Math.PI / -2;
-		} else {
-			xSwipe = Math.PI / 2;
-		}
-	} else {
-		if (yDiff > 0) {
-			ySwipe = Math.PI / 2;
-		} else {
-			ySwipe = Math.PI / -2;
-		}
-	}
-
-	var deltaRotationQuaternion = new THREE.Quaternion().setFromEuler(new THREE.Euler(0, xSwipe, ySwipe, "XYZ"));
-	deltaRotationQuaternion.multiply(cube.quaternion);
-	var rotation = new THREE.Euler().setFromQuaternion(deltaRotationQuaternion, "XYZ");
-
-    if (!tweening) {
-        tweening = true;
-	    new TWEEN.Tween(cube.rotation)
-        .to({ y: rotation.y, z: rotation.z }, 1500)
-        .easing(TWEEN.Easing.Back.InOut)
-        .start()
-        .onComplete(() => { tweening = false; enableScroll();});
-
-        new TWEEN.Tween(skybox.rotation)
-        .to({ y: rotation.y, z: rotation.z }, 1500)
-        .easing(TWEEN.Easing.Back.InOut)
-        .start();
-    }
-
-	xDown = null;
-	yDown = null;
-}
-
 
 //Resizer (source : https://discoverthreejs.com/book/first-steps/responsive-design/)
 const setSize = (container, camera, renderer, faceRenderer) => {
@@ -249,7 +171,6 @@ new TWEEN.Tween(cube.rotation)
 	.easing(TWEEN.Easing.Back.Out)
 	.start()
 	.onComplete(() => {
-		tweening = false;
         document.dispatchEvent(new CustomEvent("fileLoaded"));
 	});
 
