@@ -81,8 +81,6 @@ readTextFile("./cubeContent.json", function (text) {
 			label.rotation.x = 0;
 			label.rotation.y = i == 1 ? 0 : i == 2 ? -Math.PI / 2 : i == 0 ? Math.PI / 2 : Math.PI;
 			label.rotation.z = 0;
-
-			if (i == 2) label.rotation.x = -Math.PI;
 		} else {
 			label.position.x = 0;
 			label.position.y = i % 2 ? cubeSize / -2 : cubeSize / 2;
@@ -177,5 +175,27 @@ new TWEEN.Tween(cube.rotation)
 	.onComplete(() => {
         document.dispatchEvent(new CustomEvent("fileLoaded"));
 	});
+
+
+control.addEventListener("controlstart", function(e){
+    new TWEEN.Tween(camera)
+		.to({ fov: 90 }, 500)
+		.easing(TWEEN.Easing.Cubic.Out)
+		.onUpdate(function (camera) {
+			camera.updateProjectionMatrix();
+		})
+		.start();
+});
+
+control.addEventListener("controlend", function (e) {
+	new TWEEN.Tween(camera)
+		.to({ fov: 65 }, 500)
+		.easing(TWEEN.Easing.Cubic.Out)
+		.onUpdate(function (camera) {
+			camera.updateProjectionMatrix();
+		})
+		.start();
+});
+
 
 animate();
