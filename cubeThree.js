@@ -1,6 +1,7 @@
 // Skybox's Author : Hannes Delbeke
 // Source : https://sketchfab.com/3d-models/fantasy-sky-background-15c79bb2fc1147128039fe4ff90fd5a0
 import * as THREE from "three";
+import CameraControls from "./camera-controls/dist/camera-controls.module.js";
 import { OrbitControls } from "https://unpkg.com/three/examples/jsm/controls/OrbitControls.js";
 import { CSS3DRenderer } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
 import { CSS3DObject } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
@@ -44,7 +45,8 @@ const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
 var isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
 //Orbit Control for Desktop
-var control = new OrbitControls(camera, faceRenderer.domElement);
+CameraControls.install({ THREE: THREE });
+var control = new CameraControls(camera, faceRenderer.domElement);
 control.enableDamping = true;
 control.enableZoom = false;
 control.enablePan = false;
@@ -150,9 +152,11 @@ class Resizer {
 }
 
 const resize = new Resizer(cubeContainer, camera, renderer, faceRenderer);
+const clock = new THREE.Clock();
 
 function animate() {
-	control.update();
+    const delta = clock.getDelta();
+    control.update(delta);
 	TWEEN.update();
 	faceRenderer.render(scene, camera);
 	renderer.render(scene, camera);
@@ -176,40 +180,5 @@ new TWEEN.Tween(cube.rotation)
 	.onComplete(() => {
         document.dispatchEvent(new CustomEvent("fileLoaded"));
 	});
-
-
-function touchHandler(event) {
-	var touch = event.changedTouches[0];
-
-	var simulatedEvent = document.createEvent("MouseEvent");
-	simulatedEvent.initMouseEvent(
-		{
-			touchstart: "mousedown",
-			touchmove: "mousemove",
-			touchend: "mouseup",
-		}[event.type],
-		true,
-		true,
-		window,
-		1,
-		touch.screenX,
-		touch.screenY,
-		touch.clientX,
-		touch.clientY,
-		false,
-		false,
-		false,
-		false,
-		0,
-		null
-	);
-	touch.target.dispatchEvent(simulatedEvent);
-    event.preventDefault();
-}
-
-// Translate touch events to mouse events
-document.addEventListener("touchstart", touchHandler, true);
-document.addEventListener("touchmove", touchHandler, true);
-document.addEventListener("touchend", touchHandler, true);
 
 animate();
