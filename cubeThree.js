@@ -2,7 +2,6 @@
 // Source : https://sketchfab.com/3d-models/fantasy-sky-background-15c79bb2fc1147128039fe4ff90fd5a0
 import * as THREE from "three";
 import CameraControls from "./camera-controls/dist/camera-controls.module.js";
-import { OrbitControls } from "https://unpkg.com/three/examples/jsm/controls/OrbitControls.js";
 import { CSS3DRenderer } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
 import { CSS3DObject } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
 import { TWEEN } from "https://unpkg.com/three/examples//jsm/libs/tween.module.min";
@@ -41,16 +40,14 @@ const skyboxTexture = new THREE.TextureLoader().load("skybox.jpg");
 const skyboxMaterial = new THREE.MeshBasicMaterial({ map: skyboxTexture, opacity:0, transparent:true });
 const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
 
-//Detect Touch Screen
-var isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-
 //Orbit Control for Desktop
 CameraControls.install({ THREE: THREE });
 var control = new CameraControls(camera, faceRenderer.domElement);
 control.enableDamping = true;
 control.enableZoom = false;
 control.enablePan = false;
-control.rotateSpeed = 0.4;
+control.azimuthRotateSpeed = 0.4;
+control.polarRotateSpeed = 0.4;
 
 cubeContainer.appendChild(faceRenderer.domElement);
 cubeContainer.appendChild(renderer.domElement);
