@@ -137,6 +137,7 @@ body {
 	text-align: center;
 	justify-content: space-around;
 	flex-wrap: wrap;
+    padding: 0em 1.5em;
 	padding-bottom: 0.6em;
 }
 
@@ -278,10 +279,6 @@ body {
 @media (min-width: 768px) {
     html, body { 
         height: 100%;
-    }
-
-    body {
-        
     }
 
     .cube_container {

@@ -44,7 +44,10 @@ const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
 CameraControls.install({ THREE: THREE });
 var control = new CameraControls(camera, faceRenderer.domElement);
 control.enableDamping = true;
-control.enableZoom = false;
+control.dollySpeed = 0;
+control.truckSpeed = 0;
+
+
 control.enablePan = false;
 control.azimuthRotateSpeed = 0.4;
 control.polarRotateSpeed = 0.4;
