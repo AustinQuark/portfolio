@@ -203,7 +203,7 @@ function touchHandler(event) {
 		0,
 		null
 	);
-
+    console.log("allo");
 	touch.target.dispatchEvent(simulatedEvent);
 }
 
