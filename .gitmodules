@@ -1,3 +1,3 @@
-[submodule "./camera-controls"] 
-  path = ./camera-controls 
-  url = https://github.com/yomotsu/camera-controls
+[submodule "camera-controls/dist/camera-controls.module.js"] 
+  path = camera-controls/dist/camera-controls.module.js 
+  url = https://github.com/yomotsu/camera-controls/blob/dev/dist/camera-controls.module.js
