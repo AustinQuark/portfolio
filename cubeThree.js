@@ -47,7 +47,6 @@ control.enableDamping = true;
 control.dollySpeed = 0;
 control.truckSpeed = 0;
 
-
 control.enablePan = false;
 control.azimuthRotateSpeed = 0.4;
 control.polarRotateSpeed = 0.4;
@@ -104,12 +103,33 @@ readTextFile("./cubeContent.json", function (text) {
         link.style.textDecoration = "none";
         link.style.color = "inherit";
 
+        header.addEventListener("mouseenter", function(e) {
+            if (!control.currentAction)
+                control.enabled = false;
+        });
+        
+        header.addEventListener("mouseout", function (e) {
+            if (!control.enabled)
+                control.enabled = true;
+        });
+
+
         header.appendChild(link);
         faceElem.appendChild(header);
         faceElem.appendChild(description);
 		cube.add(label);
 	}
 });
+
+document.addEventListener("fileLoaded", function () {
+	var links = document.getElementsByTagName("a");
+	for (var i = 0; i < links.length; i++) {
+		links[i].addEventListener("mousedown", function () {
+			window.open(this.getAttribute("href"));
+		});
+	}
+});
+
 scene.add(cube);
 scene.add(skybox);
 
@@ -181,24 +201,29 @@ new TWEEN.Tween(cube.rotation)
 
 
 control.addEventListener("controlstart", function(e){
-    new TWEEN.Tween(camera)
-		.to({ fov: 90 }, 500)
-		.easing(TWEEN.Easing.Cubic.Out)
-		.onUpdate(function (camera) {
-			camera.updateProjectionMatrix();
-		})
-		.start();
+        console.log("start focus");
+        new TWEEN.Tween(camera)
+            .to({ fov: 90 }, 500)
+            .easing(TWEEN.Easing.Cubic.Out)
+            .onUpdate(function (camera) {
+                camera.updateProjectionMatrix();
+            })
+            .start()
+            .onComplete(function (){console.log("end focus")});
 });
 
 control.addEventListener("controlend", function (e) {
+        console.log("start defocus");
+
 	new TWEEN.Tween(camera)
 		.to({ fov: 65 }, 500)
 		.easing(TWEEN.Easing.Cubic.Out)
 		.onUpdate(function (camera) {
 			camera.updateProjectionMatrix();
 		})
-		.start();
-});
+		.start()
+        .onComplete(function (){console.log("end defocus")});
 
+});
 
 animate();

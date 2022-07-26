@@ -194,6 +194,12 @@ body {
     font-size: 0.45em;
     font-weight: bold;
     letter-spacing: 0.1em;
+    z-index: 1000;
+    background-color: yellow;
+}
+
+.faceHeader > a {
+    background-color: blue;
 }
 
 .faceHeader::before {
