@@ -163,8 +163,16 @@ body {
 	letter-spacing: 1px;
     padding-top: 1.5em;
     text-align: justify;
-    text-justify: inter-word;
-    line-height: 1.5em;
+    text-justify: distribute;
+    line-height: 1.8em;
+    word-spacing: -1px;
+
+}
+
+.forward {
+    color: #95d8de;
+    font-weight: bold;
+    font-size: 1.05em;
 }
 
 .cube_container {
@@ -194,7 +202,7 @@ body {
     font-size: 0.45em;
     font-weight: bold;
     letter-spacing: 0.1em;
-    z-index: 1000;
+    z-index: 10;
     transition: all 0.3s linear;
 }
 
