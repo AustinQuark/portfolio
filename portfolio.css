@@ -195,11 +195,11 @@ body {
     font-weight: bold;
     letter-spacing: 0.1em;
     z-index: 1000;
-    background-color: yellow;
+    transition: all 0.3s linear;
 }
 
-.faceHeader > a {
-    background-color: blue;
+.faceHeader:hover {
+    text-shadow: #c0faff 0px 0px 4px;
 }
 
 .faceHeader::before {
@@ -208,10 +208,12 @@ body {
 }
 
 .faceHeader::after {
-    content: "_";
-    animation: blink 1s steps(2, start) infinite;
-    -webkit-animation: blink 1s steps(2, start) infinite;
-    color: #86d0d7;
+    padding-left: 3px;
+    content: url("svgs/new-tab.svg");
+    zoom: 35%;
+    filter: invert(88%) sepia(14%) saturate(909%) hue-rotate(135deg) brightness(88%) contrast(91%);
+    animation: blink 2s steps(2, start) infinite;
+    -webkit-animation: blink 2s steps(2, start) infinite;
 }
 
 @keyframes blink {

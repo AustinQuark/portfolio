@@ -100,24 +100,23 @@ readTextFile("./cubeContent.json", function (text) {
         var link = document.createElement('a');
         link.textContent = cubeContent[i].header;
         link.href = cubeContent[i].link;
+        link.target = "_blank";
+        link.rel = "noreferrer noopener";
         link.style.textDecoration = "none";
         link.style.color = "inherit";
-
-        header.addEventListener("mouseenter", function(e) {
-            if (!control.currentAction)
-                control.enabled = false;
-        });
-        
-        header.addEventListener("mouseout", function (e) {
-            if (!control.enabled)
-                control.enabled = true;
-        });
-
 
         header.appendChild(link);
         faceElem.appendChild(header);
         faceElem.appendChild(description);
 		cube.add(label);
+
+        header.addEventListener("mouseenter", function (e) {
+            if (!control.currentAction) control.enabled = false;
+        });
+
+        header.addEventListener("mouseleave", function (e) {
+            control.enabled = true;
+        });
 	}
 });
 
@@ -201,29 +200,23 @@ new TWEEN.Tween(cube.rotation)
 
 
 control.addEventListener("controlstart", function(e){
-        console.log("start focus");
         new TWEEN.Tween(camera)
             .to({ fov: 90 }, 500)
             .easing(TWEEN.Easing.Cubic.Out)
             .onUpdate(function (camera) {
                 camera.updateProjectionMatrix();
             })
-            .start()
-            .onComplete(function (){console.log("end focus")});
+            .start();
 });
 
 control.addEventListener("controlend", function (e) {
-        console.log("start defocus");
-
 	new TWEEN.Tween(camera)
 		.to({ fov: 65 }, 500)
 		.easing(TWEEN.Easing.Cubic.Out)
 		.onUpdate(function (camera) {
 			camera.updateProjectionMatrix();
 		})
-		.start()
-        .onComplete(function (){console.log("end defocus")});
-
+		.start();
 });
 
 animate();
