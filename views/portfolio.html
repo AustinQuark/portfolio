@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+		<link href="css/portfolio.css" rel="stylesheet" />
+		<link href="css/colors.css" rel="stylesheet" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap");
+		</style>
+		<title>Austin | Junior Developer</title>
+	</head>
+	<body>
+        <div style="height: 30px"></div>
+		<div class="square parent" id="square">
+			<div class="intro">
+                <div class="name">
+                    <div class="nameplate">
+                        <h1 class="nameplate-letter">A</h1>
+                        <h1 class="nameplate-letter">U</h1>
+                        <h1 class="nameplate-letter">S</h1>
+                        <h1 class="nameplate-letter">T</h1>
+                        <h1 class="nameplate-letter">I</h1>
+                        <h1 class="nameplate-letter">N</h1>
+                        <h1 class="nameplate-letter supp">Q</h1>
+                        <h1 class="nameplate-letter supp">U</h1>
+                        <h1 class="nameplate-letter supp">A</h1>
+                        <h1 class="nameplate-letter supp">R</h1>
+                        <h1 class="nameplate-letter supp">K</h1>
+                    </div>
+                    <h2 class="description">JUNIOR DEVELOPER</h2>
+                </div>
+                <span class="contact">
+                    <div class="diag-contact">
+                        <div class="trait"></div>
+                        <div class="diag-icons">
+                            <img class="icon mail" src="svgs/paper-plane-solid.svg" alt="mail icon" />
+                            <img class="icon git" src="svgs/github-brands.svg" alt="github icon" />
+                        </div>
+                        <div class="trait"></div>
+                    </div>
+                </span>
+            </div>
+            <div class="project">
+                <article class="cube_container" id="cube_container">
+                </article>
+                <p class="presentation">
+                Hello, I'm Austin ! I'm a <span class="forward">frontend developper</span>, Interested in <span class="forward">backend development</span>, continuously <span class="forward">learning</span>. I'm a <span class="forward">French</span> developer from <span class="forward">Paris</span> who first went to Pierre and Marie Curie University to study <span class="forward">Physics</span>. Then, got into <span class="forward">42 School</span>, where I learned <span class="forward">programming</span>, and got introduced to <span class="forward">pair-programming</span>. I'm interested in all kinds of <span class="forward">Art</span>, and all kinds of <span class="forward">Freedom</span> that the Internet has to offer. <span class="forward">Hard worker</span> for whom <span class="forward">details are key</span>, loving to find <span class="forward">new ways to engage users</span>. I would love to work with you, you can contact me via e-mail on my contact area.
+                </p>
+            </div>
+            <div class="skills">
+                <span class="button">C</span>
+                <span class="button">C++</span>
+                <span class="button">HTML</span>
+                <span class="button">JS</span>
+                <span class="button">THREEJS</span>
+                <span class="button">CSS</span>
+                <span class="button">BOOTSTRAP</span>
+                <span class="button">DOCKER</span>
+                <span class="button">CSS</span>
+                <span class="button">GIT</span>
+            </div>
+		</div>
+        <div style="height: 30px"></div>
+        <script type="text/javascript" src="scripts/contact.js"></script>
+		<script type="text/javascript" src="scripts/description.js"></script>
+        <script type="text/javascript" src="scripts/scroll.js"></script>
+        <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+		<script async type="importmap">
+			{
+				"imports": {
+					"three": "https://unpkg.com/three/build/three.module.js"
+				}
+			}
+		</script>
+        <script async type="module" src="scripts/cubeThree.js"></script>
+    </body>
+</html>
