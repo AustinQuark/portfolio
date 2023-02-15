@@ -59,31 +59,14 @@ body {
 
 .board-svg { color: #414141;}
 
-@media (pointer:fine) {
-	.square:hover {
-            transform: translate(-10px, -10px);
-            background-color: var(--backgroundSquareHover);
-		    -webkit-box-shadow: inset 0px 0px 50px 0px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 15px 7px var(--boxShadowSquareHover); 
-            box-shadow: inset 0px 0px 20px 3px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 0px 0px var(--boxShadowSquareHover);
-	}
-
-    .square:hover .button {
-        background-color: #4a5864a7;
-        box-shadow: 5px 5px 9px 3px #2a2d31;
-    }
+.square {
+    background-color: var(--backgroundSquareHover);
+    -webkit-box-shadow: inset 0px 0px 50px 0px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 15px 7px var(--boxShadowSquareHover); 
+    box-shadow: inset 0px 0px 20px 3px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 0px 0px var(--boxShadowSquareHover);
 }
 
-@media (pointer:coarse) {
-	.square {
-        background-color: var(--backgroundSquareHover);
-        -webkit-box-shadow: inset 0px 0px 50px 0px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 15px 7px var(--boxShadowSquareHover); 
-        box-shadow: inset 0px 0px 20px 3px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 0px 0px var(--boxShadowSquareHover);
-	}
-
-    .button {
-        background-color: #4a5864a7;
-        box-shadow: 5px 8px 9px 1px #282c31;
-    }
+.square:hover .button {
+    background-color: #4a5864a7;
 }
 
 .cube_container {
