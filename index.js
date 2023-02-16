@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const router = express.Router();
-const PORT = 3000;
+const PORT = 80;
 
 app.set('views', path.join(__dirname,'/views'));
 app.use(express.static(path.join(__dirname, '/public')));
