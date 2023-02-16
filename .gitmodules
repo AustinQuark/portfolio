@@ -1,0 +1,3 @@
+[submodule "src/camera-controls"]
+	path = src/camera-controls
+	url = https://github.com/yomotsu/camera-controls.git
