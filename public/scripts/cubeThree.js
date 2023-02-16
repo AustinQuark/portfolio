@@ -1,10 +1,9 @@
 // Skybox's Author : Hannes Delbeke
 // Source : https://sketchfab.com/3d-models/fantasy-sky-background-15c79bb2fc1147128039fe4ff90fd5a0
-import * as THREE from "three";
-import CameraControls from "./camera-controls/dist/camera-controls.module.js";
-import { CSS3DRenderer } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
-import { CSS3DObject } from "https://unpkg.com/three/examples/jsm/renderers/CSS3DRenderer.js";
-import { TWEEN } from "https://unpkg.com/three/examples//jsm/libs/tween.module.min";
+import * as THREE from "./three.module.js";
+import CameraControls from "./camera-controls.module.js";
+import { CSS3DRenderer, CSS3DObject  } from "./CSS3DRenderer.js";
+import { TWEEN } from "./tween.module.min.js";
 
 var cubeSize = 100;
 
