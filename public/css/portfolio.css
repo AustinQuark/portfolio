@@ -178,8 +178,8 @@ body {
 .cube_container {
     cursor: crosshair;
     border-radius: 50%;
-    width: 17em;
-    height: 17em;
+    width: 20em;
+    height: 20em;
     transform: scale(0, 0);
     transition: all 1s cubic-bezier(0.65, 0, 0.35, 1);
 }
@@ -188,55 +188,36 @@ body {
     transform: scale(1, 1);
 }
 
-.face {
-    border: 1px solid #83f3ff8f;
+.panel {
+    /*border: 1px solid #83f3ff8f;*/
 	font-family: 'Ubuntu Mono';
     font-smooth: always;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    -webkit-font-smoothing : antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: black;
+    -webkit-box-shadow: 0px 0px 50px 15px rgba(0,0,0,0.45); 
+    box-shadow: 0px 0px 50px 15px rgba(0,0,0,0.45);
 }
 
-.faceHeader {
-    font-size: 0.45em;
-    font-weight: bold;
-    letter-spacing: 0.1em;
-    z-index: 10;
-    transition: all 0.3s linear;
+.panelSelect {
+    -webkit-box-shadow: 0px 0px 50px 15px #95d8de; 
+    box-shadow: 0px 0px 50px 15px #95d8de;
 }
 
-.faceHeader:hover {
-    text-shadow: #c0faff 0px 0px 4px;
+
+
+.linkCube {
+    position: absolute;
+    top: 80%;
+    left: 80%;
+    border-radius: 25% 0 0 0;
+    width: 20%;
+    height: 20%;
+    background-color: #95d8de;
+    z-index: 2;
+    transform-style: preserve-3d;
 }
 
-.faceHeader::before {
-    content: "$>";
-    color: #86d0d7;
-}
-
-.faceHeader::after {
-    padding-left: 3px;
-    content: url("../svgs/new-tab.svg");
-    zoom: 35%;
-    filter: invert(88%) sepia(14%) saturate(909%) hue-rotate(135deg) brightness(88%) contrast(91%);
-    animation: blink 2s steps(2, start) infinite;
-    -webkit-animation: blink 2s steps(2, start) infinite;
-}
-
-@keyframes blink {
-    to {visibility: hidden;}
-}
-
-.faceDescription {
-    font-size: 0.35em;
-    font-style: italic;
-    text-align: center;
-    color: #bbf8fe;
-    padding: 2em 1.5em 0em 1.5em;
-    line-height: 1.2em;
-    letter-spacing: 0.1em;
-}
 
 .contact {
     margin-left: auto;

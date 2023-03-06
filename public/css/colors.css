@@ -26,15 +26,20 @@
 	--boxShadowSquareHoverInsetB: #00569727;
 
 
-    /*  radar   */
+    /*  radar   
     --backgroundRadar:      #b2fbff;
 	--boxshadowRadar:       #b2fbff;
     --boxshadowRadarInsetA: #f3fffe;
     --boxshadowRadarInsetB: #90f4d9;
+    */
+    --backgroundRadar:      rgba(0, 0, 0, 0.548);
+	--boxshadowRadar:       rgba(11, 20, 27, 0.658);
+    --boxshadowRadarInsetA: rgba(0, 0, 0, 0.548);
+    --boxshadowRadarInsetB: #rgba(0, 0, 0, 0.548);
 
     /*  face    */
     --backgroundFace:       #00042e;
-    --boxShadowFace:        #ffffffb8;
+    --boxShadowFace:        #7ae0ffb8;
     --boxShadowFaceInsetA:  #28303300;
     --boxShadowFaceInsetB:  #73aaa700;
   
@@ -60,16 +65,17 @@ body {
 .board-svg { color: #414141;}
 
 @media (pointer:fine) {
-	.square:hover {
+	.square {
             transform: translate(-10px, -10px);
             background-color: var(--backgroundSquareHover);
 		    -webkit-box-shadow: inset 0px 0px 50px 0px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 15px 7px var(--boxShadowSquareHover); 
             box-shadow: inset 0px 0px 20px 3px var(--boxShadowSquareHoverInsetA), inset 0px 0px 10px 0px var(--boxShadowSquareHoverInsetB), 10px 10px 0px 0px var(--boxShadowSquareHover);
 	}
 
-    .square:hover .button {
+    .square .button {
         background-color: #4a5864a7;
-        box-shadow: 5px 5px 9px 3px #2a2d31;
+        box-shadow: 5px 5px 9px 3px rgba(0, 0, 0, 0.13);
+        /*box-shadow: 5px 5px 9px 3px #2a2d31;*/
     }
 }
 
@@ -94,15 +100,8 @@ body {
 
 .face {
 	background-color: var(--backgroundFace);
-	-webkit-box-shadow: 15px 20px 70px var(--boxShadowFace), 
-						inset 0px -30px 90px 30px var(--boxShadowFaceInsetA), 
-						inset 0px 70px 100px 180px var(--boxShadowFaceInsetB);
-	-moz-box-shadow: 	15px 20px 70px var(--boxShadowFace), 
-	  					inset 0px -30px 90px 30px var(--boxShadowFaceInsetA), 
-	  					inset 0px 70px 100px 180px var(--boxShadowFaceInsetB);
-
-	box-shadow: 		0px 0px 5px var(--boxShadowFace), 
-	  					inset 0px -30px 90px 30px var(--boxShadowFaceInsetA), 
-	  					inset 0px 0px 100px 100px var(--boxShadowFaceInsetB);
+	-webkit-box-shadow: 0px 0px 10px var(--boxShadowFace);
+	-moz-box-shadow: 	0px 0px 10px var(--boxShadowFace); 
+	box-shadow: 		0px 0px 10px var(--boxShadowFace);
 
 }
