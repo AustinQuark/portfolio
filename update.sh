@@ -1,4 +1,3 @@
-cd ..
 rm -rf portfolio portfolio.log
 git clone https://github.com/AustinQuark/portfolio.git
-cp .cache portfolio/.cache
+cp -r .cache portfolio/.cache
