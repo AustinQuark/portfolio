@@ -43,8 +43,9 @@ control.enableDamping = true;
 control.dollySpeed = 0;
 control.truckSpeed = 0;
 control.enablePan = false;
-control.azimuthRotateSpeed = 0.4;
+control.azimuthRotateSpeed = 0.3;
 control.polarRotateSpeed = 0;
+control.draggingSmoothTime = 0.1;
 
 container.appendChild(faceRenderer.domElement);
 container.appendChild(renderer.domElement);
@@ -72,15 +73,38 @@ for (var i = 0; i < 6; i++) {
 	label.rotation.z = 0;
 
 	scene.add(label);
-
-	panelElem.addEventListener("mouseenter", function (e) {
-		if (!control.currentAction) control.enabled = false;
-	});
-
-	panelElem.addEventListener("mouseleave", function (e) {
-		control.enabled = true;
-	});
 }
+
+var linkPanel = document.createElement("div");
+linkPanel.className = "linkPanel";
+linkPanel.style.width = panelWidth + "px";
+linkPanel.style.height = panelHeight * 0.5 + "px";
+
+var linkLabel = new CSS3DObject(linkPanel);
+
+function linkPanelPlacement() {
+	linkLabel.position.x = Math.sin(control.azimuthAngle + Math.PI) * rayon;
+	linkLabel.position.y = -panelHeight * 0.8;
+	linkLabel.position.z = Math.cos(control.azimuthAngle + Math.PI) * rayon;
+
+	linkLabel.rotation.x = 0;
+	linkLabel.rotation.y = control.azimuthAngle + Math.PI;
+	linkLabel.rotation.z = 0;
+}
+
+scene.add(linkLabel);
+
+linkPanelPlacement();
+
+linkPanel.addEventListener("mouseenter", function (e) {
+	if (!control.currentAction) control.enabled = false;
+});
+
+linkPanel.addEventListener("mouseleave", function (e) {
+	control.enabled = true;
+});
+
+
 
 scene.add(skybox);
 
@@ -143,29 +167,55 @@ function normalizeAngle( angle ) {
 }
 
 control.addEventListener("controlstart", function(e){
+	linkPanel.style.opacity = 0;
+
+	new TWEEN.Tween(linkLabel.position)
+		.to({ y: -panelHeight * 2 }, 1000)
+		.easing(TWEEN.Easing.Cubic.Out)
+		.start();
+
 	new TWEEN.Tween(camera)
 		.to({ fov: 90 }, 500)
 		.easing(TWEEN.Easing.Cubic.Out)
 		.onUpdate(function (camera) {
 			camera.updateProjectionMatrix();
 		})
-		.start();	
+		.start();
+
 });
 
-var selected = 0;
 
-control.addEventListener("control", function (e) {
+function throttle(func, delay) {
+	let lastCall = 0;
+	return function() {
+	  const now = new Date().getTime();
+	  if (now - lastCall < delay) {
+		return;
+	  }
+	  lastCall = now;
+	  func.apply(this, arguments);
+	}
+  }
+
+var selected = -1;
+
+function panelDetect(){
 	var closest = closestAngle(normalizeAngle(control.azimuthAngle)) + Math.PI;
-	console.log(closest);
 
 	for (var i = 0; i < angles.length; i++) {
-		if (closest == angles[i]) {
-			if (selected != i) panelElems[selected].classList.remove("panelSelect");
-			selected = i;
+
+		if (closest.toFixed(1) == angles[i].toFixed(1) && selected != i) {
+			if (selected != -1)
+				panelElems[selected].classList.remove("panelSelect");
+			selected = (i + 3) % 6;
 			panelElems[selected].classList.add("panelSelect");
 		}
 	}
-});
+	linkPanelPlacement();
+}
+  
+
+control.addEventListener("update", throttle(panelDetect, 10));
 
 control.addEventListener("controlend", function (e) {
 	new TWEEN.Tween(camera)
@@ -176,7 +226,17 @@ control.addEventListener("controlend", function (e) {
 		})
 		.start();
 
-		control.lookInDirectionOf(Math.sin(closestAngle(normalizeAngle(control.azimuthAngle))) * 100, 0, Math.cos(closestAngle(normalizeAngle(control.azimuthAngle))) * 100 , true )
-});
+		control.lookInDirectionOf(Math.sin(closestAngle(normalizeAngle(control.azimuthAngle))) * 100, 0, Math.cos(closestAngle(normalizeAngle(control.azimuthAngle))) * 100 , true );
+		setTimeout(function () { 
+			linkPanel.style.opacity = 1;
+
+			new TWEEN.Tween(linkLabel.position)
+			.to({ y: -panelHeight * 0.8 }, 10000)
+			.easing(TWEEN.Easing.Cubic.Out)
+			.start();
+	
+		}, 650);
+
+	});
 
 animate();
