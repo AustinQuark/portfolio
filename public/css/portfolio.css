@@ -203,11 +203,12 @@ body {
 }
 
 .panelSelect {
-    -webkit-box-shadow: 0px 0px 15px 3px #7ee5ff, inset 0px 0px 15px 0px #7ee5ff; 
-    box-shadow: 0px 0px 15px 3px #7ee5ff, inset 0px 0px 20px 1px #7ee5ff;
+    -webkit-box-shadow: 0px 0px 9px 3px #7ee5ff, inset 0px 0px 10px 1px #7ee5ff; 
+    box-shadow: 0px 0px 9px 3px #7ee5ff, inset 0px 0px 10px 1px #7ee5ff;
 }
 
 .linkPanel {
+    cursor: pointer;
     font-family: 'Ubuntu Mono';
     font-smooth: always;
     -webkit-font-smoothing : antialiased;
@@ -222,7 +223,14 @@ body {
     0px -13px 57px 20px rgba(118, 228, 255, 0.64) inset,
     0px 40px 199px 0px rgba(170,213,251,0.67) inset;
 
-    transition: opacity ease-out 0.25s;
+    transition: opacity ease-in 0.3s, box-shadow ease-out 0.15s;
+}
+
+.linkPanel:hover {
+    box-shadow: 0px 0px 40px 10px rgb(29, 29, 29) inset,
+    0px 5px 15px 7px rgba(18, 46, 42, 0.055) inset,
+    0px -13px 57px 20px rgba(118, 228, 255, 0.096) inset,
+    0px 40px 199px 0px rgba(170, 213, 251, 0.089) inset;
 }
 
 

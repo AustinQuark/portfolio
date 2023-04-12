@@ -14,7 +14,7 @@ const container = document.getElementById("cube_container");
 const scene = new THREE.Scene();
 scene.background = new THREE.Color("rgb(166, 251, 255)");
 
-const camera = new THREE.PerspectiveCamera(55, container.offsetWidth / container.offsetHeight, 1, 1100);
+const camera = new THREE.PerspectiveCamera(55, container.offsetWidth / container.offsetHeight, 1, 10000);
 camera.position.x = 1;
 
 //CSS Renderer
@@ -30,7 +30,7 @@ renderer.setPixelRatio(window.devicePixelRatio);
 
 
 //Skybox Mesh
-const skyboxGeometry = new THREE.SphereGeometry(300, 60, 40);
+const skyboxGeometry = new THREE.SphereGeometry(7000, 60, 40);
 skyboxGeometry.scale(-1, 1, 1);
 const skyboxTexture = new THREE.TextureLoader().load("../images/skybox.jpg");
 const skyboxMaterial = new THREE.MeshBasicMaterial({ map: skyboxTexture, opacity:0, transparent:true });
@@ -51,6 +51,7 @@ container.appendChild(faceRenderer.domElement);
 container.appendChild(renderer.domElement);
 
 var panelElems = [];
+var panelObjects = [];
 
 for (var i = 0; i < 6; i++) {
 	var panelElem = document.createElement("div");
@@ -69,11 +70,16 @@ for (var i = 0; i < 6; i++) {
 	label.position.z = Math.cos((i / 6) * Math.PI * 2) * rayon;
 
 	label.rotation.x = 0;
-	label.rotation.y = Math.PI * i / 3 + Math.PI;
+	label.rotation.y = Math.PI * i / 3;
 	label.rotation.z = 0;
+
+	label.scale.x = -1;
+
+	panelObjects.push(label);
 
 	scene.add(label);
 }
+
 
 var linkPanel = document.createElement("div");
 linkPanel.className = "linkPanel";
@@ -81,15 +87,16 @@ linkPanel.style.width = panelWidth + "px";
 linkPanel.style.height = panelHeight * 0.5 + "px";
 
 var linkLabel = new CSS3DObject(linkPanel);
+linkLabel.position.y = -panelHeight * 0.8;
+linkLabel.rotation.x = 0;
+linkLabel.rotation.z = 0;
+
 
 function linkPanelPlacement() {
 	linkLabel.position.x = Math.sin(control.azimuthAngle + Math.PI) * rayon;
-	linkLabel.position.y = -panelHeight * 0.8;
 	linkLabel.position.z = Math.cos(control.azimuthAngle + Math.PI) * rayon;
 
-	linkLabel.rotation.x = 0;
 	linkLabel.rotation.y = control.azimuthAngle + Math.PI;
-	linkLabel.rotation.z = 0;
 }
 
 scene.add(linkLabel);
@@ -167,13 +174,25 @@ function normalizeAngle( angle ) {
 }
 
 control.addEventListener("controlstart", function(e){
-	linkPanel.style.opacity = 0;
+	/*linkPanel.style.opacity = 0;
 
 	new TWEEN.Tween(linkLabel.position)
 		.to({ y: -panelHeight * 2 }, 1000)
 		.easing(TWEEN.Easing.Cubic.Out)
+		.start();*/
+
+
+	setTimeout(function () { 
+		linkPanel.style.opacity = 0;
+
+		new TWEEN.Tween(linkLabel.position)
+		.to({ y: -panelHeight * 2 }, 500)
+		.easing(TWEEN.Easing.Cubic.Out)
 		.start();
 
+	}, 0);
+
+	/*
 	new TWEEN.Tween(camera)
 		.to({ fov: 90 }, 500)
 		.easing(TWEEN.Easing.Cubic.Out)
@@ -181,6 +200,7 @@ control.addEventListener("controlstart", function(e){
 			camera.updateProjectionMatrix();
 		})
 		.start();
+	*/
 
 });
 
@@ -206,9 +226,15 @@ function panelDetect(){
 
 		if (closest.toFixed(1) == angles[i].toFixed(1) && selected != i) {
 			if (selected != -1)
+			{
 				panelElems[selected].classList.remove("panelSelect");
+				
+	
+			}
 			selected = (i + 3) % 6;
 			panelElems[selected].classList.add("panelSelect");
+
+			
 		}
 	}
 	linkPanelPlacement();
@@ -218,24 +244,26 @@ function panelDetect(){
 control.addEventListener("update", throttle(panelDetect, 10));
 
 control.addEventListener("controlend", function (e) {
-	new TWEEN.Tween(camera)
+		/*
+		new TWEEN.Tween(camera)
 		.to({ fov: 55 }, 500)
 		.easing(TWEEN.Easing.Cubic.Out)
 		.onUpdate(function (camera) {
 			camera.updateProjectionMatrix();
 		})
 		.start();
+		*/
 
 		control.lookInDirectionOf(Math.sin(closestAngle(normalizeAngle(control.azimuthAngle))) * 100, 0, Math.cos(closestAngle(normalizeAngle(control.azimuthAngle))) * 100 , true );
 		setTimeout(function () { 
 			linkPanel.style.opacity = 1;
 
 			new TWEEN.Tween(linkLabel.position)
-			.to({ y: -panelHeight * 0.8 }, 10000)
+			.to({ y: -panelHeight * 0.8 }, 300)
 			.easing(TWEEN.Easing.Cubic.Out)
 			.start();
 	
-		}, 650);
+		}, 500);
 
 	});
 
