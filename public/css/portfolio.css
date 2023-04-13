@@ -181,7 +181,7 @@ body {
     width: 20em;
     height: 20em;
     transform: scale(0, 0);
-    transition: all 1s cubic-bezier(0.65, 0, 0.35, 1);
+    transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .cube_pop {

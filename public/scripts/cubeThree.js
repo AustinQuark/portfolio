@@ -83,11 +83,11 @@ for (var i = 0; i < 6; i++) {
 
 var linkPanel = document.createElement("div");
 linkPanel.className = "linkPanel";
-linkPanel.style.width = panelWidth + "px";
-linkPanel.style.height = panelHeight * 0.5 + "px";
+linkPanel.style.width = panelWidth * 0.8 + "px";
+linkPanel.style.height = panelHeight * 0.3 + "px";
 
 var linkLabel = new CSS3DObject(linkPanel);
-linkLabel.position.y = -panelHeight * 0.8;
+linkLabel.position.y = -panelHeight * 0.9;
 linkLabel.rotation.x = 0;
 linkLabel.rotation.z = 0;
 
@@ -181,6 +181,9 @@ control.addEventListener("controlstart", function(e){
 		.easing(TWEEN.Easing.Cubic.Out)
 		.start();*/
 
+	if (container.classList.contains("dark")) {
+		container.classList.toggle("dark");
+	};
 
 	setTimeout(function () { 
 		linkPanel.style.opacity = 0;
@@ -192,15 +195,16 @@ control.addEventListener("controlstart", function(e){
 
 	}, 0);
 
-	/*
+	faceRenderer.domElement.style.borderRadius = "50%";
+
 	new TWEEN.Tween(camera)
-		.to({ fov: 90 }, 500)
+		.to({ fov: 65 }, 500)
 		.easing(TWEEN.Easing.Cubic.Out)
 		.onUpdate(function (camera) {
 			camera.updateProjectionMatrix();
 		})
 		.start();
-	*/
+	
 
 });
 
@@ -228,8 +232,6 @@ function panelDetect(){
 			if (selected != -1)
 			{
 				panelElems[selected].classList.remove("panelSelect");
-				
-	
 			}
 			selected = (i + 3) % 6;
 			panelElems[selected].classList.add("panelSelect");
@@ -244,7 +246,7 @@ function panelDetect(){
 control.addEventListener("update", throttle(panelDetect, 10));
 
 control.addEventListener("controlend", function (e) {
-		/*
+		
 		new TWEEN.Tween(camera)
 		.to({ fov: 55 }, 500)
 		.easing(TWEEN.Easing.Cubic.Out)
@@ -252,16 +254,20 @@ control.addEventListener("controlend", function (e) {
 			camera.updateProjectionMatrix();
 		})
 		.start();
-		*/
+		
 
 		control.lookInDirectionOf(Math.sin(closestAngle(normalizeAngle(control.azimuthAngle))) * 100, 0, Math.cos(closestAngle(normalizeAngle(control.azimuthAngle))) * 100 , true );
+		container.classList.toggle("dark");
+
 		setTimeout(function () { 
 			linkPanel.style.opacity = 1;
 
 			new TWEEN.Tween(linkLabel.position)
-			.to({ y: -panelHeight * 0.8 }, 300)
+			.to({ y: -panelHeight * 0.9 }, 300)
 			.easing(TWEEN.Easing.Cubic.Out)
 			.start();
+			
+			faceRenderer.domElement.style.borderRadius = "0";
 	
 		}, 500);
 
