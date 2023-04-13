@@ -234,9 +234,6 @@ function panelDetect(){
 				panelElems[selected].classList.remove("panelSelect");
 			}
 			selected = (i + 3) % 6;
-			panelElems[selected].classList.add("panelSelect");
-
-			
 		}
 	}
 	linkPanelPlacement();
