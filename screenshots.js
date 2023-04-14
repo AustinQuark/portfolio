@@ -16,7 +16,7 @@ const options = {
 };
 
 const items = [
-	['https://projectbar-events.com/index', 'public/images/screenshot0'],
+	['https://projectbar-events.com', 'public/images/screenshot0'],
 	['https://github.com/AustinQuark/philosophers', 'public/images/screenshot1'],
     ['https://github.com/AustinQuark/push_swap', 'public/images/screenshot2'],
     ['https://github.com/AustinQuark/VanillaStopWatch', 'public/images/screenshot3'],

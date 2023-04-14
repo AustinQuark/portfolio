@@ -104,7 +104,7 @@ function linkPanelPlacement() {
 
 linkPanelPlacement();
 
-scene.add(linkLabel);
+//scene.add(linkLabel);
 
 //Link Button Event Listener
 linkPanel.addEventListener("mouseenter", function (e) {
@@ -175,21 +175,18 @@ new TWEEN.Tween(skyboxMaterial)
 
 
 control.addEventListener("controlstart", function(e){
-	if (container.classList.contains("light")) {
-		container.classList.toggle("light");
-	};
+	//if (container.classList.contains("light")) {
+		//container.classList.toggle("light");
+	//};
 
-	setTimeout(function () { 
-		linkPanel.style.opacity = 0;
+	linkPanel.style.opacity = 0;
 
-		new TWEEN.Tween(linkLabel.position)
-		.to({ y: -panelHeight * 2 }, 500)
-		.easing(TWEEN.Easing.Cubic.Out)
-		.start();
+	new TWEEN.Tween(linkLabel.position)
+	.to({ y: -panelHeight * 2 }, 500)
+	.easing(TWEEN.Easing.Cubic.Out)
+	.start();
 
-	}, 0);
 
-	faceRenderer.domElement.style.borderRadius = "50%";
 
 	new TWEEN.Tween(camera)
 		.to({ fov: 65 }, 500)
@@ -203,31 +200,32 @@ control.addEventListener("controlstart", function(e){
 });
 
 control.addEventListener("controlend", function (e) {
-		
+	control.lookInDirectionOf(Math.sin(closestAngle(normalizeAngle(control.azimuthAngle))) * 100, 0, Math.cos(closestAngle(normalizeAngle(control.azimuthAngle))) * 100 , true );
+	//container.classList.toggle("light");
+});
+
+control.addEventListener("control", function (e) {
+	faceRenderer.domElement.style.borderRadius = "50%";
+});
+
+control.addEventListener("rest", function (e) {
+	faceRenderer.domElement.style.borderRadius = "0";
+
+	linkPanel.style.opacity = 1;
+
+	new TWEEN.Tween(linkLabel.position)
+	.to({ y: -panelHeight * 0.9 }, 300)
+	.easing(TWEEN.Easing.Cubic.Out)
+	.start();
+
+
 	new TWEEN.Tween(camera)
-	.to({ fov: 55 }, 500)
+	.to({ fov: 50 }, 500)
 	.easing(TWEEN.Easing.Cubic.Out)
 	.onUpdate(function (camera) {
 		camera.updateProjectionMatrix();
 	})
 	.start();
-	
-
-	control.lookInDirectionOf(Math.sin(closestAngle(normalizeAngle(control.azimuthAngle))) * 100, 0, Math.cos(closestAngle(normalizeAngle(control.azimuthAngle))) * 100 , true );
-	container.classList.toggle("light");
-
-	setTimeout(function () { 
-		linkPanel.style.opacity = 1;
-
-		new TWEEN.Tween(linkLabel.position)
-		.to({ y: -panelHeight * 0.9 }, 300)
-		.easing(TWEEN.Easing.Cubic.Out)
-		.start();
-		
-		faceRenderer.domElement.style.borderRadius = "0";
-
-	}, 500);
-
 });
 
 function throttle(func, delay) {
