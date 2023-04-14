@@ -11,6 +11,7 @@ var panelWidth = 1280;
 var panelHeight = 720;
 var panelElems = [];
 var panelObjects = [];
+var angles = [0, Math.PI * 2 / 6, Math.PI * 4 / 6, Math.PI * 6 / 6, Math.PI * 8 / 6, Math.PI * 10 / 6];
 
 //DOM Container
 const container = document.getElementById("cube_container");
@@ -42,6 +43,7 @@ skyboxGeometry.scale(-1, 1, 1);
 const skyboxTexture = new THREE.TextureLoader().load("../images/skybox.jpg");
 const skyboxMaterial = new THREE.MeshBasicMaterial({ map: skyboxTexture, opacity:0, transparent:true });
 const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
+scene.add(skybox);
 
 //Orbit Control
 CameraControls.install({ THREE: THREE });
@@ -93,17 +95,18 @@ linkLabel.position.y = -panelHeight * 0.9;
 linkLabel.rotation.x = 0;
 linkLabel.rotation.z = 0;
 
+//Reposition Link Button depending on control.azimuthAngle
 function linkPanelPlacement() {
 	linkLabel.position.x = Math.sin(control.azimuthAngle + Math.PI) * rayon;
 	linkLabel.position.z = Math.cos(control.azimuthAngle + Math.PI) * rayon;
-
 	linkLabel.rotation.y = control.azimuthAngle + Math.PI;
 }
 
-scene.add(linkLabel);
-
 linkPanelPlacement();
 
+scene.add(linkLabel);
+
+//Link Button Event Listener
 linkPanel.addEventListener("mouseenter", function (e) {
 	if (!control.currentAction) control.enabled = false;
 });
@@ -111,10 +114,6 @@ linkPanel.addEventListener("mouseenter", function (e) {
 linkPanel.addEventListener("mouseleave", function (e) {
 	control.enabled = true;
 });
-
-
-
-scene.add(skybox);
 
 //Resizer (source : https://discoverthreejs.com/book/first-steps/responsive-design/)
 const setSize = (container, camera, renderer, faceRenderer) => {
@@ -138,27 +137,7 @@ class Resizer {
 	}
 }
 
-const clock = new THREE.Clock();
-
-function animate() {
-    const delta = clock.getDelta();
-    control.update(delta);
-	TWEEN.update();
-	const resize = new Resizer(container, camera, renderer, faceRenderer);
-	faceRenderer.render(scene, camera);
-	renderer.render(scene, camera);
-	requestAnimationFrame(animate);
-}
-
-container.classList.add("cube_pop");
-new TWEEN.Tween(skyboxMaterial)
-    .to({ opacity: 1 }, 3000)
-    .easing(TWEEN.Easing.Cubic.Out)
-    .start();
-
-
-var angles = [0, Math.PI * 2 / 6, Math.PI * 4 / 6, Math.PI * 6 / 6, Math.PI * 8 / 6, Math.PI * 10 / 6];
-
+//Closest Angle
 function closestAngle(angle) {
 	var closest = angles[0];
 	for (var i = 0; i < angles.length; i++) {
@@ -174,16 +153,30 @@ function normalizeAngle( angle ) {
 	return THREE.MathUtils.euclideanModulo( angle, 2 * Math.PI );
 }
 
+const clock = new THREE.Clock();
+
+//The Loop
+function animate() {
+    const delta = clock.getDelta();
+    control.update(delta);
+	TWEEN.update();
+	new Resizer(container, camera, renderer, faceRenderer);
+	faceRenderer.render(scene, camera);
+	renderer.render(scene, camera);
+	requestAnimationFrame(animate);
+}
+
+//Start Animation
+container.classList.add("cube_pop");
+new TWEEN.Tween(skyboxMaterial)
+    .to({ opacity: 1 }, 3000)
+    .easing(TWEEN.Easing.Cubic.Out)
+    .start();
+
+
 control.addEventListener("controlstart", function(e){
-	/*linkPanel.style.opacity = 0;
-
-	new TWEEN.Tween(linkLabel.position)
-		.to({ y: -panelHeight * 2 }, 1000)
-		.easing(TWEEN.Easing.Cubic.Out)
-		.start();*/
-
-	if (container.classList.contains("dark")) {
-		container.classList.toggle("dark");
+	if (container.classList.contains("light")) {
+		container.classList.toggle("light");
 	};
 
 	setTimeout(function () { 
@@ -209,6 +202,33 @@ control.addEventListener("controlstart", function(e){
 
 });
 
+control.addEventListener("controlend", function (e) {
+		
+	new TWEEN.Tween(camera)
+	.to({ fov: 55 }, 500)
+	.easing(TWEEN.Easing.Cubic.Out)
+	.onUpdate(function (camera) {
+		camera.updateProjectionMatrix();
+	})
+	.start();
+	
+
+	control.lookInDirectionOf(Math.sin(closestAngle(normalizeAngle(control.azimuthAngle))) * 100, 0, Math.cos(closestAngle(normalizeAngle(control.azimuthAngle))) * 100 , true );
+	container.classList.toggle("light");
+
+	setTimeout(function () { 
+		linkPanel.style.opacity = 1;
+
+		new TWEEN.Tween(linkLabel.position)
+		.to({ y: -panelHeight * 0.9 }, 300)
+		.easing(TWEEN.Easing.Cubic.Out)
+		.start();
+		
+		faceRenderer.domElement.style.borderRadius = "0";
+
+	}, 500);
+
+});
 
 function throttle(func, delay) {
 	let lastCall = 0;
@@ -235,6 +255,7 @@ function panelDetect(){
 				panelElems[selected].classList.remove("panelSelect");
 			}
 			selected = (i + 3) % 6;
+			panelElems[selected].classList.add("panelSelect");
 		}
 	}
 	linkPanelPlacement();
@@ -242,33 +263,5 @@ function panelDetect(){
   
 
 control.addEventListener("update", throttle(panelDetect, 10));
-
-control.addEventListener("controlend", function (e) {
-		
-		new TWEEN.Tween(camera)
-		.to({ fov: 55 }, 500)
-		.easing(TWEEN.Easing.Cubic.Out)
-		.onUpdate(function (camera) {
-			camera.updateProjectionMatrix();
-		})
-		.start();
-		
-
-		control.lookInDirectionOf(Math.sin(closestAngle(normalizeAngle(control.azimuthAngle))) * 100, 0, Math.cos(closestAngle(normalizeAngle(control.azimuthAngle))) * 100 , true );
-		container.classList.toggle("dark");
-
-		setTimeout(function () { 
-			linkPanel.style.opacity = 1;
-
-			new TWEEN.Tween(linkLabel.position)
-			.to({ y: -panelHeight * 0.9 }, 300)
-			.easing(TWEEN.Easing.Cubic.Out)
-			.start();
-			
-			faceRenderer.domElement.style.borderRadius = "0";
-	
-		}, 500);
-
-	});
 
 animate();
