@@ -5,15 +5,21 @@ import CameraControls from "./camera-controls.module.js";
 import { CSS3DRenderer, CSS3DObject  } from "./CSS3DRenderer.js";
 import { TWEEN } from "./tween.module.min.js";
 
+//Variables
 var rayon = 1420;
 var panelWidth = 1280;
 var panelHeight = 720;
+var panelElems = [];
+var panelObjects = [];
 
+//DOM Container
 const container = document.getElementById("cube_container");
 
+//Scene
 const scene = new THREE.Scene();
 scene.background = new THREE.Color("rgb(166, 251, 255)");
 
+//Camera
 const camera = new THREE.PerspectiveCamera(55, container.offsetWidth / container.offsetHeight, 1, 10000);
 camera.position.x = 1;
 
@@ -22,21 +28,22 @@ const faceRenderer = new CSS3DRenderer({antialias: true});
 faceRenderer.domElement.style.borderRadius = "50%";
 faceRenderer.domElement.style.position = "absolute";
 
-
-//Standart Renderer
+//Standard Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true , alpha: true});
 renderer.domElement.style.borderRadius = "50%";
 renderer.setPixelRatio(window.devicePixelRatio);
 
+container.appendChild(faceRenderer.domElement);
+container.appendChild(renderer.domElement);
 
-//Skybox Mesh
+//Skybox
 const skyboxGeometry = new THREE.SphereGeometry(7000, 60, 40);
 skyboxGeometry.scale(-1, 1, 1);
 const skyboxTexture = new THREE.TextureLoader().load("../images/skybox.jpg");
 const skyboxMaterial = new THREE.MeshBasicMaterial({ map: skyboxTexture, opacity:0, transparent:true });
 const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
 
-//Orbit Control for Desktop
+//Orbit Control
 CameraControls.install({ THREE: THREE });
 var control = new CameraControls(camera, faceRenderer.domElement);
 control.enableDamping = true;
@@ -47,40 +54,35 @@ control.azimuthRotateSpeed = 0.3;
 control.polarRotateSpeed = 0;
 control.draggingSmoothTime = 0.1;
 
-container.appendChild(faceRenderer.domElement);
-container.appendChild(renderer.domElement);
-
-var panelElems = [];
-var panelObjects = [];
-
+//Setup Screens
 for (var i = 0; i < 6; i++) {
 	var panelElem = document.createElement("div");
+
 	panelElem.className = "panel";
 	panelElem.style.width = panelWidth + "px";
 	panelElem.style.height = panelHeight + "px";
 	panelElem.style.backgroundImage = "url(images/screenshot" + i + ".png)";
 	panelElem.style.backgroundSize = "cover";
 	panelElem.style.borderRadius = "20px";
-	panelElems.push(panelElem);
+
 
 	var label = new CSS3DObject(panelElem);
 
 	label.position.x = Math.sin((i / 6) * Math.PI * 2) * rayon;
 	label.position.y = 0;
 	label.position.z = Math.cos((i / 6) * Math.PI * 2) * rayon;
-
 	label.rotation.x = 0;
 	label.rotation.y = Math.PI * i / 3;
 	label.rotation.z = 0;
-
 	label.scale.x = -1;
 
+	panelElems.push(panelElem);
 	panelObjects.push(label);
 
 	scene.add(label);
 }
 
-
+//Link Button
 var linkPanel = document.createElement("div");
 linkPanel.className = "linkPanel";
 linkPanel.style.width = panelWidth * 0.8 + "px";
@@ -90,7 +92,6 @@ var linkLabel = new CSS3DObject(linkPanel);
 linkLabel.position.y = -panelHeight * 0.9;
 linkLabel.rotation.x = 0;
 linkLabel.rotation.z = 0;
-
 
 function linkPanelPlacement() {
 	linkLabel.position.x = Math.sin(control.azimuthAngle + Math.PI) * rayon;
