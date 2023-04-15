@@ -175,18 +175,19 @@ new TWEEN.Tween(skyboxMaterial)
 
 
 control.addEventListener("controlstart", function(e){
-	//if (container.classList.contains("light")) {
-		//container.classList.toggle("light");
-	//};
 
+	faceRenderer.domElement.style.borderRadius = "50%";
+	if (container.classList.contains("light")) 
+	{
+		container.classList.toggle("light");
+		
+	}
 	linkPanel.style.opacity = 0;
 
 	new TWEEN.Tween(linkLabel.position)
 	.to({ y: -panelHeight * 2 }, 500)
 	.easing(TWEEN.Easing.Cubic.Out)
 	.start();
-
-
 
 	new TWEEN.Tween(camera)
 		.to({ fov: 65 }, 500)
@@ -195,21 +196,10 @@ control.addEventListener("controlstart", function(e){
 			camera.updateProjectionMatrix();
 		})
 		.start();
-	
-
 });
 
 control.addEventListener("controlend", function (e) {
 	control.lookInDirectionOf(Math.sin(closestAngle(normalizeAngle(control.azimuthAngle))) * 100, 0, Math.cos(closestAngle(normalizeAngle(control.azimuthAngle))) * 100 , true );
-	//container.classList.toggle("light");
-});
-
-control.addEventListener("control", function (e) {
-	faceRenderer.domElement.style.borderRadius = "50%";
-});
-
-control.addEventListener("rest", function (e) {
-	faceRenderer.domElement.style.borderRadius = "0";
 
 	linkPanel.style.opacity = 1;
 
@@ -218,14 +208,19 @@ control.addEventListener("rest", function (e) {
 	.easing(TWEEN.Easing.Cubic.Out)
 	.start();
 
+	setTimeout(function () {
+		faceRenderer.domElement.style.borderRadius = "0";
+		container.classList.toggle("light");
 
-	new TWEEN.Tween(camera)
-	.to({ fov: 50 }, 500)
-	.easing(TWEEN.Easing.Cubic.Out)
-	.onUpdate(function (camera) {
-		camera.updateProjectionMatrix();
-	})
-	.start();
+		new TWEEN.Tween(camera)
+		.to({ fov: 50 }, 500)
+		.easing(TWEEN.Easing.Cubic.Out)
+		.onUpdate(function (camera) {
+			camera.updateProjectionMatrix();
+		})
+		.start();
+	}, 250);
+
 });
 
 function throttle(func, delay) {
@@ -253,13 +248,13 @@ function panelDetect(){
 				panelElems[selected].classList.remove("panelSelect");
 			}
 			selected = (i + 3) % 6;
-			panelElems[selected].classList.add("panelSelect");
+			if (!container.classList.contains("light")) panelElems[selected].classList.add("panelSelect");
 		}
 	}
 	linkPanelPlacement();
 }
   
 
-control.addEventListener("update", throttle(panelDetect, 10));
+control.addEventListener("update", throttle(panelDetect, 50));
 
 animate();
