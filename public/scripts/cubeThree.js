@@ -87,11 +87,11 @@ for (var i = 0; i < 6; i++) {
 //Link Button
 var linkPanel = document.createElement("div");
 linkPanel.className = "linkPanel";
-linkPanel.style.width = panelWidth * 0.8 + "px";
+linkPanel.style.width = panelWidth * 0.65 + "px";
 linkPanel.style.height = panelHeight * 0.3 + "px";
 
 var linkLabel = new CSS3DObject(linkPanel);
-linkLabel.position.y = -panelHeight * 0.9;
+linkLabel.position.y = -panelHeight * 2;
 linkLabel.rotation.x = 0;
 linkLabel.rotation.z = 0;
 
@@ -104,7 +104,7 @@ function linkPanelPlacement() {
 
 linkPanelPlacement();
 
-//scene.add(linkLabel);
+scene.add(linkLabel);
 
 //Link Button Event Listener
 linkPanel.addEventListener("mouseenter", function (e) {
@@ -177,12 +177,7 @@ new TWEEN.Tween(skyboxMaterial)
 control.addEventListener("controlstart", function(e){
 
 	faceRenderer.domElement.style.borderRadius = "50%";
-	if (container.classList.contains("light")) 
-	{
-		container.classList.toggle("light");
-		
-	}
-	linkPanel.style.opacity = 0;
+	if (container.classList.contains("light")) container.classList.toggle("light");
 
 	new TWEEN.Tween(linkLabel.position)
 	.to({ y: -panelHeight * 2 }, 500)
@@ -203,10 +198,6 @@ control.addEventListener("controlend", function (e) {
 
 	linkPanel.style.opacity = 1;
 
-	new TWEEN.Tween(linkLabel.position)
-	.to({ y: -panelHeight * 0.9 }, 300)
-	.easing(TWEEN.Easing.Cubic.Out)
-	.start();
 
 	setTimeout(function () {
 		faceRenderer.domElement.style.borderRadius = "0";
@@ -219,6 +210,12 @@ control.addEventListener("controlend", function (e) {
 			camera.updateProjectionMatrix();
 		})
 		.start();
+
+		new TWEEN.Tween(linkLabel.position)
+		.to({ y: -panelHeight * 0.7 }, 750)
+		.easing(TWEEN.Easing.Cubic.Out)
+		.start();
+	
 	}, 250);
 
 });
