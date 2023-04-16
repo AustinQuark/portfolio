@@ -100,7 +100,7 @@ linkPanel.className = "linkPanel";
 linkPanel.style.width = panelWidth * 0.65 + "px";
 linkPanel.style.height = panelHeight * 0.3 + "px";
 
-var linkContent = document.createElement("button");
+var linkContent = document.createElement("a");
 linkContent.className = "linkContent";
 linkContent.innerHTML = "Visit link";
 linkPanel.appendChild(linkContent);
@@ -260,6 +260,9 @@ function panelDetect(){
 			}
 			selected = (i + 3) % 6;
 			if (!container.classList.contains("light")) panelElems[selected].classList.add("panelSelect");
+			linkContent.href = links[selected];
+			linkContent.target = "_blank";
+
 		}
 	}
 	linkPanelPlacement();

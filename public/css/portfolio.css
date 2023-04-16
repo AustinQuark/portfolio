@@ -231,7 +231,7 @@ body {
     background-color: #2d333a00;
     color: white;
     letter-spacing: 2px;
-    font-size: 3em;
+    font-size: 2.7em;
     font-weight: bold;
     width: 100%;
     height: 100%;
@@ -241,6 +241,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
 }
 
 .linkContent::before {
@@ -248,13 +249,13 @@ body {
     display: inline-flex;
     background-image: url('../images/link-external.svg');
     background-size: 100%;
-    width: 1.75em;
-    height: 1.75em;
+    width: 1.5em;
+    height: 1.5em;
     margin-right: 0.5em;
 }
 
 .linkContent:hover {
-    color: #8acad3;
+    color: #d5f9fd;
 }
 
 .linkPanel:hover {
