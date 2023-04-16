@@ -209,7 +209,6 @@ control.addEventListener("controlstart", function(e){
 });
 
 control.addEventListener("controlend", function (e) {
-	panelDetect();
 
 	new TWEEN.Tween(linkLabel.position)
 	.to({ y: -panelHeight * 0.7 }, 500)
@@ -233,6 +232,7 @@ control.addEventListener("controlend", function (e) {
 	
 	}, 250);
 
+	panelDetect();
 });
 
 function throttle(func, delay) {
@@ -250,6 +250,8 @@ function throttle(func, delay) {
 var selected = -1;
 
 function panelDetect(){
+	linkPanelPlacement();
+
 	var closest = closestAngle(normalizeAngle(control.azimuthAngle)) + Math.PI;
 
 	for (var i = 0; i < angles.length; i++) {
@@ -268,9 +270,6 @@ function panelDetect(){
 	}
 }
 
-control.addEventListener("update", function() {
-	linkPanelPlacement();
-	throttle(panelDetect, 100);
-});
+control.addEventListener("update", throttle(panelDetect, 10));
 
 animate();
