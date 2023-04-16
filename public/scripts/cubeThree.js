@@ -221,6 +221,7 @@ control.addEventListener("controlend", function (e) {
 	setTimeout(function () {
 		faceRenderer.domElement.style.borderRadius = "0";
 		if (!container.classList.contains("light")) container.classList.toggle("light");
+		if (panelElems[selected].classList.contains("panelSelect")) panelElems[selected].classList.remove("panelSelect");
 
 		new TWEEN.Tween(camera)
 		.to({ fov: 50 }, 500)
@@ -233,7 +234,6 @@ control.addEventListener("controlend", function (e) {
 	
 	}, 250);
 
-	panelDetect();
 });
 
 function throttle(func, delay) {
@@ -260,13 +260,13 @@ function panelDetect(){
 		if (closest.toFixed(1) == angles[i].toFixed(1) && selected != i) {
 			if (selected != -1)
 			{
-				panelElems[selected].classList.toggle("panelSelect");
+				panelElems[selected].classList.remove("panelSelect");
 			}
 			selected = (i + 3) % 6;
-			if (!container.classList.contains("light")) panelElems[selected].classList.toggle("panelSelect");
+			if (!container.classList.contains("light")) panelElems[selected].classList.add("panelSelect");
 			linkContent.href = links[selected];
 			linkContent.target = "_blank";
-			return ;
+
 		}
 	}
 }
