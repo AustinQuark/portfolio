@@ -260,13 +260,13 @@ function panelDetect(){
 		if (closest.toFixed(1) == angles[i].toFixed(1) && selected != i) {
 			if (selected != -1)
 			{
-				panelElems[selected].classList.remove("panelSelect");
+				panelElems[selected].classList.toggle("panelSelect");
 			}
 			selected = (i + 3) % 6;
-			if (!container.classList.contains("light")) panelElems[selected].classList.add("panelSelect");
+			if (!container.classList.contains("light")) panelElems[selected].classList.toggle("panelSelect");
 			linkContent.href = links[selected];
 			linkContent.target = "_blank";
-
+			return ;
 		}
 	}
 }
