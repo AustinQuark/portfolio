@@ -35,12 +35,12 @@ const camera = new THREE.PerspectiveCamera(55, container.offsetWidth / container
 camera.position.x = 1;
 
 //CSS Renderer
-const faceRenderer = new CSS3DRenderer({antialias: true});
+const faceRenderer = new CSS3DRenderer({antialias: false});
 faceRenderer.domElement.style.borderRadius = "50%";
 faceRenderer.domElement.style.position = "absolute";
 
 //Standard Renderer
-const renderer = new THREE.WebGLRenderer({ antialias: true , alpha: true});
+const renderer = new THREE.WebGLRenderer({ antialias: false , alpha: true});
 renderer.domElement.style.borderRadius = "50%";
 renderer.setPixelRatio(window.devicePixelRatio);
 
@@ -48,7 +48,7 @@ container.appendChild(faceRenderer.domElement);
 container.appendChild(renderer.domElement);
 
 //Skybox
-const skyboxGeometry = new THREE.SphereGeometry(7000, 60, 40);
+const skyboxGeometry = new THREE.SphereGeometry(2000, 60, 40);
 skyboxGeometry.scale(-1, 1, 1);
 const skyboxTexture = new THREE.TextureLoader().load("../images/skybox.jpg");
 const skyboxMaterial = new THREE.MeshBasicMaterial({ map: skyboxTexture, opacity:0, transparent:true });
@@ -209,6 +209,7 @@ control.addEventListener("controlstart", function(e){
 });
 
 control.addEventListener("controlend", function (e) {
+	panelDetect();
 
 	new TWEEN.Tween(linkLabel.position)
 	.to({ y: -panelHeight * 0.7 }, 500)
@@ -219,7 +220,7 @@ control.addEventListener("controlend", function (e) {
 
 	setTimeout(function () {
 		faceRenderer.domElement.style.borderRadius = "0";
-		container.classList.toggle("light");
+		if (!container.classList.contains("light")) container.classList.toggle("light");
 
 		new TWEEN.Tween(camera)
 		.to({ fov: 50 }, 500)
@@ -265,9 +266,11 @@ function panelDetect(){
 
 		}
 	}
-	linkPanelPlacement();
 }
 
-control.addEventListener("update", throttle(panelDetect, 50));
+control.addEventListener("update", function() {
+	linkPanelPlacement();
+	throttle(panelDetect, 100);
+});
 
 animate();
