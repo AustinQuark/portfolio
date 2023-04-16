@@ -5,13 +5,23 @@ import CameraControls from "./camera-controls.module.js";
 import { CSS3DRenderer, CSS3DObject  } from "./CSS3DRenderer.js";
 import { TWEEN } from "./tween.module.min.js";
 
+
 //Variables
-var rayon = 1420;
-var panelWidth = 1280;
-var panelHeight = 720;
+const rayon = 1420;
+const panelWidth = 1280;
+const panelHeight = 720;
 var panelElems = [];
 var panelObjects = [];
-var angles = [0, Math.PI * 2 / 6, Math.PI * 4 / 6, Math.PI * 6 / 6, Math.PI * 8 / 6, Math.PI * 10 / 6];
+const angles = [0, Math.PI * 2 / 6, Math.PI * 4 / 6, Math.PI * 6 / 6, Math.PI * 8 / 6, Math.PI * 10 / 6];
+const links = [
+	'https://projectbar-events.com',
+	'https://github.com/AustinQuark/philosophers',
+    'https://github.com/AustinQuark/push_swap',
+    'https://github.com/AustinQuark/VanillaStopWatch',
+    'https://github.com/AustinQuark/cub3D',
+    'https://github.com/AustinQuark/minishell_42'
+];
+
 
 //DOM Container
 const container = document.getElementById("cube_container");
@@ -90,6 +100,11 @@ linkPanel.className = "linkPanel";
 linkPanel.style.width = panelWidth * 0.65 + "px";
 linkPanel.style.height = panelHeight * 0.3 + "px";
 
+var linkContent = document.createElement("button");
+linkContent.className = "linkContent";
+linkContent.innerHTML = "Visit link";
+linkPanel.appendChild(linkContent);
+
 var linkLabel = new CSS3DObject(linkPanel);
 linkLabel.position.y = -panelHeight * 2;
 linkLabel.rotation.x = 0;
@@ -99,7 +114,7 @@ linkLabel.rotation.z = 0;
 function linkPanelPlacement() {
 	linkLabel.position.x = Math.sin(control.azimuthAngle + Math.PI) * rayon;
 	linkLabel.position.z = Math.cos(control.azimuthAngle + Math.PI) * rayon;
-	linkLabel.rotation.y = control.azimuthAngle + Math.PI;
+	linkLabel.rotation.y = control.azimuthAngle;
 }
 
 linkPanelPlacement();
@@ -194,10 +209,13 @@ control.addEventListener("controlstart", function(e){
 });
 
 control.addEventListener("controlend", function (e) {
+
+	new TWEEN.Tween(linkLabel.position)
+	.to({ y: -panelHeight * 0.7 }, 500)
+	.easing(TWEEN.Easing.Cubic.Out)
+	.start();
+
 	control.lookInDirectionOf(Math.sin(closestAngle(normalizeAngle(control.azimuthAngle))) * 100, 0, Math.cos(closestAngle(normalizeAngle(control.azimuthAngle))) * 100 , true );
-
-	linkPanel.style.opacity = 1;
-
 
 	setTimeout(function () {
 		faceRenderer.domElement.style.borderRadius = "0";
@@ -211,10 +229,6 @@ control.addEventListener("controlend", function (e) {
 		})
 		.start();
 
-		new TWEEN.Tween(linkLabel.position)
-		.to({ y: -panelHeight * 0.7 }, 750)
-		.easing(TWEEN.Easing.Cubic.Out)
-		.start();
 	
 	}, 250);
 
@@ -250,7 +264,6 @@ function panelDetect(){
 	}
 	linkPanelPlacement();
 }
-  
 
 control.addEventListener("update", throttle(panelDetect, 50));
 

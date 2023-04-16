@@ -24,6 +24,9 @@ const items = [
     ['https://github.com/AustinQuark/minishell_42', 'public/images/screenshot5']
 ];
 
+console.log('Do not forget to update links in cubeThree.js !');
+
 await Promise.all(items.map(([url, filename]) => {
 	return captureWebsite.file(url, `${filename}.png`, options);
 }));
+
