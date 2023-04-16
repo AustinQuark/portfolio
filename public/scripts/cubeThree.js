@@ -51,7 +51,7 @@ container.appendChild(renderer.domElement);
 //Skybox
 const skyboxGeometry = new THREE.SphereGeometry(2000, 60, 40);
 skyboxGeometry.scale(-1, 1, 1);
-const skyboxTexture = new THREE.TextureLoader().load("../images/skybox.jpg");
+const skyboxTexture = new THREE.TextureLoader().load("../images/skybox.webp");
 const skyboxMaterial = new THREE.MeshBasicMaterial({ map: skyboxTexture, opacity:0, transparent:true });
 const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
 scene.add(skybox);
