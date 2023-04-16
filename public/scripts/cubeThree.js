@@ -26,6 +26,7 @@ const links = [
 //DOM Container
 const container = document.getElementById("cube_container");
 
+
 //Scene
 const scene = new THREE.Scene();
 scene.background = new THREE.Color("rgb(166, 251, 255)");
@@ -270,6 +271,6 @@ function panelDetect(){
 	}
 }
 
-control.addEventListener("update", throttle(panelDetect, 10));
+control.addEventListener("update", throttle(panelDetect, 20));
 
 animate();
