@@ -43,6 +43,7 @@ faceRenderer.domElement.style.position = "absolute";
 //Standard Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: false , alpha: true});
 renderer.domElement.style.borderRadius = "50%";
+renderer.domElement.style.transition = "all 0.5s ease-in-out";
 renderer.setPixelRatio(window.devicePixelRatio);
 
 container.appendChild(faceRenderer.domElement);
@@ -55,6 +56,7 @@ const skyboxTexture = new THREE.TextureLoader().load("../images/skybox.webp");
 const skyboxMaterial = new THREE.MeshBasicMaterial({ map: skyboxTexture, opacity:0, transparent:true });
 const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
 scene.add(skybox);
+
 
 //Orbit Control
 CameraControls.install({ THREE: THREE });
@@ -104,7 +106,7 @@ linkPanel.style.height = panelHeight * 0.3 + "px";
 
 var linkContent = document.createElement("a");
 linkContent.className = "linkContent";
-linkContent.innerHTML = "Visit link";
+linkContent.innerHTML = "Check My Work";
 linkPanel.appendChild(linkContent);
 
 var linkLabel = new CSS3DObject(linkPanel);
@@ -186,20 +188,24 @@ function animate() {
 //Start Animation
 container.classList.add("cube_pop");
 new TWEEN.Tween(skyboxMaterial)
-    .to({ opacity: 1 }, 3000)
+    .to({ opacity: 1 }, 1500)
     .easing(TWEEN.Easing.Cubic.Out)
     .start();
 
 
 control.addEventListener("controlstart", function(e){
 
-	faceRenderer.domElement.style.borderRadius = "50%";
-	if (container.classList.contains("light")) container.classList.toggle("light");
+	if (renderer.domElement.classList.contains("light")) renderer.domElement.classList.toggle("light");
+
 
 	new TWEEN.Tween(linkLabel.position)
 	.to({ y: -panelHeight * 1.5 }, 500)
-	.easing(TWEEN.Easing.Cubic.Out)
+	.easing(TWEEN.Easing.Exponential.Out)
 	.start();
+
+	setTimeout(function () {
+		faceRenderer.domElement.style.borderRadius = "50%";
+	}, 100);
 
 	new TWEEN.Tween(camera)
 		.to({ fov: 65 }, 500)
@@ -208,6 +214,7 @@ control.addEventListener("controlstart", function(e){
 			camera.updateProjectionMatrix();
 		})
 		.start();
+
 });
 
 control.addEventListener("controlend", function (e) {
@@ -220,7 +227,7 @@ control.addEventListener("controlend", function (e) {
 	control.lookInDirectionOf(Math.sin(closestAngle(normalizeAngle(control.azimuthAngle))) * 100, 0, Math.cos(closestAngle(normalizeAngle(control.azimuthAngle))) * 100 , true );
 
 	setTimeout(function () {
-		if (!container.classList.contains("light")) container.classList.toggle("light");
+		if (!renderer.domElement.classList.contains("light")) renderer.domElement.classList.toggle("light");
 		if (panelElems[selected].classList.contains("panelSelect")) 
 		{
 			panelElems[selected].classList.remove("panelSelect");
@@ -236,7 +243,7 @@ control.addEventListener("controlend", function (e) {
 
 		setTimeout(function () {
 			faceRenderer.domElement.style.borderRadius = "0%";
-			}, 200);
+			}, 300);
 
 	
 	}, 275);
@@ -270,7 +277,7 @@ function panelDetect(){
 				panelElems[selected].classList.remove("panelSelect");
 			}
 			selected = (i + 3) % 6;
-			if (!container.classList.contains("light"))
+			if (!renderer.domElement.classList.contains("light"))
 			{
 				panelElems[selected].classList.add("panelSelect");
 				panelElems[selected].classList.remove("panelIdle");
@@ -282,6 +289,6 @@ function panelDetect(){
 	}
 }
 
-control.addEventListener("update", throttle(panelDetect, 20));
+control.addEventListener("update", throttle(panelDetect, 10));
 
 animate();
