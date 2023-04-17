@@ -72,6 +72,7 @@ for (var i = 0; i < 6; i++) {
 	var panelElem = document.createElement("div");
 
 	panelElem.className = "panel";
+	panelElem.classList.add("panel_shadow");
 	panelElem.style.width = panelWidth + "px";
 	panelElem.style.height = panelHeight + "px";
 	panelElem.style.backgroundImage = "url(images/screenshot" + i + ".png)";
@@ -196,13 +197,13 @@ control.addEventListener("controlstart", function(e){
 	if (container.classList.contains("light")) container.classList.toggle("light");
 
 	new TWEEN.Tween(linkLabel.position)
-	.to({ y: -panelHeight * 2 }, 500)
+	.to({ y: -panelHeight * 1.5 }, 500)
 	.easing(TWEEN.Easing.Cubic.Out)
 	.start();
 
 	new TWEEN.Tween(camera)
 		.to({ fov: 65 }, 500)
-		.easing(TWEEN.Easing.Cubic.Out)
+		.easing(TWEEN.Easing.Quartic.Out)
 		.onUpdate(function (camera) {
 			camera.updateProjectionMatrix();
 		})
@@ -212,27 +213,33 @@ control.addEventListener("controlstart", function(e){
 control.addEventListener("controlend", function (e) {
 
 	new TWEEN.Tween(linkLabel.position)
-	.to({ y: -panelHeight * 0.7 }, 500)
-	.easing(TWEEN.Easing.Cubic.Out)
+	.to({ y: -panelHeight * 0.7 }, 400)
+	.easing(TWEEN.Easing.Cubic.InOut)
 	.start();
 
 	control.lookInDirectionOf(Math.sin(closestAngle(normalizeAngle(control.azimuthAngle))) * 100, 0, Math.cos(closestAngle(normalizeAngle(control.azimuthAngle))) * 100 , true );
 
 	setTimeout(function () {
-		faceRenderer.domElement.style.borderRadius = "0";
 		if (!container.classList.contains("light")) container.classList.toggle("light");
-		if (panelElems[selected].classList.contains("panelSelect")) panelElems[selected].classList.remove("panelSelect");
-
+		if (panelElems[selected].classList.contains("panelSelect")) 
+		{
+			panelElems[selected].classList.remove("panelSelect");
+			panelElems[selected].classList.add("panelIdle");
+		}
 		new TWEEN.Tween(camera)
-		.to({ fov: 50 }, 500)
-		.easing(TWEEN.Easing.Cubic.Out)
+		.to({ fov: 50 }, 600)
+		.easing(TWEEN.Easing.Quintic.InOut)
 		.onUpdate(function (camera) {
 			camera.updateProjectionMatrix();
 		})
 		.start();
 
+		setTimeout(function () {
+			faceRenderer.domElement.style.borderRadius = "0%";
+			}, 200);
+
 	
-	}, 250);
+	}, 275);
 
 });
 
@@ -263,7 +270,11 @@ function panelDetect(){
 				panelElems[selected].classList.remove("panelSelect");
 			}
 			selected = (i + 3) % 6;
-			if (!container.classList.contains("light")) panelElems[selected].classList.add("panelSelect");
+			if (!container.classList.contains("light"))
+			{
+				panelElems[selected].classList.add("panelSelect");
+				panelElems[selected].classList.remove("panelIdle");
+			}
 			linkContent.href = links[selected];
 			linkContent.target = "_blank";
 
