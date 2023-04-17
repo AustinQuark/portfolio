@@ -198,13 +198,14 @@ control.addEventListener("controlstart", function(e){
 	if (renderer.domElement.classList.contains("light")) renderer.domElement.classList.toggle("light");
 
 
-	new TWEEN.Tween(linkLabel.position)
-	.to({ y: -panelHeight * 1.5 }, 500)
-	.easing(TWEEN.Easing.Exponential.Out)
-	.start();
 
 	setTimeout(function () {
 		faceRenderer.domElement.style.borderRadius = "50%";
+		
+		new TWEEN.Tween(linkLabel.position)
+		.to({ y: -panelHeight * 1.5 }, 500)
+		.easing(TWEEN.Easing.Exponential.Out)
+		.start();
 	}, 100);
 
 	new TWEEN.Tween(camera)
