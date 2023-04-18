@@ -53,8 +53,6 @@ renderer.domElement.style.zIndex = "0";
 renderer.domElement.style.boxShadow = "0px 0px 0px 0px #66c6d300 !important; -webkit-box-shadow: 0px 0px 0px 0px #66c6d300 !important;";
 renderer.setPixelRatio(window.devicePixelRatio);
 
-container.appendChild(faceRenderer.domElement);
-container.appendChild(renderer.domElement);
 
 //Skybox
 const skyboxGeometry = new THREE.SphereGeometry(1599, 60, 40);
@@ -75,6 +73,10 @@ control.enablePan = false;
 control.azimuthRotateSpeed = 0.3;
 control.polarRotateSpeed = 0;
 control.draggingSmoothTime = 0.1;
+
+container.appendChild(faceRenderer.domElement);
+container.appendChild(renderer.domElement);
+
 
 //Setup Screens
 for (var i = 0; i < 6; i++) {
