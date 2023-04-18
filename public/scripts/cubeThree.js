@@ -43,6 +43,11 @@ const faceRenderer = new CSS3DRenderer({antialias: false, logarithmicDepthBuffer
 faceRenderer.domElement.style.borderRadius = "50%";
 faceRenderer.domElement.style.position = "absolute";
 faceRenderer.domElement.style.zIndex = "1";
+faceRenderer.setSize(
+	container.offsetWidth % 2 === 0 ? container.offsetWidth : container.offsetWidth - 1,
+	container.offsetHeight % 2 === 0 ? container.offsetHeight : container.offsetHeight - 1
+);
+
 
 //Standard Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: false , alpha: true, logarithmicDepthBuffer:true});
@@ -52,6 +57,7 @@ renderer.domElement.style.webkitTransition = "all 0.5s ease-in-out";
 renderer.domElement.style.zIndex = "0";
 renderer.domElement.style.boxShadow = "0px 0px 0px 0px #66c6d300 !important; -webkit-box-shadow: 0px 0px 0px 0px #66c6d300 !important;";
 renderer.setPixelRatio(window.devicePixelRatio);
+
 
 
 //Skybox
@@ -66,7 +72,7 @@ scene.add(skybox);
 //Orbit Control
 CameraControls.install({ THREE: THREE });
 var control = new CameraControls(camera, faceRenderer.domElement);
-control.enableDamping = true;
+control.enableDamping = false;
 control.dollySpeed = 0;
 control.truckSpeed = 0;
 control.enablePan = false;
@@ -100,6 +106,8 @@ for (var i = 0; i < 6; i++) {
 	label.rotation.y = Math.PI * i / 3;
 	label.rotation.z = 0;
 	label.scale.x = -1;
+	label.element.style.width = (panelWidth % 2 === 0 ? panelWidth : panelWidth - 1)+'px'
+	label.element.style.height= (panelHeight % 2 === 0 ? panelHeight: panelHeight- 1)+'px'
 
 	panelElems.push(panelElem);
 	panelObjects.push(label);
@@ -150,7 +158,12 @@ const setSize = (container, camera, renderer, faceRenderer) => {
 
 	renderer.setSize(container.clientWidth, container.clientHeight);
 	renderer.setPixelRatio(window.devicePixelRatio);
-    faceRenderer.setSize(container.clientWidth, container.clientHeight);
+    //faceRenderer.setSize(container.clientWidth, container.clientHeight);
+	faceRenderer.setSize(
+		container.offsetWidth % 2 === 0 ? container.offsetWidth : container.offsetWidth - 1,
+		container.offsetHeight % 2 === 0 ? container.offsetHeight : container.offsetHeight - 1
+	);
+		
 };
 
 class Resizer {
