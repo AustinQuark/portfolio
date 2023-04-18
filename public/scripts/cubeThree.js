@@ -212,7 +212,7 @@ control.addEventListener("controlstart", function(e){
 		.easing(TWEEN.Easing.Exponential.Out)
 		.start();
 	}, 100);
-
+	/*
 	new TWEEN.Tween(camera)
 		.to({ fov: 65 }, 500)
 		.easing(TWEEN.Easing.Quartic.Out)
@@ -220,6 +220,7 @@ control.addEventListener("controlstart", function(e){
 			camera.updateProjectionMatrix();
 		})
 		.start();
+	*/
 
 });
 
@@ -240,14 +241,14 @@ control.addEventListener("controlend", function (e) {
 			panelElems[selected].classList.remove("panelSelect");
 			panelElems[selected].classList.add("panelIdle");
 		}
-
+			/*
 		new TWEEN.Tween(camera)
 			.to({ fov: 50 }, 600)
 			.easing(TWEEN.Easing.Quintic.InOut)
 			.onUpdate(function (camera) {
 				camera.updateProjectionMatrix();
 			})
-			.start();
+			.start();*/
 
 		setTimeout(function () {
 			faceRenderer.domElement.style.borderRadius = "0%";
