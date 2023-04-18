@@ -45,6 +45,7 @@ faceRenderer.domElement.style.zIndex = "1";
 const renderer = new THREE.WebGLRenderer({ antialias: false , alpha: true});
 renderer.domElement.style.borderRadius = "50%";
 renderer.domElement.style.transition = "all 0.5s ease-in-out";
+renderer.domElement.style.webkitTransition = "all 0.5s ease-in-out";
 renderer.domElement.style.zIndex = "0";
 renderer.domElement.style.boxShadow = "0px 0px 0px 0px #66c6d300 !important; -webkit-box-shadow: 0px 0px 0px 0px #66c6d300 !important;";
 renderer.setPixelRatio(window.devicePixelRatio);
