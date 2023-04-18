@@ -34,6 +34,8 @@ scene.background = new THREE.Color("rgb(166, 251, 255)");
 //Camera
 const camera = new THREE.PerspectiveCamera(55, container.offsetWidth / container.offsetHeight, 1, 10000);
 camera.position.x = 1;
+camera.position.y = 0;
+camera.position.z = 0;
 
 //CSS Renderer
 const faceRenderer = new CSS3DRenderer({antialias: false});
