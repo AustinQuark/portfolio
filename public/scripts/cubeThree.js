@@ -184,8 +184,8 @@ const clock = new THREE.Clock();
 //The Loop
 function animate() {
     const delta = clock.getDelta();
-    control.update(delta);
 	TWEEN.update();
+    control.update(delta);
 	new Resizer(container, camera, renderer, faceRenderer);
 	faceRenderer.render(scene, camera);
 	renderer.render(scene, camera);
@@ -204,10 +204,9 @@ control.addEventListener("controlstart", function(e){
 
 	if (renderer.domElement.classList.contains("light")) renderer.domElement.classList.toggle("light");
 
-
-
 	setTimeout(function () {
 		faceRenderer.domElement.style.borderRadius = "50%";
+
 		new TWEEN.Tween(linkLabel.position)
 		.to({ y: -panelHeight * 1.5 }, 500)
 		.easing(TWEEN.Easing.Exponential.Out)
@@ -235,22 +234,24 @@ control.addEventListener("controlend", function (e) {
 
 	setTimeout(function () {
 		if (!renderer.domElement.classList.contains("light")) renderer.domElement.classList.toggle("light");
+		
 		if (panelElems[selected].classList.contains("panelSelect")) 
 		{
 			panelElems[selected].classList.remove("panelSelect");
 			panelElems[selected].classList.add("panelIdle");
 		}
+
 		new TWEEN.Tween(camera)
-		.to({ fov: 50 }, 600)
-		.easing(TWEEN.Easing.Quintic.InOut)
-		.onUpdate(function (camera) {
-			camera.updateProjectionMatrix();
-		})
-		.start();
+			.to({ fov: 50 }, 600)
+			.easing(TWEEN.Easing.Quintic.InOut)
+			.onUpdate(function (camera) {
+				camera.updateProjectionMatrix();
+			})
+			.start();
 
 		setTimeout(function () {
 			faceRenderer.domElement.style.borderRadius = "0%";
-			}, 300);
+		}, 300);
 
 	
 	}, 275);
