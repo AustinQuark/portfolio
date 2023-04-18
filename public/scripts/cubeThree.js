@@ -36,6 +36,7 @@ const camera = new THREE.PerspectiveCamera(55, container.offsetWidth / container
 camera.position.x = 1;
 camera.position.y = 0;
 camera.position.z = 0;
+camera.fov = 55;
 
 //CSS Renderer
 const faceRenderer = new CSS3DRenderer({antialias: false});
