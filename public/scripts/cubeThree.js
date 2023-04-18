@@ -32,20 +32,20 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color("rgb(166, 251, 255)");
 
 //Camera
-const camera = new THREE.PerspectiveCamera(55, container.offsetWidth / container.offsetHeight, 1, 10000);
+const camera = new THREE.PerspectiveCamera(55, container.offsetWidth / container.offsetHeight, 1200, 1600);
 camera.position.x = 1;
 camera.position.y = 0;
 camera.position.z = 0;
 camera.fov = 55;
 
 //CSS Renderer
-const faceRenderer = new CSS3DRenderer({antialias: false});
+const faceRenderer = new CSS3DRenderer({antialias: false, logarithmicDepthBuffer:true});
 faceRenderer.domElement.style.borderRadius = "50%";
 faceRenderer.domElement.style.position = "absolute";
 faceRenderer.domElement.style.zIndex = "1";
 
 //Standard Renderer
-const renderer = new THREE.WebGLRenderer({ antialias: false , alpha: true});
+const renderer = new THREE.WebGLRenderer({ antialias: false , alpha: true, logarithmicDepthBuffer:true});
 renderer.domElement.style.borderRadius = "50%";
 renderer.domElement.style.transition = "all 0.5s ease-in-out";
 renderer.domElement.style.webkitTransition = "all 0.5s ease-in-out";
@@ -57,7 +57,7 @@ container.appendChild(faceRenderer.domElement);
 container.appendChild(renderer.domElement);
 
 //Skybox
-const skyboxGeometry = new THREE.SphereGeometry(2000, 60, 40);
+const skyboxGeometry = new THREE.SphereGeometry(1599, 60, 40);
 skyboxGeometry.scale(-1, 1, 1);
 const skyboxTexture = new THREE.TextureLoader().load("../images/skybox.webp");
 const skyboxMaterial = new THREE.MeshBasicMaterial({ map: skyboxTexture, opacity:0, transparent:true });
@@ -212,7 +212,7 @@ control.addEventListener("controlstart", function(e){
 		.easing(TWEEN.Easing.Exponential.Out)
 		.start();
 	}, 100);
-	/*
+
 	new TWEEN.Tween(camera)
 		.to({ fov: 65 }, 500)
 		.easing(TWEEN.Easing.Quartic.Out)
@@ -220,7 +220,6 @@ control.addEventListener("controlstart", function(e){
 			camera.updateProjectionMatrix();
 		})
 		.start();
-	*/
 
 });
 
@@ -241,14 +240,14 @@ control.addEventListener("controlend", function (e) {
 			panelElems[selected].classList.remove("panelSelect");
 			panelElems[selected].classList.add("panelIdle");
 		}
-			/*
+
 		new TWEEN.Tween(camera)
 			.to({ fov: 50 }, 600)
 			.easing(TWEEN.Easing.Quintic.InOut)
 			.onUpdate(function (camera) {
 				camera.updateProjectionMatrix();
 			})
-			.start();*/
+			.start();
 
 		setTimeout(function () {
 			faceRenderer.domElement.style.borderRadius = "0%";
