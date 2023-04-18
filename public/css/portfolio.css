@@ -178,8 +178,8 @@ body {
 .cube_container {
     cursor: crosshair;
     border-radius: 50%;
-    width: 20em;
-    height: 20em;
+    width: 20rem;
+    height: 20rem;
     transform: scale(0, 0);
     transition: all 1.25s cubic-bezier(0.65, 0, 0.35, 1);
 }
