@@ -39,11 +39,14 @@ camera.position.x = 1;
 const faceRenderer = new CSS3DRenderer({antialias: false});
 faceRenderer.domElement.style.borderRadius = "50%";
 faceRenderer.domElement.style.position = "absolute";
+faceRenderer.domElement.style.zIndex = "1";
 
 //Standard Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: false , alpha: true});
 renderer.domElement.style.borderRadius = "50%";
 renderer.domElement.style.transition = "all 0.5s ease-in-out";
+renderer.domElement.style.zIndex = "0";
+renderer.domElement.style.boxShadow = "0px 0px 0px 0px #66c6d300 !important; -webkit-box-shadow: 0px 0px 0px 0px #66c6d300 !important;";
 renderer.setPixelRatio(window.devicePixelRatio);
 
 container.appendChild(faceRenderer.domElement);
@@ -78,7 +81,7 @@ for (var i = 0; i < 6; i++) {
 	panelElem.style.width = panelWidth + "px";
 	panelElem.style.height = panelHeight + "px";
 	panelElem.style.backgroundImage = "url(images/screenshot" + i + ".png)";
-	panelElem.style.backgroundSize = "cover";
+	panelElem.style.backgroundSize = "contain";
 	panelElem.style.borderRadius = "20px";
 
 
@@ -201,7 +204,6 @@ control.addEventListener("controlstart", function(e){
 
 	setTimeout(function () {
 		faceRenderer.domElement.style.borderRadius = "50%";
-		
 		new TWEEN.Tween(linkLabel.position)
 		.to({ y: -panelHeight * 1.5 }, 500)
 		.easing(TWEEN.Easing.Exponential.Out)
