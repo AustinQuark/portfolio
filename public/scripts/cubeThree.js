@@ -43,11 +43,6 @@ const faceRenderer = new CSS3DRenderer({antialias: false, logarithmicDepthBuffer
 faceRenderer.domElement.style.borderRadius = "50%";
 faceRenderer.domElement.style.position = "absolute";
 faceRenderer.domElement.style.zIndex = "1";
-faceRenderer.setSize(
-	container.offsetWidth % 2 === 0 ? container.offsetWidth : container.offsetWidth - 1,
-	container.offsetHeight % 2 === 0 ? container.offsetHeight : container.offsetHeight - 1
-);
-
 
 //Standard Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: false , alpha: true, logarithmicDepthBuffer:true});
@@ -106,8 +101,6 @@ for (var i = 0; i < 6; i++) {
 	label.rotation.y = Math.PI * i / 3;
 	label.rotation.z = 0;
 	label.scale.x = -1;
-	label.element.style.width = (panelWidth % 2 === 0 ? panelWidth : panelWidth - 1)+'px'
-	label.element.style.height= (panelHeight % 2 === 0 ? panelHeight: panelHeight- 1)+'px'
 
 	panelElems.push(panelElem);
 	panelObjects.push(label);
@@ -158,12 +151,7 @@ const setSize = (container, camera, renderer, faceRenderer) => {
 
 	renderer.setSize(container.clientWidth, container.clientHeight);
 	renderer.setPixelRatio(window.devicePixelRatio);
-    //faceRenderer.setSize(container.clientWidth, container.clientHeight);
-	faceRenderer.setSize(
-		container.offsetWidth % 2 === 0 ? container.offsetWidth : container.offsetWidth - 1,
-		container.offsetHeight % 2 === 0 ? container.offsetHeight : container.offsetHeight - 1
-	);
-		
+    faceRenderer.setSize(container.clientWidth, container.clientHeight);
 };
 
 class Resizer {
