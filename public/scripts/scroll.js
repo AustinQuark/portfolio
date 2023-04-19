@@ -63,9 +63,19 @@ document.getElementById("cube_container").addEventListener("touchend", function 
 	enableScroll();
 });
 
-document.addEventListener("resize", function(e) {
-if (square.offsetHeight < window.innerHeight)
-	disableScroll();
-else
-    enableScroll();
-})
+function scrollSquare() {
+	if (square.offsetHeight * 1.05 < window.innerHeight) {
+		square.style.margin = "auto";
+	}
+	else {
+		square.style.margin = "3em 0";
+	}
+};
+
+addEventListener("resize", function(e) {
+	scrollSquare();
+});
+
+scrollSquare();
+
+

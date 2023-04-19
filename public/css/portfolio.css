@@ -44,24 +44,26 @@ html {
     overflow-x: hidden;
     font-size: 16px;
     font-size: clamp(1em, 1em + 0.45vw, 3em);
+    min-width: 330px;
+    overflow-x: auto;
 }
 
 body {
-    height: max-content;
-    overflow-x: hidden;
-	min-width: 300px;
 	display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
 	display: -ms-flexbox;  /* TWEENER - IE 10 */
 	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 0;
+    min-height: 100vh;
+    min-width: 330px;
 }
 
 .square {
-    min-width: 350px;
+    margin: auto;
   	width: 90vw;
+    min-width: 297px;
   	border-radius: 7px;
 	-webkit-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
   	-moz-transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
@@ -87,7 +89,7 @@ body {
     flex-direction: column;
     align-items: flex-end;
 	padding-top: 1.3em;
-    padding-left: 3em;
+    padding-left: 5vw;
     font-weight: bold;
 }
 
@@ -179,8 +181,8 @@ body {
 .cube_container {
     cursor: crosshair;
     border-radius: 50%;
-    width: 20rem;
-    height: 20rem;
+    width: 15rem;
+    height: 15rem;
     transform: scale(0, 0);
     transition: all 1.25s cubic-bezier(0.65, 0, 0.35, 1);
 }
@@ -324,14 +326,14 @@ body {
 }
 
 @media (min-width: 576px) {
-
+    .cube_container {
+        width: 20rem;
+        height: 20rem;
+    }
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-    html, body { 
-        height: 100%;
-    }
 
     .cube_container {
         shape-outside: circle();
