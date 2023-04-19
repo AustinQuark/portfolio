@@ -27,6 +27,6 @@ const items = [
 console.log('Do not forget to update links in cubeThree.js !');
 
 await Promise.all(items.map(([url, filename]) => {
-	return captureWebsite.file(url, `${filename}.png`, options);
+	return captureWebsite.file(url, `${filename}.webp`, options);
 }));
 

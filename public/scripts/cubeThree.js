@@ -5,7 +5,6 @@ import CameraControls from "./camera-controls.module.js";
 import { CSS3DRenderer, CSS3DObject  } from "./CSS3DRenderer.js";
 import { TWEEN } from "./tween.module.min.js";
 
-
 //Variables
 const rayon = 1420;
 const panelWidth = 1280;
@@ -86,7 +85,7 @@ for (var i = 0; i < 6; i++) {
 	panelElem.classList.add("panel_shadow");
 	panelElem.style.width = panelWidth + "px";
 	panelElem.style.height = panelHeight + "px";
-	panelElem.style.backgroundImage = "url(images/screenshot" + i + ".png)";
+	panelElem.style.backgroundImage = "url(images/screenshot" + i + ".webp)";
 	panelElem.style.backgroundSize = "contain";
 	panelElem.style.borderRadius = "20px";
 

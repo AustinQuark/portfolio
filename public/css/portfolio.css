@@ -136,9 +136,10 @@ body {
 
 	text-align: center;
 	justify-content: space-around;
-	flex-wrap: wrap;
+	flex-wrap: wrap-reverse;
     padding: 0em 1.5em;
 	padding-bottom: 0.6em;
+    column-gap: 1.25em;
 }
 
 .button {
