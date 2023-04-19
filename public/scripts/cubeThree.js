@@ -26,7 +26,6 @@ const links = [
 //DOM Container
 const container = document.getElementById("cube_container");
 
-
 //Scene
 const scene = new THREE.Scene();
 scene.background = new THREE.Color("rgb(166, 251, 255)");

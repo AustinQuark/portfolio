@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import https from 'express-force-https';
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -12,6 +13,8 @@ const PORT = 80;
 
 app.set('views', path.join(__dirname,'/views'));
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(https);
+
 
 router.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'views', 'portfolio.html'));
