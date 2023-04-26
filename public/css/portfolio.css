@@ -179,6 +179,7 @@ body {
 }
 
 .cube_container {
+    background-color: transparent;
     cursor: crosshair;
     border-radius: 50%;
     width: 15rem;
@@ -199,7 +200,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     background: black;
     border-radius: 20px;
-    background-size: cover;
+    background-size: contain;
     transition: ease-out 0.3s;
     border: 0px solid rgb(255, 255, 255);
 }

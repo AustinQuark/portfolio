@@ -24,6 +24,7 @@ const links = [
 
 //DOM Container
 const container = document.getElementById("cube_container");
+container.style.overflow = "hidden";
 
 //Scene
 const scene = new THREE.Scene();
@@ -36,21 +37,22 @@ camera.position.y = 0;
 camera.position.z = 0;
 camera.fov = 55;
 
+
+
 //CSS Renderer
-const faceRenderer = new CSS3DRenderer({antialias: false, logarithmicDepthBuffer:true});
-faceRenderer.domElement.style.borderRadius = "50%";
+const faceRenderer = new CSS3DRenderer({antialias: false, depth: false});
 faceRenderer.domElement.style.position = "absolute";
 faceRenderer.domElement.style.zIndex = "1";
 
 //Standard Renderer
-const renderer = new THREE.WebGLRenderer({ antialias: false , alpha: true, logarithmicDepthBuffer:true});
+const renderer = new THREE.WebGLRenderer({ antialias: false , alpha: true});
 renderer.domElement.style.borderRadius = "50%";
 renderer.domElement.style.transition = "all 0.5s ease-in-out";
 renderer.domElement.style.webkitTransition = "all 0.5s ease-in-out";
-renderer.domElement.style.zIndex = "0";
+renderer.domElement.style.zIndex = "10";
 renderer.domElement.style.boxShadow = "0px 0px 0px 0px #66c6d300 !important; -webkit-box-shadow: 0px 0px 0px 0px #66c6d300 !important;";
+renderer.domElement.style.transition = "1.25s cubic-bezier(0.65, 0, 0.35, 1);"
 renderer.setPixelRatio(window.devicePixelRatio);
-
 
 
 //Skybox
@@ -86,9 +88,6 @@ for (var i = 0; i < 6; i++) {
 	panelElem.style.width = panelWidth + "px";
 	panelElem.style.height = panelHeight + "px";
 	panelElem.style.backgroundImage = "url(images/screenshot" + i + ".webp)";
-	panelElem.style.backgroundSize = "contain";
-	panelElem.style.borderRadius = "20px";
-
 
 	var label = new CSS3DObject(panelElem);
 
@@ -195,6 +194,7 @@ function animate() {
 
 //Start Animation
 container.classList.add("cube_pop");
+
 new TWEEN.Tween(skyboxMaterial)
     .to({ opacity: 1 }, 1500)
     .easing(TWEEN.Easing.Cubic.Out)
@@ -205,15 +205,17 @@ control.addEventListener("controlstart", function(e){
 
 	if (renderer.domElement.classList.contains("light")) renderer.domElement.classList.toggle("light");
 
+	container.style.overflow = "hidden";
+	
 	setTimeout(function () {
-		faceRenderer.domElement.style.borderRadius = "50%";
-
 		new TWEEN.Tween(linkLabel.position)
 		.to({ y: -panelHeight * 1.5 }, 500)
 		.easing(TWEEN.Easing.Exponential.Out)
 		.start();
 	}, 100);
+	
 
+	
 	new TWEEN.Tween(camera)
 		.to({ fov: 65 }, 500)
 		.easing(TWEEN.Easing.Quartic.Out)
@@ -221,18 +223,18 @@ control.addEventListener("controlstart", function(e){
 			camera.updateProjectionMatrix();
 		})
 		.start();
+	
 
 });
 
 control.addEventListener("controlend", function (e) {
-
+	
 	new TWEEN.Tween(linkLabel.position)
 	.to({ y: -panelHeight * 0.7 }, 400)
 	.easing(TWEEN.Easing.Cubic.InOut)
 	.start();
-
+	
 	control.lookInDirectionOf(Math.sin(closestAngle(normalizeAngle(control.azimuthAngle))) * 100, 0, Math.cos(closestAngle(normalizeAngle(control.azimuthAngle))) * 100 , true );
-
 	setTimeout(function () {
 		if (!renderer.domElement.classList.contains("light")) renderer.domElement.classList.toggle("light");
 		
@@ -251,12 +253,10 @@ control.addEventListener("controlend", function (e) {
 			.start();
 
 		setTimeout(function () {
-			faceRenderer.domElement.style.borderRadius = "0%";
+			container.style.overflow = "visible";
 		}, 300);
 
-	
 	}, 275);
-
 });
 
 function throttle(func, delay) {
