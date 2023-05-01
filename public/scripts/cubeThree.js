@@ -35,9 +35,6 @@ const camera = new THREE.PerspectiveCamera(55, container.offsetWidth / container
 camera.position.x = 1;
 camera.position.y = 0;
 camera.position.z = 0;
-camera.fov = 55;
-
-
 
 //CSS Renderer
 const faceRenderer = new CSS3DRenderer({antialias: false, depth: false});
@@ -204,15 +201,23 @@ new TWEEN.Tween(skyboxMaterial)
 //Link Panel Animation
 var linkDown = new TWEEN.Tween(linkLabel.position)
 			.to({ y: -panelHeight * 1.5 }, 500)
-			.easing(TWEEN.Easing.Exponential.Out)
-			.onStart(() => {console.log("panel down start")})
-			.onComplete(() => {console.log("panel down complete")});
+			.easing(TWEEN.Easing.Exponential.Out);
 
 var linkUp = new TWEEN.Tween(linkLabel.position)
 			.to({ y: -panelHeight * 0.7 }, 400)
-			.easing(TWEEN.Easing.Cubic.InOut)
-			.onStart(() => {console.log("panel up start")})
-			.onComplete(() => {console.log("panel up complete")});
+			.easing(TWEEN.Easing.Cubic.InOut);
+
+
+//Camera Fov Animation
+var camUnzoom = new TWEEN.Tween(camera)
+				.to({ fov: 65 }, 500)
+				.easing(TWEEN.Easing.Quartic.Out)
+				.onUpdate(function (camera) {camera.updateProjectionMatrix();});
+
+var camZoom = new TWEEN.Tween(camera)
+			.to({ fov: 50 }, 600)
+			.easing(TWEEN.Easing.Quintic.InOut)
+			.onUpdate(function (camera) {camera.updateProjectionMatrix();});
 
 
 
@@ -227,17 +232,8 @@ control.addEventListener("controlstart", function(e){
 		linkDown.start();
 	}, 100);
 	
-
-	
-	new TWEEN.Tween(camera)
-		.to({ fov: 65 }, 500)
-		.easing(TWEEN.Easing.Quartic.Out)
-		.onUpdate(function (camera) {
-			camera.updateProjectionMatrix();
-		})
-		.start();
-	
-
+	if (camZoom.isPlaying) camZoom.stop();
+	camUnzoom.start();
 });
 
 control.addEventListener("controlend", function (e) {
@@ -255,13 +251,8 @@ control.addEventListener("controlend", function (e) {
 			panelElems[selected].classList.add("panelIdle");
 		}
 
-		new TWEEN.Tween(camera)
-			.to({ fov: 50 }, 600)
-			.easing(TWEEN.Easing.Quintic.InOut)
-			.onUpdate(function (camera) {
-				camera.updateProjectionMatrix();
-			})
-			.start();
+		if (camUnzoom.isPlaying) camUnzoom.stop();
+		camZoom.start();
 
 		setTimeout(function () {
 			container.style.overflow = "visible";
@@ -303,7 +294,7 @@ function panelDetect(){
 				panelElems[selected].classList.remove("panelIdle");
 			}
 			linkContent.href = links[selected];
-
+			break;
 		}
 	}
 }
