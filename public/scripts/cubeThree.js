@@ -114,6 +114,7 @@ linkPanel.style.height = panelHeight * 0.3 + "px";
 var linkContent = document.createElement("a");
 linkContent.className = "linkContent";
 linkContent.innerHTML = "Check My Work";
+linkContent.target = "_blank";
 linkPanel.appendChild(linkContent);
 
 var linkLabel = new CSS3DObject(linkPanel);
@@ -200,6 +201,20 @@ new TWEEN.Tween(skyboxMaterial)
     .easing(TWEEN.Easing.Cubic.Out)
     .start();
 
+//Link Panel Animation
+var linkDown = new TWEEN.Tween(linkLabel.position)
+			.to({ y: -panelHeight * 1.5 }, 500)
+			.easing(TWEEN.Easing.Exponential.Out)
+			.onStart(() => {console.log("panel down start")})
+			.onComplete(() => {console.log("panel down complete")});
+
+var linkUp = new TWEEN.Tween(linkLabel.position)
+			.to({ y: -panelHeight * 0.7 }, 400)
+			.easing(TWEEN.Easing.Cubic.InOut)
+			.onStart(() => {console.log("panel up start")})
+			.onComplete(() => {console.log("panel up complete")});
+
+
 
 control.addEventListener("controlstart", function(e){
 
@@ -208,10 +223,8 @@ control.addEventListener("controlstart", function(e){
 	container.style.overflow = "hidden";
 	
 	setTimeout(function () {
-		new TWEEN.Tween(linkLabel.position)
-		.to({ y: -panelHeight * 1.5 }, 500)
-		.easing(TWEEN.Easing.Exponential.Out)
-		.start();
+		if (linkUp.isPlaying) linkUp.stop();
+		linkDown.start();
 	}, 100);
 	
 
@@ -229,10 +242,8 @@ control.addEventListener("controlstart", function(e){
 
 control.addEventListener("controlend", function (e) {
 	
-	new TWEEN.Tween(linkLabel.position)
-	.to({ y: -panelHeight * 0.7 }, 400)
-	.easing(TWEEN.Easing.Cubic.InOut)
-	.start();
+	if (linkDown.isPlaying) linkDown.stop();
+	linkUp.start();
 	
 	control.lookInDirectionOf(Math.sin(closestAngle(normalizeAngle(control.azimuthAngle))) * 100, 0, Math.cos(closestAngle(normalizeAngle(control.azimuthAngle))) * 100 , true );
 	setTimeout(function () {
@@ -292,7 +303,6 @@ function panelDetect(){
 				panelElems[selected].classList.remove("panelIdle");
 			}
 			linkContent.href = links[selected];
-			linkContent.target = "_blank";
 
 		}
 	}
