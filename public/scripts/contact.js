@@ -17,3 +17,10 @@ document.documentElement.addEventListener("click", function (e) {
     if (git !== e.target && !git.contains(e.target)) {return;}
   window.open("https://github.com/AustinQuark", "_blank")
 })
+
+var linkedin = document.getElementsByClassName("linkedin")[0]
+
+document.documentElement.addEventListener("click", function (e) {
+    if (linkedin !== e.target && !linkedin.contains(e.target)) {return;}
+  window.open("https://www.linkedin.com/in/austin-v-5bb002203/", "_blank")
+})
