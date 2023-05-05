@@ -194,7 +194,7 @@ function animate() {
 container.classList.add("cube_pop");
 
 new TWEEN.Tween(skyboxMaterial)
-    .to({ opacity: 1 }, 1200)
+    .to({ opacity: 1 }, 800)
     .easing(TWEEN.Easing.Cubic.Out)
     .start();
 
