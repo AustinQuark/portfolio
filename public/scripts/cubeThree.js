@@ -44,11 +44,10 @@ faceRenderer.domElement.style.zIndex = "1";
 //Standard Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: false , alpha: true});
 renderer.domElement.style.borderRadius = "50%";
-renderer.domElement.style.transition = "all 0.5s ease-in-out";
 renderer.domElement.style.webkitTransition = "all 0.5s ease-in-out";
 renderer.domElement.style.zIndex = "10";
 renderer.domElement.style.boxShadow = "0px 0px 0px 0px #66c6d300 !important; -webkit-box-shadow: 0px 0px 0px 0px #66c6d300 !important;";
-renderer.domElement.style.transition = "1.25s cubic-bezier(0.65, 0, 0.35, 1);"
+renderer.domElement.style.transition = "all 1.25s cubic-bezier(0.65, 0, 0.35, 1);"
 renderer.setPixelRatio(window.devicePixelRatio);
 
 
@@ -71,6 +70,7 @@ control.enablePan = false;
 control.azimuthRotateSpeed = 0.3;
 control.polarRotateSpeed = 0;
 control.draggingSmoothTime = 0.1;
+control.azimuthAngle = 0;
 
 container.appendChild(faceRenderer.domElement);
 container.appendChild(renderer.domElement);
@@ -194,9 +194,18 @@ function animate() {
 container.classList.add("cube_pop");
 
 new TWEEN.Tween(skyboxMaterial)
-    .to({ opacity: 1 }, 1500)
+    .to({ opacity: 1 }, 1200)
     .easing(TWEEN.Easing.Cubic.Out)
     .start();
+
+
+var continuousTurn = new TWEEN.Tween(control)
+				.to({ azimuthAngle: Math.PI * 2 }, 30000)
+				.easing(TWEEN.Easing.Linear.None)
+				.repeat(Infinity)
+				.start();
+
+
 
 //Link Panel Animation
 var linkDown = new TWEEN.Tween(linkLabel.position)
@@ -222,15 +231,14 @@ var camZoom = new TWEEN.Tween(camera)
 
 
 control.addEventListener("controlstart", function(e){
+	if (continuousTurn.isPlaying) continuousTurn.stop();
 
 	if (renderer.domElement.classList.contains("light")) renderer.domElement.classList.toggle("light");
 
 	container.style.overflow = "hidden";
 	
-	setTimeout(function () {
-		if (linkUp.isPlaying) linkUp.stop();
-		linkDown.start();
-	}, 100);
+	if (linkUp.isPlaying) linkUp.stop();
+	linkDown.start();
 	
 	if (camZoom.isPlaying) camZoom.stop();
 	camUnzoom.start();
