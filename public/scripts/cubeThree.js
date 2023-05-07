@@ -13,14 +13,26 @@ var panelElems = [];
 var panelObjects = [];
 const angles = [0, Math.PI * 2 / 6, Math.PI * 4 / 6, Math.PI * 6 / 6, Math.PI * 8 / 6, Math.PI * 10 / 6];
 const links = [
-	'https://projectbar-events.com',
-	'https://github.com/AustinQuark/philosophers',
-    'https://github.com/AustinQuark/push_swap',
-    'https://github.com/AustinQuark/VanillaStopWatch',
     'https://github.com/AustinQuark/cub3D',
+	'https://austinquark.com/',
+    'https://github.com/AustinQuark/push_swap',
+	'https://github.com/AustinQuark/philosophers',
+	'https://projectbar-events.com',
     'https://github.com/AustinQuark/minishell_42'
 ];
 
+//WebP support
+function support_format_webp()
+{
+	var elem = document.createElement('canvas');
+
+	if (!!(elem.getContext && elem.getContext('2d')))
+		return elem.toDataURL('image/webp').indexOf('data:image/webp') == 0;
+	else
+		return false;
+}
+
+var webpSupport = support_format_webp();
 
 //DOM Container
 const container = document.getElementById("cube_container");
@@ -54,7 +66,8 @@ renderer.setPixelRatio(window.devicePixelRatio);
 //Skybox
 const skyboxGeometry = new THREE.SphereGeometry(1599, 60, 40);
 skyboxGeometry.scale(-1, 1, 1);
-const skyboxTexture = new THREE.TextureLoader().load("../images/skybox.webp");
+var skyboxFile = (webpSupport) ? "../images/skybox.webp" : "../images/skybox.jpg";
+const skyboxTexture = new THREE.TextureLoader().load(skyboxFile);
 const skyboxMaterial = new THREE.MeshBasicMaterial({ map: skyboxTexture, opacity:0, transparent:true });
 const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
 scene.add(skybox);
@@ -84,7 +97,8 @@ for (var i = 0; i < 6; i++) {
 	panelElem.classList.add("panel_shadow");
 	panelElem.style.width = panelWidth + "px";
 	panelElem.style.height = panelHeight + "px";
-	panelElem.style.backgroundImage = "url(images/screenshot" + i + ".webp)";
+	var panelFile = (webpSupport) ? "url(images/screenshot" + i + ".webp)" : "url(images/screenshot" + i + ".png)";
+	panelElem.style.backgroundImage = panelFile;
 
 	var label = new CSS3DObject(panelElem);
 
@@ -105,12 +119,13 @@ for (var i = 0; i < 6; i++) {
 //Link Button
 var linkPanel = document.createElement("div");
 linkPanel.className = "linkPanel";
+linkPanel.classList.add("linkPanel_hover");
 linkPanel.style.width = panelWidth * 0.65 + "px";
 linkPanel.style.height = panelHeight * 0.3 + "px";
 
 var linkContent = document.createElement("a");
 linkContent.className = "linkContent";
-linkContent.innerHTML = "Check My Work";
+linkPanel.classList.add("linkContent_hover");
 linkContent.target = "_blank";
 linkPanel.appendChild(linkContent);
 
@@ -137,6 +152,19 @@ linkPanel.addEventListener("mouseenter", function (e) {
 
 linkPanel.addEventListener("mouseleave", function (e) {
 	control.enabled = true;
+});
+
+linkContent.addEventListener("touchstart", function (e) {
+	control.enabled = false;
+});
+
+window.addEventListener("focus", function (e) {
+	control.enabled = true;
+});
+
+window.addEventListener("blur", function (e) {
+	linkPanel.classList.remove("linkPanel_hover");
+	linkContent.classList.remove("linkContent_hover");
 });
 
 //Resizer (source : https://discoverthreejs.com/book/first-steps/responsive-design/)
@@ -302,6 +330,10 @@ function panelDetect(){
 				panelElems[selected].classList.remove("panelIdle");
 			}
 			linkContent.href = links[selected];
+			if (selected == 1) 
+				linkContent.innerHTML = "Inception";
+			else
+				linkContent.innerHTML = "Check My Work";
 			break;
 		}
 	}
