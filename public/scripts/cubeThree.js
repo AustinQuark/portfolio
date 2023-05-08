@@ -49,12 +49,12 @@ camera.position.y = 0;
 camera.position.z = 0;
 
 //CSS Renderer
-const faceRenderer = new CSS3DRenderer({antialias: false, depth: false});
+const faceRenderer = new CSS3DRenderer({antialias: false, depth: false, powerPreference: "high-performance"});
 faceRenderer.domElement.style.position = "absolute";
 faceRenderer.domElement.style.zIndex = "1";
 
 //Standard Renderer
-const renderer = new THREE.WebGLRenderer({ antialias: false , alpha: true});
+const renderer = new THREE.WebGLRenderer({ antialias: false, depth: false, powerPreference: "high-performance"});
 renderer.domElement.style.borderRadius = "50%";
 renderer.domElement.style.webkitTransition = "all 0.5s ease-in-out";
 renderer.domElement.style.zIndex = "10";
@@ -101,6 +101,7 @@ for (var i = 0; i < 6; i++) {
 	panelElem.style.backgroundImage = panelFile;
 
 	var label = new CSS3DObject(panelElem);
+
 
 	label.position.x = Math.sin((i / 6) * Math.PI * 2) * rayon;
 	label.position.y = 0;
@@ -183,11 +184,14 @@ class Resizer {
 		setSize(container, camera, renderer, faceRenderer);
 
 		window.addEventListener("resize", () => {
-			// set the size again if a resize occurs
-			setSize(container, camera, renderer, faceRenderer);
+			setTimeout(() => {
+				setSize(container, camera, renderer, faceRenderer);
+			}, 1500);
 		});
 	}
 }
+
+const resizer = new Resizer(container, camera, renderer, faceRenderer);
 
 //Closest Angle
 function closestAngle(angle) {
@@ -212,7 +216,6 @@ function animate() {
     const delta = clock.getDelta();
 	TWEEN.update();
     control.update(delta);
-	new Resizer(container, camera, renderer, faceRenderer);
 	faceRenderer.render(scene, camera);
 	renderer.render(scene, camera);
 	requestAnimationFrame(animate);
