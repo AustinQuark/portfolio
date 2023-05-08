@@ -97,7 +97,7 @@ for (var i = 0; i < 6; i++) {
 	panelElem.classList.add("panel_shadow");
 	panelElem.style.width = panelWidth + "px";
 	panelElem.style.height = panelHeight + "px";
-	var panelFile = (webpSupport) ? "url(images/screenshot" + i + ".webp)" : "url(images/screenshot" + i + ".png)";
+	var panelFile = (webpSupport) ? "url(images/screenshot" + i + ".webp)" : "url(images/screenshot" + i + ".jpeg)";
 	panelElem.style.backgroundImage = panelFile;
 
 	var label = new CSS3DObject(panelElem);

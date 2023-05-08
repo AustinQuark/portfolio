@@ -7,26 +7,29 @@ const optionsWebp = {
             '--disable-setuid-sandbox'
         ]
     },
-    delay: 5,
+    delay: 3,
     width: 854,
     height: 480,
     type: 'webp',
     darkMode: true,
     overwrite: true,
+    quality: 0.2
 };
 
-const optionsPng = {
+const optionsJpeg = {
     launchOptions: {
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox'
         ]
     },
-    delay: 5,
+    delay: 3,
     width: 854,
     height: 480,
+    type: 'jpeg',
     darkMode: true,
     overwrite: true,
+    quality: 0.35
 };
 
 
@@ -46,7 +49,7 @@ await Promise.all(items.map(([url, filename]) => {
 }));
 
 await Promise.all(items.map(([url, filename]) => {
-    return captureWebsite.file(url, `${filename}.png`, optionsPng);
+    return captureWebsite.file(url, `${filename}.jpeg`, optionsJpeg);
 }));
 
 
