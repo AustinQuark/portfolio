@@ -167,7 +167,8 @@ body {
 .presentation {
     font-size: 1em;
 	letter-spacing: 1px;
-    padding: 1.2em 0em;
+    padding-top: 1.2em;
+    padding-bottom: 2em;
     text-align: justify;
     text-justify: distribute;
     line-height: 1.7em;
@@ -342,6 +343,8 @@ body {
         shape-outside: circle();
         float: right;
         margin-left: 5em;
+        width: 23rem;
+        height: 23rem;
     }
 
     .project {
