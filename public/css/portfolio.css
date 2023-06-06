@@ -165,11 +165,12 @@ body {
 }
 
 .presentation {
+    font-size: 1em;
 	letter-spacing: 1px;
-    padding-top: 1.5em;
+    padding: 1.2em 0em;
     text-align: justify;
     text-justify: distribute;
-    line-height: 1.8em;
+    line-height: 1.7em;
     word-spacing: -1px;
 
 }
